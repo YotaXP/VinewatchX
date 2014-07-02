@@ -1,0 +1,28 @@
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\bin\Debug\VinewatchX.exe
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\bin\Debug\VinewatchX.pdb
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.MainForm.resources
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.Properties.Resources.resources
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.csproj.GenerateResource.Cache
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.exe
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.pdb
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.csprojResolveAssemblyReference.cache
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\bin\Debug\System.Net.Json.dll
+F:\Foreign Documents\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.OptionsForm.resources
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.exe
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.pdb
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\bin\Debug\VinewatchX.exe
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\bin\Debug\VinewatchX.pdb
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.MainForm.resources
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.OptionsForm.resources
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.Properties.Resources.resources
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.csproj.GenerateResource.Cache
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.editPrompt.resources
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.addPrompt.resources
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.AboutBox1.resources
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.exe.manifest
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.TrustInfo.xml
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.application
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\bin\Debug\VinewatchX.exe.manifest
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\bin\Debug\VinewatchX.application
+C:\Users\Harley\Documents\Visual Studio 2008\Projects\VinewatchX\VinewatchX\VinewatchX\obj\x86\Debug\VinewatchX.StartWithWindowsPrompt.resources
