@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace VinewatchX
+namespace VinewatchX.Forms
 {
     public partial class addPrompt : Form
     {

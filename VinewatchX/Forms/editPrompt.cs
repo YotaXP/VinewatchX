@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace VinewatchX
+namespace VinewatchX.Forms
 {
     public partial class editPrompt : Form
     {

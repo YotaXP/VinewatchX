@@ -62,7 +62,8 @@
     <StartupObject>VinewatchX.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>third.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,62 +81,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox1.cs">
+    <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox1.Designer.cs">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="addPrompt.cs">
+    <Compile Include="Forms\addPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addPrompt.Designer.cs">
+    <Compile Include="Forms\addPrompt.Designer.cs">
       <DependentUpon>addPrompt.cs</DependentUpon>
     </Compile>
-    <Compile Include="editPrompt.cs">
+    <Compile Include="Forms\editPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="editPrompt.Designer.cs">
+    <Compile Include="Forms\editPrompt.Designer.cs">
       <DependentUpon>editPrompt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptionsForm.cs">
+    <Compile Include="Forms\OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OptionsForm.Designer.cs">
+    <Compile Include="Forms\OptionsForm.Designer.cs">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PollerThreadManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="startWithWindowsPrompt.cs">
+    <Compile Include="Forms\startWithWindowsPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="startWithWindowsPrompt.Designer.cs">
+    <Compile Include="Forms\startWithWindowsPrompt.Designer.cs">
       <DependentUpon>startWithWindowsPrompt.cs</DependentUpon>
     </Compile>
     <Compile Include="Streamer.cs" />
     <Compile Include="StreamerUtils.cs" />
     <Compile Include="VineConf.cs" />
     <Compile Include="VinewatchLogic.cs" />
-    <EmbeddedResource Include="AboutBox1.resx">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addPrompt.resx">
+    <EmbeddedResource Include="Forms\addPrompt.resx">
       <DependentUpon>addPrompt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="editPrompt.resx">
+    <EmbeddedResource Include="Forms\editPrompt.resx">
       <DependentUpon>editPrompt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptionsForm.resx">
+    <EmbeddedResource Include="Forms\OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -143,7 +144,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="startWithWindowsPrompt.resx">
+    <EmbeddedResource Include="Forms\startWithWindowsPrompt.resx">
       <DependentUpon>startWithWindowsPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -185,11 +186,11 @@
     <None Include="Resources\1388169663907.jpg" />
     <None Include="Resources\vwvso.ico" />
     <None Include="Resources\third.ico" />
-    <Content Include="third.ico" />
+    <None Include="Changelog.txt" />
+    <None Include="References\System.Net.Json.dll" />
     <Content Include="vinewatchXConfig.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="vw.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

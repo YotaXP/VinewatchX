@@ -21,42 +21,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using VinewatchX.Forms;
 
 namespace VinewatchX
 {
     class Program
     {
-
-
-
         [STAThread]
         static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            bool startMinimized = args.Any(a => Regex.IsMatch(a, @"--minimi[sz]ed", RegexOptions.IgnoreCase));
 
-
-            //args[0] = "--minimized";
-
-
-
-            if (args.Length > 0)
-            {
-                if (args[0] == "--minimised" || args[0] == "--minimized")
-                {
-                    Application.Run(new MainForm(true));
-                }
-                else
-                {
-                    Application.Run(new MainForm(false));
-                }
-            }
-            else
-            {
-                Application.Run(new MainForm(false));
-            }
+            Application.Run(new MainForm(startMinimized));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace VinewatchX
+﻿namespace VinewatchX.Forms
 {
     partial class editPrompt
     {

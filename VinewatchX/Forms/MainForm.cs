@@ -7,7 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace VinewatchX
+namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
@@ -298,7 +298,7 @@ namespace VinewatchX
 
         protected void aboutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AboutBox1 box = new AboutBox1();
+            AboutForm box = new AboutForm();
             box.Show();
         }
 

@@ -3,7 +3,7 @@ VinewatchX Changelog
 1.5_X
 . Default sound changed to SOMUCHTODOSOMUCHTOSEE
 . Default main for icon changed to the Vineshroom at Vinny's request.
-. The notification icon will change tot he shroom too as soon as I find a decent icon.
+. The notification icon will change to the shroom too as soon as I find a decent icon.
 . Locked the resizers on main form and options form
 . Changed export button prompts to make them more clear.
 
