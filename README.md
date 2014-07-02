@@ -3,6 +3,8 @@ VinewatchX
 
 Vinewatch X Desktop Notification and Live Status Poller
 
+This program is developed and maintained using VS2013. 
+
 Summary
 =======
 
