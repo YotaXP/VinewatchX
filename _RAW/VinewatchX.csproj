@@ -18,7 +18,7 @@
     <ManifestKeyFile>
     </ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>VinewatchX_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
     <TargetZone>LocalIntranet</TargetZone>
@@ -69,7 +69,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\System.Net.Json.dll</HintPath>
+      <HintPath>.\System.Net.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -186,6 +186,9 @@
     <None Include="Resources\vwvso.ico" />
     <None Include="Resources\third.ico" />
     <Content Include="third.ico" />
+    <Content Include="vinewatchXConfig.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="vw.ico" />
   </ItemGroup>
   <ItemGroup>
