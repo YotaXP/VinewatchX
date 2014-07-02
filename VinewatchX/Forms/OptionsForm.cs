@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 
-namespace VinewatchX
+namespace VinewatchX.Forms
 {
     public partial class OptionsForm : Form
     {

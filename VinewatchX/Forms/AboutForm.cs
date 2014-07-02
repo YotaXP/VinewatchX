@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.Media;
 
-namespace VinewatchX
+namespace VinewatchX.Forms
 {
-    partial class AboutBox1 : Form
+    partial class AboutForm : Form
     {
-        public AboutBox1()
+        public AboutForm()
         {
             InitializeComponent();
             this.Text = String.Format("About VinewatchX");

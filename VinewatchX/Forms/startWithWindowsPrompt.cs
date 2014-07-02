@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
-namespace VinewatchX
+namespace VinewatchX.Forms
 {
     public partial class StartWithWindowsPrompt : Form
     {
