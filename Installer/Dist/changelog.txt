@@ -1,0 +1,42 @@
+VinewatchX Changelog
+
+1.5_X
+. Default sound changed to SOMUCHTODOSOMUCHTOSEE
+. Default main for icon changed to the Vineshroom at Vinny's request.
+. The notification icon will change tot he shroom too as soon as I find a decent icon.
+. Locked the resizers on main form and options form
+. Changed export button prompts to make them more clear.
+
+
+1.4_X
+. Icon replacement interaction and settings.
+. Hyperlink to Vinesauce - removed trailing forward slash
+. Added Jen and Hooty to default streamers (See populate function in StreamerUtils class)
+. Fixed overlapping try/catch, also added a FileNotFoundException throw for startup config
+. Closing the options form now auto exports config to the operating directory.
+
+
+1.3_X
+. Added mute radio button.
+. Resized and tightened space usgae on main form.
+. 4 easter eggs now exist. Find them.
+. Added Import / Export settings buttons to notification icon context strip.
+. Prompt subclass in the Options form no longer a piece of shit.
+. Added Balloon Tip Timeout config to Options form. 
+. Organised the options form to look nicer..
+
+
+1.2_X
+. Added command line switch (vinewatchx.exe --minimised) to start minimised (Added support for Minimize as well as Minimise)
+. Launch at start-up added to notification icon context strip
+. Closure confirmation added to close box
+. Dinosaur on About form replaced with Hannibal Buress 
+
+
+1.1_X
+
+. Added hyperlink to vinesauce.com to main form
+. Notification Icon baloon is now clickable, the action hyperlinking to vinesauce.com
+. Resized last report label to allow a second line.
+. Added image of a purple dinosaur to options form.
+

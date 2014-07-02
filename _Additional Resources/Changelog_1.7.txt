@@ -1,0 +1,3 @@
+Added ponjadito23, ircluzar to thanks
+Changed icon to ponjadito23's Vineshroom
+Added suppression of warnings for un-changed stream titles (1 Previous stream memory)

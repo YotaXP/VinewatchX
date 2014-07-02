@@ -1,0 +1,26 @@
+
+-------------------------------------------------------------------------------
+"THE BEER-WARE LICENSE 2" (Revision of H. Bristow):
+
+As long as you retain this notice you can do almost whatever you want.
+ 
+If ever you should use this program, you are held under the one
+simple rule of this license, and by using the program you agree to adhere
+to said rule.
+
+If ever you should derive code from this program, you are to cite me as
+influence for your project, and by doing such you agree to adhere to the one 
+rule.
+
+Imposed rule - For each single user that uses the program, one beer is to
+be bought as a gift to the programmer, should ever their paths (User and
+programmer) cross.
+
+Failure to adhere to the rule in your call to serve will lead to a user being 
+publicly shamed in the distribution/version notes and on the Vinesauce forums.
+
+This program was created for www.vinesauce.com, a streaming website.
+
+Author
+H. Bristow 12075134@brookes.ac.uk
+-------------------------------------------------------------------------------
