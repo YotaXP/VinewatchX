@@ -22,10 +22,10 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\Harley\Documents\VinewatchX\Dist\LICENSE.txt
-OutputDir=C:\Users\Harley\Documents\VinewatchX\ISS_Out
+LicenseFile=LICENSE.txt
+OutputDir=
 OutputBaseFilename=VinewatchX_Setup.{#MyAppVersion}
-SetupIconFile=C:\Users\Harley\Documents\VinewatchX\Dist\vw.ico
+SetupIconFile=vw.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -37,12 +37,12 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\Users\Harley\Documents\VinewatchX\Dist\VinewatchX.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Harley\Documents\VinewatchX\Dist\changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Harley\Documents\VinewatchX\Dist\System.Net.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Harley\Documents\VinewatchX\Dist\vinewatchXConfig.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Harley\Documents\VinewatchX\Dist\vw.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Harley\Documents\VinewatchX\Dist\VinewatchX Minimised.exe.lnk"; DestDir: "{app}"; Flags: ignoreversion
+Source: "VinewatchX.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Net.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "vinewatchXConfig.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "vw.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "VinewatchX Minimised.exe.lnk"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
