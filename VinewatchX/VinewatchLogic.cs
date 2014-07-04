@@ -7,6 +7,10 @@ using VinewatchX.Forms;
 
 namespace VinewatchX
 {
+    /// <summary>
+    /// Most of the logic for Vinewatch X was lifted from the Python Beta and the now deprecated Vinewatch Sharp.
+    /// A lot of cleaning is due in here.
+    /// </summary>
     public class VinewatchLogic
     {
         private string twitchTVstreamURL = "http://api.justin.tv/api/stream/list.json?channel=vinesauce";

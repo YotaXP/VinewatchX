@@ -1,40 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Media;
 using System.Threading;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
-        protected static bool gX = false;   //I forgot what this is lol
         internal const string gVer = "v1.7_X";
         internal const string gVersion = "VinewatchX " + gVer;
-
-        protected Icon currentIcon = Properties.Resources.vs;
         internal Icon notificationIconIcon = Properties.Resources.vs;
         internal string IconDescriptor = "InternalResource";
+        internal VinewatchLogic thread0;                                 // Checking live statuses is handled by VinewatchLogic objects
 
+        protected Icon currentIcon = Properties.Resources.vs;
+        protected static bool gX = false;                               //Control boolean for an easter-egg
         protected int balloonTipTimeout = 3;
-
         protected static StreamerUtils con = new StreamerUtils();
-        internal VinewatchLogic run;
-
 
         //============================================================================================================================
-
 
         public MainForm(bool tStartMinimized)
         {
             InitializeComponent();
 
             MainFormPrep();
-
-            notificationIcon.BalloonTipClicked += new EventHandler(notificationIcon_BalloonTipClicked);
 
             if (tStartMinimized) WindowState = FormWindowState.Minimized;
         }
@@ -45,9 +39,11 @@ namespace VinewatchX.Forms
 
         protected void MainFormPrep()
         {
-            run = new VinewatchLogic(this);
+            thread0 = new VinewatchLogic(this);
 
-            //Import default config
+            notificationIcon.BalloonTipClicked += new EventHandler(notificationIcon_BalloonTipClicked);
+
+            //Import local config
             try
             {
                 VineConf conf = new VineConf(this);
@@ -75,17 +71,17 @@ namespace VinewatchX.Forms
         {
             versionLabel.Text = gVersion;
 
-            //Set Icons
-            applyIcons(); // Not setIcons() !
+            //Apply Icons
+            applyIcons();
 
             startThreading();
             createTooltips();
-
         }
 
         protected void startThreading()
         {
-            Thread t = new Thread(() => run.init(this));
+
+            Thread t = new Thread(() => thread0.init(this));
             t.IsBackground = true;
             t.Name = "Main thread.";
             t.Start();
@@ -245,22 +241,22 @@ namespace VinewatchX.Forms
 
         internal string getStreamURL()
         {
-            return run.getTwitchTVStreamURL();
+            return thread0.getTwitchTVStreamURL();
         }
 
         internal string getStreamPollRate()
         {
-            return run.getPollRate().ToString();
+            return thread0.getPollRate().ToString();
         }
 
         internal void setPollerURl(string newPollURL)
         {
-            run.setTwitchTVStreamURL(newPollURL);
+            thread0.setTwitchTVStreamURL(newPollURL);
         }
 
         internal void setPollRate(int newPollRate)
         {
-            run.setPollRate(newPollRate);
+            thread0.setPollRate(newPollRate);
         }
 
         internal void setNotificationLabelText(string s)

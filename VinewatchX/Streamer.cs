@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 namespace VinewatchX
 {
+    ///<summary>
+    /// Object to represent configurations unique to a streamer (Soundfile to play and name).
+    ///</summary>
     public class Streamer
     {
         private string name;
@@ -42,14 +45,13 @@ namespace VinewatchX
             soundfileName = "InternalResource";
         }
 
-        public Streamer(String tname, string dirtsoundfile)
+        public Streamer(String tname, string dirToSoundfile)
         {
-
             try
             {
                 this.name = tname;
-                this.soundfile = File.Open(dirtsoundfile, FileMode.Open);
-                soundfileName = dirtsoundfile;
+                this.soundfile = File.Open(dirToSoundfile, FileMode.Open);
+                soundfileName = dirToSoundfile;
             }
             catch (IOException)
             {
@@ -78,6 +80,8 @@ namespace VinewatchX
         {
             return this.soundfileName;
         }
+
+
 
 
 
@@ -112,6 +116,10 @@ namespace VinewatchX
             this.refreshSound().Play();
         }
 
+        /// <summary>
+        /// Used to create configurations. Determines internal or external soundfiles.
+        /// </summary>
+        /// <returns>An appropriate name for the soundfile should it be external, else "InternalResource" for internal.</returns>
         internal string getSoundfileAsString()
         {
             if (soundfile.ToString() == "System.IO.UnmanagedMemoryStream" || soundfile == null)

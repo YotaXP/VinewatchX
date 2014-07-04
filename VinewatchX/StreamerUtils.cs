@@ -4,6 +4,10 @@ using System.IO;
 
 namespace VinewatchX
 {
+    /// <summary>
+    /// One object is required to handle all streamers used in the program. 
+    /// Most likely, actions performed on the list of streamers will be done by said object, including intial configuration of the streamer list should no config be present.
+    /// </summary>
     public class StreamerUtils
     {
         static private List<Streamer> streamerList = new List<Streamer>();  //ArrayList can suck my big black dick.
@@ -14,7 +18,7 @@ namespace VinewatchX
 
         public StreamerUtils()
         {
-            //this.populate();        //Populate the streamerList with preset streamers.
+            //this.populate();        // Populate the streamerList with preset streamers. Used in debugging.
         }
 
 
@@ -37,7 +41,7 @@ namespace VinewatchX
             streamerList.Add(new Streamer("Limes"));  
             streamerList.Add(new Streamer("Study"));
             streamerList.Add(new Streamer("Joel"));
-            streamerList.Add(new Streamer("Hooty"));    //1.4
+            streamerList.Add(new Streamer("Hootey"));    //1.7+, Sorry Hootey   :s
             streamerList.Add(new Streamer("Jen"));      //1.4
         }
 

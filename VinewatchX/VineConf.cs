@@ -8,9 +8,11 @@ using VinewatchX.Forms;
 
 namespace VinewatchX
 {
+    /// <summary>
+    /// Object to handle creation, export, import and reading of Vinewatch X configuration.
+    /// </summary>
     class VineConf
     {
-        //private string path = Directory.GetCurrentDirectory();
         private StreamerUtils con = new StreamerUtils();
         private MainForm parentForm = null;
 
