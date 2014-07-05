@@ -11,7 +11,7 @@ namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
-        internal const string gVer = "v1.7_X";
+        internal const string gVer = "v1.8_X";
         internal const string gVersion = "VinewatchX " + gVer;
         internal Icon notificationIconIcon = Properties.Resources.vs;
         internal string IconDescriptor = "InternalResource";
@@ -467,6 +467,15 @@ namespace VinewatchX.Forms
         private void muteRadioButton_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void goToVinesaucecomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://www.vinesauce.com/");
+            }
+            catch { }
         }
 
     }

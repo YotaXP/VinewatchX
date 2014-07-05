@@ -51,6 +51,7 @@
             this.debugButton = new System.Windows.Forms.Panel();
             this.supressionRadioButton = new System.Windows.Forms.CheckBox();
             this.muteRadioButton = new System.Windows.Forms.CheckBox();
+            this.goToVinesaucecomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notificationIconContextStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -67,9 +68,10 @@
             this.notificationIconContextStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsFileToolStripMenuItem,
             this.startWithWindowsToolStripMenuItem,
+            this.goToVinesaucecomToolStripMenuItem,
             this.exitVinewatchXToolStripMenuItem});
             this.notificationIconContextStrip.Name = "notificationIconContextStrip";
-            this.notificationIconContextStrip.Size = new System.Drawing.Size(161, 70);
+            this.notificationIconContextStrip.Size = new System.Drawing.Size(177, 92);
             // 
             // settingsFileToolStripMenuItem
             // 
@@ -77,7 +79,7 @@
             this.importToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.settingsFileToolStripMenuItem.Name = "settingsFileToolStripMenuItem";
-            this.settingsFileToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.settingsFileToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.settingsFileToolStripMenuItem.Text = "Settings File ...";
             // 
             // importToolStripMenuItem
@@ -97,14 +99,14 @@
             // startWithWindowsToolStripMenuItem
             // 
             this.startWithWindowsToolStripMenuItem.Name = "startWithWindowsToolStripMenuItem";
-            this.startWithWindowsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.startWithWindowsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.startWithWindowsToolStripMenuItem.Text = "Run at Start-Up ...";
             this.startWithWindowsToolStripMenuItem.Click += new System.EventHandler(this.startWithWindowsToolStripMenuItem_Click);
             // 
             // exitVinewatchXToolStripMenuItem
             // 
             this.exitVinewatchXToolStripMenuItem.Name = "exitVinewatchXToolStripMenuItem";
-            this.exitVinewatchXToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.exitVinewatchXToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.exitVinewatchXToolStripMenuItem.Text = "Exit VinewatchX";
             this.exitVinewatchXToolStripMenuItem.Click += new System.EventHandler(this.exitVinewatchXToolStripMenuItem_Click);
             // 
@@ -169,8 +171,8 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             // 
             // versionLabel
             // 
@@ -196,7 +198,7 @@
             // 
             this.lastReportLabel.AutoSize = true;
             this.lastReportLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastReportLabel.Location = new System.Drawing.Point(24, 448);
+            this.lastReportLabel.Location = new System.Drawing.Point(21, 443);
             this.lastReportLabel.MaximumSize = new System.Drawing.Size(250, 0);
             this.lastReportLabel.Name = "lastReportLabel";
             this.lastReportLabel.Size = new System.Drawing.Size(125, 13);
@@ -278,6 +280,13 @@
             this.muteRadioButton.UseVisualStyleBackColor = true;
             this.muteRadioButton.CheckedChanged += new System.EventHandler(this.muteRadioButton_CheckedChanged);
             // 
+            // goToVinesaucecomToolStripMenuItem
+            // 
+            this.goToVinesaucecomToolStripMenuItem.Name = "goToVinesaucecomToolStripMenuItem";
+            this.goToVinesaucecomToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.goToVinesaucecomToolStripMenuItem.Text = "Go to Vinesauce.com";
+            this.goToVinesaucecomToolStripMenuItem.Click += new System.EventHandler(this.goToVinesaucecomToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,6 +345,7 @@
         private System.Windows.Forms.Panel debugButton;
         internal System.Windows.Forms.CheckBox supressionRadioButton;
         internal System.Windows.Forms.CheckBox muteRadioButton;
+        private System.Windows.Forms.ToolStripMenuItem goToVinesaucecomToolStripMenuItem;
 
     }
 }
