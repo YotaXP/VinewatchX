@@ -35,6 +35,7 @@
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startWithWindowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToVinesaucecomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitVinewatchXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.exportSettingsButton = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@
             this.debugButton = new System.Windows.Forms.Panel();
             this.supressionRadioButton = new System.Windows.Forms.CheckBox();
             this.muteRadioButton = new System.Windows.Forms.CheckBox();
-            this.goToVinesaucecomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notificationIconContextStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +71,7 @@
             this.goToVinesaucecomToolStripMenuItem,
             this.exitVinewatchXToolStripMenuItem});
             this.notificationIconContextStrip.Name = "notificationIconContextStrip";
-            this.notificationIconContextStrip.Size = new System.Drawing.Size(177, 92);
+            this.notificationIconContextStrip.Size = new System.Drawing.Size(196, 114);
             // 
             // settingsFileToolStripMenuItem
             // 
@@ -79,7 +79,7 @@
             this.importToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.settingsFileToolStripMenuItem.Name = "settingsFileToolStripMenuItem";
-            this.settingsFileToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.settingsFileToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.settingsFileToolStripMenuItem.Text = "Settings File ...";
             // 
             // importToolStripMenuItem
@@ -99,14 +99,22 @@
             // startWithWindowsToolStripMenuItem
             // 
             this.startWithWindowsToolStripMenuItem.Name = "startWithWindowsToolStripMenuItem";
-            this.startWithWindowsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.startWithWindowsToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.startWithWindowsToolStripMenuItem.Text = "Run at Start-Up ...";
             this.startWithWindowsToolStripMenuItem.Click += new System.EventHandler(this.startWithWindowsToolStripMenuItem_Click);
+            // 
+            // goToVinesaucecomToolStripMenuItem
+            // 
+            this.goToVinesaucecomToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goToVinesaucecomToolStripMenuItem.Name = "goToVinesaucecomToolStripMenuItem";
+            this.goToVinesaucecomToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.goToVinesaucecomToolStripMenuItem.Text = "Go to Vinesauce.com";
+            this.goToVinesaucecomToolStripMenuItem.Click += new System.EventHandler(this.goToVinesaucecomToolStripMenuItem_Click);
             // 
             // exitVinewatchXToolStripMenuItem
             // 
             this.exitVinewatchXToolStripMenuItem.Name = "exitVinewatchXToolStripMenuItem";
-            this.exitVinewatchXToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.exitVinewatchXToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.exitVinewatchXToolStripMenuItem.Text = "Exit VinewatchX";
             this.exitVinewatchXToolStripMenuItem.Click += new System.EventHandler(this.exitVinewatchXToolStripMenuItem_Click);
             // 
@@ -279,13 +287,6 @@
             this.muteRadioButton.Text = "Mute";
             this.muteRadioButton.UseVisualStyleBackColor = true;
             this.muteRadioButton.CheckedChanged += new System.EventHandler(this.muteRadioButton_CheckedChanged);
-            // 
-            // goToVinesaucecomToolStripMenuItem
-            // 
-            this.goToVinesaucecomToolStripMenuItem.Name = "goToVinesaucecomToolStripMenuItem";
-            this.goToVinesaucecomToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.goToVinesaucecomToolStripMenuItem.Text = "Go to Vinesauce.com";
-            this.goToVinesaucecomToolStripMenuItem.Click += new System.EventHandler(this.goToVinesaucecomToolStripMenuItem_Click);
             // 
             // MainForm
             // 
