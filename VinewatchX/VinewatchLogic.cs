@@ -13,26 +13,23 @@ namespace VinewatchX
     /// </summary>
     public class VinewatchLogic
     {
-        private string twitchTVstreamURL = "http://api.justin.tv/api/stream/list.json?channel=vinesauce";
-        private string lastReport = "init";
-        private string lastLastReport;  // lmao
+        private string      twitchTVstreamURL       = "http://api.justin.tv/api/stream/list.json?channel=vinesauce";
+        private string      lastReport              = "init";
+        private string      lastLastReport;
 
-        public bool threaded = false;
+        public  bool        threaded = false;       //I forgot what this is but it seems important.
 
-        private bool twitchTvState;         //Live status of stream
-        private bool twitchTvPrevAlert;     //Alert Suppression
+        private bool        twitchTvState;          //Live status of stream
+        private bool        twitchTvPrevAlert;      //Alert Suppression
 
-        private int pollRate = 30;
-        private MainForm parentForm;
-
-
+        private int         pollRate                = 30;
+        private MainForm    parentForm;             //There is definately a better way of doing this.
 
 
 
-        public VinewatchLogic()
-        {
 
-        }
+
+        //public VinewatchLogic(){}
 
         public VinewatchLogic(MainForm t)
         {
@@ -48,8 +45,10 @@ namespace VinewatchX
 
 
 
-
-        public void init(MainForm formAddress)
+        /// <summary>
+        /// Starts the stream checking logic. Should be ran as a thread.
+        /// </summary>
+        public void init()
         {
             Debug.WriteLine("VinewatchLogic.cs\tThreading Started");
 
@@ -88,8 +87,8 @@ namespace VinewatchX
                                 updateFormProperties(getLastReport());
                                 updateFormIcon(true);
 
-                                Debug.WriteLine("* Last Report:\t" + getLastReport());
-                                Debug.WriteLine("* Last Last Report:\t" + getLastLastReport());
+                                Debug.WriteLine("VinewatchLogic.cs\t\n*\t\tLast Report:\t" + getLastReport());
+                                Debug.WriteLine("VinewatchLogic.cs\t\n*\tLast Last Report:\t" + getLastLastReport());
                             }
                         }
                         else
@@ -103,9 +102,9 @@ namespace VinewatchX
                     }
                     catch (WebException)
                     {
-                        Debug.WriteLine("Web Exception");
-                        Debug.WriteLine("* Last Report:\t" + getLastReport());
-                        Debug.WriteLine("* Last Last Report:\t" + getLastLastReport());
+                        Debug.WriteLine("VinewatchLogic.cs\tWeb Exception");
+                        Debug.WriteLine("VinewatchLogic.cs\t\t\n*\tLast Report:\t" + getLastReport());
+                        Debug.WriteLine("VinewatchLogic.cs\t\n*\tLast Last Report:\t" + getLastLastReport());
 
                         if (!parentForm.supressionRadioButton.Checked)
                         {
@@ -142,8 +141,6 @@ namespace VinewatchX
 
                 System.Threading.Thread.Sleep(pollRate * 1000);   //30 seconds
             }
-
-            //Debug.WriteLine("VinewatchLogic.cs\tThread dead!");
         }
 
 
@@ -207,6 +204,11 @@ namespace VinewatchX
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s">JSON string</param>
+        /// <returns>The title of the stream</returns>
         private String getTwitchTitle(String s)
         {
             String startTag = "title";
@@ -222,7 +224,6 @@ namespace VinewatchX
             {
                 if (eachLine.Contains(startTag))
                 {
-                    //Debug.WriteLine(eachLine);
                     //break;                                                    /* 12 skips Title and punctuations      */
                     Debug.WriteLine(eachLine.Substring(12, eachLine.Length - 14));
                     return eachLine.Substring(12, eachLine.Length - 14);        /* 2 (+2=14) strips shit of the end.    */

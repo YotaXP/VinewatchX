@@ -81,7 +81,7 @@ namespace VinewatchX.Forms
         protected void startThreading()
         {
 
-            Thread t = new Thread(() => thread0.init(this));
+            Thread t = new Thread(() => thread0.init());
             t.IsBackground = true;
             t.Name = "Main thread.";
             t.Start();
