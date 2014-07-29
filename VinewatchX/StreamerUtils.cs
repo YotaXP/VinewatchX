@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System;
 
 namespace VinewatchX
 {
@@ -98,7 +99,7 @@ namespace VinewatchX
 
         public void findAndPlayStreamerSound(string streamTitle)
         {
-            foreach (Streamer eachStreamer in streamerList.Where(x => streamTitle.Contains(x.getName())))
+            foreach (Streamer eachStreamer in streamerList.Where(x => streamTitle.Contains(x.getName(), StringComparison.OrdinalIgnoreCase)))
                 eachStreamer.playSound();       //Jesus christ what have I become.
         }
 
@@ -117,5 +118,6 @@ namespace VinewatchX
         {
             streamerList.Add(new Streamer(newStreamerName, newSoundFile));
         }
+
     }
 }
