@@ -185,3 +185,6 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+# VinewatchX Resources Folder
+_Additional\ Resources
