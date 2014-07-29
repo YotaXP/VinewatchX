@@ -143,9 +143,19 @@ namespace VinewatchX.Forms
 
         private void playTTS(string phrase)
         {
-            SpeechSynthesizer synth = new SpeechSynthesizer();
-            synth.SetOutputToDefaultAudioDevice();
-            synth.Speak(phrase);
+            using (SpeechSynthesizer synth = new SpeechSynthesizer())
+            {
+                try
+                {
+                    synth.SetOutputToDefaultAudioDevice();
+                    synth.Speak(phrase);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("An error has occured when asking your system to use TTS.", "Error");
+                }
+
+            }
         }
 
         protected void setNotificationIconBalloonText(string newValue)
@@ -498,6 +508,26 @@ namespace VinewatchX.Forms
             }
             catch { }
         }
+
+        private void linkLabelForums_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://vinesauce.com/vinetalk/index.php/");
+            }
+            catch { }
+        }
+
+        private void linkLabelBooru_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://vinesauce.booru.org/");
+            }
+            catch { }
+        }
+
+
     }
 
 

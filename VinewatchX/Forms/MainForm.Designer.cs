@@ -199,6 +199,7 @@
             // lastReportDescLabel
             // 
             this.lastReportDescLabel.AutoSize = true;
+            this.lastReportDescLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastReportDescLabel.Location = new System.Drawing.Point(9, 285);
             this.lastReportDescLabel.Name = "lastReportDescLabel";
             this.lastReportDescLabel.Size = new System.Drawing.Size(65, 13);
@@ -283,6 +284,8 @@
             // ttsRadioButton
             // 
             this.ttsRadioButton.AutoSize = true;
+            this.ttsRadioButton.Checked = true;
+            this.ttsRadioButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ttsRadioButton.Location = new System.Drawing.Point(304, 175);
             this.ttsRadioButton.Name = "ttsRadioButton";
             this.ttsRadioButton.Size = new System.Drawing.Size(133, 17);
@@ -311,6 +314,7 @@
             this.linkLabelForums.TabIndex = 17;
             this.linkLabelForums.TabStop = true;
             this.linkLabelForums.Text = "Vinesauce Forums";
+            this.linkLabelForums.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelForums_LinkClicked);
             // 
             // linkLabelBooru
             // 
@@ -323,6 +327,7 @@
             this.linkLabelBooru.TabIndex = 18;
             this.linkLabelBooru.TabStop = true;
             this.linkLabelBooru.Text = "Vinesauce Booru";
+            this.linkLabelBooru.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelBooru_LinkClicked);
             // 
             // MainForm
             // 
