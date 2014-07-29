@@ -6,6 +6,7 @@ using System.IO;
 using System.Media;
 using System.Threading;
 using System.Windows.Forms;
+using System.Speech.Synthesis;
 
 namespace VinewatchX.Forms
 {
@@ -51,7 +52,7 @@ namespace VinewatchX.Forms
             }
             catch
             {
-                MessageBox.Show("Error loading the local config. Populating the Streamer database with the default entries.\n\n" + 
+                MessageBox.Show("Error loading the local config. Populating the Streamer database with the default entries.\n\n" +
                     "EXPORT YOUR CONFIG BEFORE CLOSING!");
                 con.populate();
             }
@@ -94,10 +95,9 @@ namespace VinewatchX.Forms
 
         internal void notify(string streamTitle)
         {
-            if (muteRadioButton.Checked != true)
-                con.findAndPlayStreamerSound(streamTitle);
+            playNotifySound(streamTitle);
 
-            notifyX(streamTitle);
+            notifyX(streamTitle);   // I forgot why I did this.
 
             setNotificationIconBalloonText(streamTitle.Length > 63 ? streamTitle.Substring(0, 63) : streamTitle);
 
@@ -106,8 +106,7 @@ namespace VinewatchX.Forms
 
         internal void notifyTest(string streamTitle)
         {
-            if (muteRadioButton.Checked != true)
-                con.findAndPlayStreamerSound(streamTitle);
+            playNotifySound(streamTitle);
 
             //Record previous text
             string oldNotificationIconText = notificationIcon.Text;
@@ -125,6 +124,28 @@ namespace VinewatchX.Forms
         {
             setNotificationLabelText(streamTitle);
             setLastReportLabel(streamTitle);
+        }
+
+        private void playNotifySound(string streamTitle)
+        {
+            if (muteRadioButton.Checked != true)
+            {
+                if (ttsRadioButton.Checked)
+                {
+                    new Thread(new ThreadStart(() => playTTS("Vine sauce is Live. " + streamTitle))).Start();
+                }
+                else
+                {
+                    con.findAndPlayStreamerSound(streamTitle);
+                }
+            }
+        }
+
+        private void playTTS(string phrase)
+        {
+            SpeechSynthesizer synth = new SpeechSynthesizer();
+            synth.SetOutputToDefaultAudioDevice();
+            synth.Speak(phrase);
         }
 
         protected void setNotificationIconBalloonText(string newValue)
@@ -208,7 +229,7 @@ namespace VinewatchX.Forms
 
         protected void exportSettingsButton_Click(object sender, EventArgs e)
         {
-            
+
             VineConf conf = new VineConf(this);
             conf.exportConfig2();
         }
@@ -236,7 +257,7 @@ namespace VinewatchX.Forms
 
         protected void notifyTestButton_Click(object sender, EventArgs e)
         {
-            notifyTest("Guest: This is a test of the notification system.");
+            notifyTest("Guest : This is a test of the notification system.");
         }
 
         internal string getStreamURL()
@@ -477,7 +498,6 @@ namespace VinewatchX.Forms
             }
             catch { }
         }
-
     }
 
 

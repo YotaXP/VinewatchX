@@ -52,6 +52,7 @@
             this.debugButton = new System.Windows.Forms.Panel();
             this.supressionRadioButton = new System.Windows.Forms.CheckBox();
             this.muteRadioButton = new System.Windows.Forms.CheckBox();
+            this.ttsRadioButton = new System.Windows.Forms.CheckBox();
             this.notificationIconContextStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +72,7 @@
             this.goToVinesaucecomToolStripMenuItem,
             this.exitVinewatchXToolStripMenuItem});
             this.notificationIconContextStrip.Name = "notificationIconContextStrip";
-            this.notificationIconContextStrip.Size = new System.Drawing.Size(196, 114);
+            this.notificationIconContextStrip.Size = new System.Drawing.Size(196, 92);
             // 
             // settingsFileToolStripMenuItem
             // 
@@ -232,7 +233,7 @@
             this.aboutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.aboutLabel.AutoSize = true;
             this.aboutLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.aboutLabel.Location = new System.Drawing.Point(260, 476);
+            this.aboutLabel.Location = new System.Drawing.Point(263, 476);
             this.aboutLabel.Name = "aboutLabel";
             this.aboutLabel.Size = new System.Drawing.Size(35, 13);
             this.aboutLabel.TabIndex = 10;
@@ -288,11 +289,22 @@
             this.muteRadioButton.UseVisualStyleBackColor = true;
             this.muteRadioButton.CheckedChanged += new System.EventHandler(this.muteRadioButton_CheckedChanged);
             // 
+            // ttsRadioButton
+            // 
+            this.ttsRadioButton.AutoSize = true;
+            this.ttsRadioButton.Location = new System.Drawing.Point(251, 425);
+            this.ttsRadioButton.Name = "ttsRadioButton";
+            this.ttsRadioButton.Size = new System.Drawing.Size(47, 17);
+            this.ttsRadioButton.TabIndex = 16;
+            this.ttsRadioButton.Text = "TTS";
+            this.ttsRadioButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(307, 498);
+            this.Controls.Add(this.ttsRadioButton);
             this.Controls.Add(this.muteRadioButton);
             this.Controls.Add(this.supressionRadioButton);
             this.Controls.Add(this.debugButton);
@@ -347,6 +359,7 @@
         internal System.Windows.Forms.CheckBox supressionRadioButton;
         internal System.Windows.Forms.CheckBox muteRadioButton;
         private System.Windows.Forms.ToolStripMenuItem goToVinesaucecomToolStripMenuItem;
+        private System.Windows.Forms.CheckBox ttsRadioButton;
 
     }
 }
