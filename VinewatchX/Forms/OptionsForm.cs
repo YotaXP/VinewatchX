@@ -8,16 +8,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Speech.Synthesis;
+using System.Threading;
 
 namespace VinewatchX.Forms
 {
     public partial class OptionsForm : Form
     {
         MainForm parentForm;
-
-
-
-
 
         public OptionsForm(MainForm reference)
         {
@@ -37,16 +35,11 @@ namespace VinewatchX.Forms
             listBoxPopulate();
         }
 
-        
-
-
-
-
-
         private void listBoxPopulate()
         {
             List<String> T = parentForm.getStreamerListAsStringList();
-            foreach (String s in T){
+            foreach (String s in T)
+            {
                 Debug.Write(" + " + s);
             } Debug.WriteLine("");
 
@@ -93,7 +86,6 @@ namespace VinewatchX.Forms
                 }
             }
         }
-
 
         private void optionsFormStreamerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -260,6 +252,18 @@ namespace VinewatchX.Forms
             this.refreshIconPictureBox();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            new Thread(new ThreadStart(easterEgg)).Start();
+        }
+
+        private void easterEgg()
+        {
+            Leatherhead l = new Leatherhead();
+            l.play();
+
+        }
+
     }
 
     static class Prompt
@@ -274,7 +278,7 @@ namespace VinewatchX.Forms
             prompt.Height = 120;
             prompt.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             prompt.Text = caption;
-            Label textLabel = new Label() { Left = 2, Top = 12, Width=200, Text = text };
+            Label textLabel = new Label() { Left = 2, Top = 12, Width = 200, Text = text };
             TextBox textBox = new TextBox() { Left = 2, Top = 35, Width = 200 };
             Button confirmation = new Button() { Text = "Ok", Left = 2, Width = 100, Top = 58 };
             confirmation.Click += (sender, e) => { prompt.Close(); };
@@ -283,6 +287,41 @@ namespace VinewatchX.Forms
             prompt.Controls.Add(textBox);
             prompt.ShowDialog();
             return textBox.Text;
+        }
+    }
+
+    class Leatherhead
+    {
+        List<String> botg = new List<string>();
+
+        public Leatherhead()
+        {
+            botg.Add("<prosody pitch=\"x-low\" rate=\"-10%\" volume=\"100\">Hey buddy, I think you've got the wrong door, the leather club is two blocks down.</prosody>");
+            botg.Add("<prosody pitch=\"x-high\" rate=\"-100%\" volume=\"100\">Fuck you.</prosody>");
+            botg.Add("<prosody pitch=\"x-low\" rate=\"-10%\" volume=\"100\">No, fuck, you! leather man! Maybe you and I should settle it right here on the ring, if you think your so tough?</prosody>");
+            botg.Add("<prosody pitch=\"x-high\" rate=\"-10%\" volume=\"100\">Oh yeah?</prosody>");
+            botg.Add("<prosody pitch=\"x-low\" rate=\"-10%\" volume=\"100\">Yeah.</prosody>");
+            botg.Add("<prosody pitch=\"x-high\" rate=\"-10%\" volume=\"100\">Yeah, I'm gonna wrestle your ass!</prosody>");
+            botg.Add("<prosody pitch=\"x-low\" rate=\"-10%\" volume=\"100\">Ha! Yeah right man. Let's go! Why don't you get out of that leather stuff? I'll strip down out of this and we'll settle it right here in the ring. What do you say?</prosody>");
+            botg.Add("<prosody pitch=\"x-high\" rate=\"-10%\" volume=\"100\">Yeah, no problem!</prosody>");
+            botg.Add("<prosody pitch=\"x-low\" rate=\"-10%\" volume=\"100\">You got it. Get out of that, uh, cha bro neee outfit.</prosody>");
+            botg.Add("<prosody pitch=\"x-high\" rate=\"-10%\" volume=\"100\">Yeah, smart ass.</prosody>");
+            botg.Add("<prosody pitch=\"x-low\" rate=\"-10%\" volume=\"100\">I'll show you who's the boss of this gym.</prosody>");
+        }
+
+        public void play()
+        {
+            using (SpeechSynthesizer synth = new SpeechSynthesizer())
+            {
+                PromptBuilder pb = new PromptBuilder();
+
+                foreach (string line in botg)
+                {
+                    pb.ClearContent();
+                    pb.AppendSsmlMarkup(line);
+                    synth.Speak(pb);
+                }
+            }
         }
     }
 }

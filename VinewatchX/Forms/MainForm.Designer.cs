@@ -284,8 +284,6 @@
             // ttsRadioButton
             // 
             this.ttsRadioButton.AutoSize = true;
-            this.ttsRadioButton.Checked = true;
-            this.ttsRadioButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ttsRadioButton.Location = new System.Drawing.Point(304, 175);
             this.ttsRadioButton.Name = "ttsRadioButton";
             this.ttsRadioButton.Size = new System.Drawing.Size(133, 17);
