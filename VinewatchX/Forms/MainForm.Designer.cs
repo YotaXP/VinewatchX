@@ -55,6 +55,7 @@
             this.lastReportLabel = new System.Windows.Forms.Label();
             this.linkLabelForums = new System.Windows.Forms.LinkLabel();
             this.linkLabelBooru = new System.Windows.Forms.LinkLabel();
+            this.newLabel = new System.Windows.Forms.Label();
             this.notificationIconContextStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -123,6 +124,7 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(304, 42);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 23);
@@ -133,6 +135,7 @@
             // 
             // exportSettingsButton
             // 
+            this.exportSettingsButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportSettingsButton.Location = new System.Drawing.Point(415, 71);
             this.exportSettingsButton.Name = "exportSettingsButton";
             this.exportSettingsButton.Size = new System.Drawing.Size(95, 23);
@@ -143,6 +146,7 @@
             // 
             // importSettingsButton
             // 
+            this.importSettingsButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importSettingsButton.Location = new System.Drawing.Point(304, 71);
             this.importSettingsButton.Name = "importSettingsButton";
             this.importSettingsButton.Size = new System.Drawing.Size(95, 23);
@@ -153,6 +157,7 @@
             // 
             // minToTrayButton
             // 
+            this.minToTrayButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minToTrayButton.Location = new System.Drawing.Point(304, 100);
             this.minToTrayButton.Name = "minToTrayButton";
             this.minToTrayButton.Size = new System.Drawing.Size(206, 23);
@@ -163,6 +168,7 @@
             // 
             // notifyTestButton
             // 
+            this.notifyTestButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notifyTestButton.Location = new System.Drawing.Point(415, 42);
             this.notifyTestButton.Name = "notifyTestButton";
             this.notifyTestButton.Size = new System.Drawing.Size(95, 23);
@@ -189,9 +195,10 @@
             // 
             this.versionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.versionLabel.AutoSize = true;
+            this.versionLabel.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versionLabel.Location = new System.Drawing.Point(12, 357);
             this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(59, 13);
+            this.versionLabel.Size = new System.Drawing.Size(64, 15);
             this.versionLabel.TabIndex = 6;
             this.versionLabel.Text = "setOnLoad";
             this.versionLabel.Click += new System.EventHandler(this.versionLabel_Click);
@@ -199,10 +206,10 @@
             // lastReportDescLabel
             // 
             this.lastReportDescLabel.AutoSize = true;
-            this.lastReportDescLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastReportDescLabel.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastReportDescLabel.Location = new System.Drawing.Point(9, 285);
             this.lastReportDescLabel.Name = "lastReportDescLabel";
-            this.lastReportDescLabel.Size = new System.Drawing.Size(65, 13);
+            this.lastReportDescLabel.Size = new System.Drawing.Size(69, 15);
             this.lastReportDescLabel.TabIndex = 7;
             this.lastReportDescLabel.Text = "Last Report:";
             // 
@@ -210,10 +217,11 @@
             // 
             this.pictureBoxArt.ActiveLinkColor = System.Drawing.Color.Green;
             this.pictureBoxArt.AutoSize = true;
+            this.pictureBoxArt.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pictureBoxArt.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.pictureBoxArt.Location = new System.Drawing.Point(222, 285);
             this.pictureBoxArt.Name = "pictureBoxArt";
-            this.pictureBoxArt.Size = new System.Drawing.Size(72, 13);
+            this.pictureBoxArt.Size = new System.Drawing.Size(80, 15);
             this.pictureBoxArt.TabIndex = 9;
             this.pictureBoxArt.TabStop = true;
             this.pictureBoxArt.Text = "Art by Matayu";
@@ -224,10 +232,11 @@
             this.aboutLabel.ActiveLinkColor = System.Drawing.Color.Green;
             this.aboutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.aboutLabel.AutoSize = true;
+            this.aboutLabel.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aboutLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.aboutLabel.Location = new System.Drawing.Point(472, 357);
             this.aboutLabel.Name = "aboutLabel";
-            this.aboutLabel.Size = new System.Drawing.Size(35, 13);
+            this.aboutLabel.Size = new System.Drawing.Size(39, 15);
             this.aboutLabel.TabIndex = 10;
             this.aboutLabel.TabStop = true;
             this.aboutLabel.Text = "About";
@@ -262,9 +271,10 @@
             this.supressionRadioButton.AutoSize = true;
             this.supressionRadioButton.Checked = true;
             this.supressionRadioButton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.supressionRadioButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.supressionRadioButton.Location = new System.Drawing.Point(304, 129);
             this.supressionRadioButton.Name = "supressionRadioButton";
-            this.supressionRadioButton.Size = new System.Drawing.Size(151, 17);
+            this.supressionRadioButton.Size = new System.Drawing.Size(162, 19);
             this.supressionRadioButton.TabIndex = 14;
             this.supressionRadioButton.Text = "Supress Connection Errors";
             this.supressionRadioButton.UseVisualStyleBackColor = true;
@@ -273,9 +283,10 @@
             // muteRadioButton
             // 
             this.muteRadioButton.AutoSize = true;
+            this.muteRadioButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.muteRadioButton.Location = new System.Drawing.Point(304, 152);
             this.muteRadioButton.Name = "muteRadioButton";
-            this.muteRadioButton.Size = new System.Drawing.Size(50, 17);
+            this.muteRadioButton.Size = new System.Drawing.Size(53, 19);
             this.muteRadioButton.TabIndex = 15;
             this.muteRadioButton.Text = "Mute";
             this.muteRadioButton.UseVisualStyleBackColor = true;
@@ -284,16 +295,17 @@
             // ttsRadioButton
             // 
             this.ttsRadioButton.AutoSize = true;
+            this.ttsRadioButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ttsRadioButton.Location = new System.Drawing.Point(304, 175);
             this.ttsRadioButton.Name = "ttsRadioButton";
-            this.ttsRadioButton.Size = new System.Drawing.Size(133, 17);
+            this.ttsRadioButton.Size = new System.Drawing.Size(139, 19);
             this.ttsRadioButton.TabIndex = 16;
             this.ttsRadioButton.Text = "Text-To-Speech Mode";
             this.ttsRadioButton.UseVisualStyleBackColor = true;
             // 
             // lastReportLabel
             // 
-            this.lastReportLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastReportLabel.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastReportLabel.Location = new System.Drawing.Point(12, 309);
             this.lastReportLabel.MaximumSize = new System.Drawing.Size(600, 39);
             this.lastReportLabel.Name = "lastReportLabel";
@@ -327,11 +339,22 @@
             this.linkLabelBooru.Text = "Vinesauce Booru";
             this.linkLabelBooru.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelBooru_LinkClicked);
             // 
+            // newLabel
+            // 
+            this.newLabel.AutoSize = true;
+            this.newLabel.Font = new System.Drawing.Font("Open Sans Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newLabel.Location = new System.Drawing.Point(474, 175);
+            this.newLabel.Name = "newLabel";
+            this.newLabel.Size = new System.Drawing.Size(32, 15);
+            this.newLabel.TabIndex = 19;
+            this.newLabel.Text = "NEW";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 379);
+            this.Controls.Add(this.newLabel);
             this.Controls.Add(this.linkLabelBooru);
             this.Controls.Add(this.linkLabelForums);
             this.Controls.Add(this.ttsRadioButton);
@@ -392,6 +415,7 @@
         public System.Windows.Forms.Label lastReportLabel;
         private System.Windows.Forms.LinkLabel linkLabelForums;
         private System.Windows.Forms.LinkLabel linkLabelBooru;
+        private System.Windows.Forms.Label newLabel;
 
     }
 }

@@ -20,7 +20,8 @@
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>false</SignManifests>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>VinewatchX_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <TargetZone>LocalIntranet</TargetZone>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <PublishUrl>C:\Users\Harley\Documents\VinewatchX\</PublishUrl>
@@ -179,7 +180,6 @@
     <None Include="Resources\fantasy.wav" />
     <None Include="Resources\2Ycuo01.png" />
     <None Include="VinewatchX.snk" />
-    <None Include="VinewatchX_TemporaryKey.pfx" />
     <None Include="Resources\easteregg.wav" />
     <None Include="Resources\calm down.wav" />
     <None Include="Resources\Mango.jpg" />
