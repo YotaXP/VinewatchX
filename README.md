@@ -8,7 +8,7 @@ This program is developed and maintained using VS2013.
 Summary
 =======
 
-Vinewatch started as a program to determine the live status of the Vinesauce.com TwitchTV stream's live status. Over the past 2 years, I (H. Bristow aka Aliababwah) have been passively developing this horrid little program in C# for the Jabronis over at my favourite stream. Here's a link to the forum thread:
+Vinewatch started as a program to determine the live status of the Vinesauce.com TwitchTV stream. Over the past 2 years, I (Aliababwah) have been passively developing this horrid little program in C# for the Jabronis over at my favourite stream. Here's a link to the forum thread:
 
 http://vinesauce.com/vinetalk/index.php?topic=3045.0
 
