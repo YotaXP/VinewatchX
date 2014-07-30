@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Media;
+using System.Speech.Synthesis;
 using System.Threading;
 using System.Windows.Forms;
-using System.Speech.Synthesis;
 
 namespace VinewatchX.Forms
 {
@@ -14,18 +14,18 @@ namespace VinewatchX.Forms
     {
         internal const string gVer = "v1.8_X";
         internal const string gVersion = "VinewatchX " + gVer;
-        internal Icon notificationIconIcon = Properties.Resources.vs;
         internal string IconDescriptor = "InternalResource";
-        internal VinewatchLogic thread0;                                 // Checking live statuses is handled by VinewatchLogic objects
+        internal Icon notificationIconIcon = Properties.Resources.vs;
+        internal VinewatchLogic thread0;    // Checking live statuses is handled by VinewatchLogic objects
 
-        protected Icon currentIcon = Properties.Resources.vs;
-        protected static bool gX = false;                               //Control boolean for an easter-egg
+        protected static bool gX = false;   // Control boolean for an easter-egg
         protected int balloonTipTimeout = 3;
         protected static StreamerUtils con = new StreamerUtils();
+        protected Icon currentIcon = Properties.Resources.vs;
 
-        //============================================================================================================================
+        #region Mainform constructor and start-up methods
 
-        public MainForm(bool tStartMinimized)
+        internal MainForm(bool tStartMinimized)
         {
             InitializeComponent();
 
@@ -34,9 +34,16 @@ namespace VinewatchX.Forms
             if (tStartMinimized) WindowState = FormWindowState.Minimized;
         }
 
+        protected void MainForm_Load(object sender, EventArgs e)
+        {
+            versionLabel.Text = gVersion;
 
-        //============================================================================================================================
+            //Apply Icons
+            applyIcons();
 
+            startThreading();
+            createTooltips();
+        }
 
         protected void MainFormPrep()
         {
@@ -68,20 +75,8 @@ namespace VinewatchX.Forms
             // CREATE SOME TOOLTIPS FAGGOT
         }
 
-        protected void MainForm_Load(object sender, EventArgs e)
-        {
-            versionLabel.Text = gVersion;
-
-            //Apply Icons
-            applyIcons();
-
-            startThreading();
-            createTooltips();
-        }
-
         protected void startThreading()
         {
-
             Thread t = new Thread(() => thread0.init());
             t.IsBackground = true;
             t.Name = "Main thread.";
@@ -89,9 +84,9 @@ namespace VinewatchX.Forms
             Debug.WriteLine("Form1.cs\t\tThreading Started");
         }
 
+        #endregion
 
-        //============================================================================================================================
-
+        #region Notification methods
 
         internal void notify(string streamTitle)
         {
@@ -119,14 +114,17 @@ namespace VinewatchX.Forms
             setNotificationIconBalloonText(oldNotificationIconText);
         }
 
-        //Performs the actions of notify() without showing the balloon tip or playing the sound.
+        /// <summary>
+        /// Performs the actions of notify() without showing the balloon tip or playing the sound.
+        /// </summary>
+        /// <param name="streamTitle">JSON extract for stream title</param>
         internal void notifyX(string streamTitle)
         {
             setNotificationLabelText(streamTitle);
             setLastReportLabel(streamTitle);
         }
 
-        private void playNotifySound(string streamTitle)
+        protected void playNotifySound(string streamTitle)
         {
             if (muteRadioButton.Checked != true)
             {
@@ -141,7 +139,11 @@ namespace VinewatchX.Forms
             }
         }
 
-        private void playTTS(string phrase)
+        /// <summary>
+        /// Plays SAPI5 Text-to-Speech of the given string
+        /// </summary>
+        /// <param name="phrase">String to be spoken by the TTS engine</param>
+        protected void playTTS(string phrase)
         {
             using (SpeechSynthesizer synth = new SpeechSynthesizer())
             {
@@ -158,6 +160,34 @@ namespace VinewatchX.Forms
             }
         }
 
+        internal void setNotificationLabelText(string s)
+        {
+            if (s.Length > 63)
+            {
+                notificationIcon.Text = s.Substring(0, 63);
+            }
+            else
+            {
+                notificationIcon.Text = s;
+            }
+        }
+
+        internal void setLastReportLabel(string s)
+        {
+            if (lastReportLabel.InvokeRequired)
+            {
+                lastReportLabel.Invoke(new Action(() => lastReportLabel.Text = s));
+            }
+            else
+            {
+                lastReportLabel.Text = s;
+            }
+        }
+
+        #endregion
+
+        #region BalloonTip methods
+
         protected void setNotificationIconBalloonText(string newValue)
         {
             notificationIcon.Text = newValue;
@@ -169,6 +199,28 @@ namespace VinewatchX.Forms
             notificationIcon.BalloonTipTitle = "Vinewatch X";
             notificationIcon.ShowBalloonTip(timeout);
         }
+
+        internal void setBalloonTipTimeout(int timeout)
+        {
+            if (timeout > 20 || timeout < 3)
+            {
+                MessageBox.Show("Invalid - must be between 3 and 20 seconds (Default 3)");
+                setBalloonTipTimeout(3);
+            }
+            else
+            {
+                balloonTipTimeout = timeout;
+            }
+        }
+
+        internal string getBalloonTipTimeout()
+        {
+            return balloonTipTimeout.ToString();
+        }
+
+        #endregion
+
+        #region OptionsForm methods
 
         protected void button1_Click(object sender, EventArgs e)
         {
@@ -237,39 +289,6 @@ namespace VinewatchX.Forms
             }
         }
 
-        protected void exportSettingsButton_Click(object sender, EventArgs e)
-        {
-
-            VineConf conf = new VineConf(this);
-            conf.exportConfig2();
-        }
-
-        protected void importSettingsButton_Click(object sender, EventArgs e)
-        {
-            VineConf conf = new VineConf(this);
-            conf.importConfig();
-
-            con.sortAndPruneStreamerList();
-        }
-
-        protected void minToTrayButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
-        protected void notificationIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.BringToFront();
-            this.Location = new System.Drawing.Point(15, 15);
-        }
-
-        protected void notifyTestButton_Click(object sender, EventArgs e)
-        {
-            notifyTest("Guest : This is a test of the notification system.");
-        }
-
         internal string getStreamURL()
         {
             return thread0.getTwitchTVStreamURL();
@@ -280,7 +299,7 @@ namespace VinewatchX.Forms
             return thread0.getPollRate().ToString();
         }
 
-        internal void setPollerURl(string newPollURL)
+        internal void setPollerURL(string newPollURL)
         {
             thread0.setTwitchTVStreamURL(newPollURL);
         }
@@ -288,151 +307,6 @@ namespace VinewatchX.Forms
         internal void setPollRate(int newPollRate)
         {
             thread0.setPollRate(newPollRate);
-        }
-
-        internal void setNotificationLabelText(string s)
-        {
-            if (s.Length > 63)
-            {
-                notificationIcon.Text = s.Substring(0, 63);
-            }
-            else
-            {
-                notificationIcon.Text = s;
-            }
-        }
-
-        internal void setLastReportLabel(string s)
-        {
-            if (lastReportLabel.InvokeRequired)
-            {
-                lastReportLabel.Invoke(new Action(() => lastReportLabel.Text = s));
-            }
-            else
-            {
-                lastReportLabel.Text = s;
-            }
-        }
-
-        protected void pictureBoxArt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("http://vinesauce.com/vinetalk/index.php?action=profile;u=443");
-            }
-            catch { }
-        }
-
-        protected void aboutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            AboutForm box = new AboutForm();
-            box.Show();
-        }
-
-        protected void vinesauceDotcomLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("http://www.vinesauce.com/");
-            }
-            catch { }
-        }
-
-        protected void notificationIcon_BalloonTipClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("http://www.vinesauce.com/");
-            }
-            catch { }
-        }
-
-        protected void exitVinewatchXToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        protected void startWithWindowsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            StartWithWindowsPrompt strtp = new StartWithWindowsPrompt();
-            strtp.Show();
-        }
-
-        protected void pictureBox1_DoubleClick(object sender, EventArgs e)
-        {
-            if (gX)
-            {
-                SoundPlayer snd = new SoundPlayer(Properties.Resources.easteregg);
-                snd.Play();
-            }
-
-            gX = true;
-        }
-
-        protected void versionLabel_Click(object sender, EventArgs e)
-        {
-            SoundPlayer snd = new SoundPlayer(Properties.Resources.MANGO1);
-            snd.Play();
-            pictureBox1.Image = Properties.Resources.Mango;
-        }
-
-        protected void pictureBox1_Click(object sender, EventArgs e)
-        {
-            pictureBox1.Image = Properties.Resources.bigger_icon;
-            pictureBoxArt.Hide();
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-
-            if (e.CloseReason == CloseReason.WindowsShutDown) return;
-
-            switch (MessageBox.Show(this, "Are you  sure you want to close?", "Closing", MessageBoxButtons.YesNo))
-            {
-                case DialogResult.No:
-                    e.Cancel = true;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        protected void muteRadioButton_Click(object sender, EventArgs e)
-        {
-            muteRadioButton.Checked = !muteRadioButton.Checked;
-        }
-
-        protected void importToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            VineConf conf = new VineConf(this);
-            conf.importConfig();
-
-            con.sortAndPruneStreamerList();
-        }
-
-        protected void exportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            VineConf conf = new VineConf(this);
-            conf.exportConfig();
-        }
-
-        internal void setBalloonTipTimeout(int timeout)
-        {
-            if (timeout > 20 || timeout < 3)
-            {
-                MessageBox.Show("Invalid - must be between 3 and 20 seconds (Default 3)");
-                setBalloonTipTimeout(3);
-            }
-            else
-            {
-                balloonTipTimeout = timeout;
-            }
-        }
-
-        internal string getBalloonTipTimeout()
-        {
-            return balloonTipTimeout.ToString();
         }
 
         internal void applyIcons()
@@ -461,12 +335,6 @@ namespace VinewatchX.Forms
             }
         }
 
-        private void panel1_DoubleClick(object sender, EventArgs e)
-        {
-            Debug.WriteLine("Icon as String - " + getIconsAsString());
-        }
-
-
         internal void setIconsFromString(string p)
         {
             if (p.Equals("InternalResource"))
@@ -490,17 +358,45 @@ namespace VinewatchX.Forms
             }
         }
 
-        private void supressionRadioButton_CheckedChanged(object sender, EventArgs e)
+        #endregion
+
+        #region Export/Import settings methods
+
+        protected void exportSettingsButton_Click(object sender, EventArgs e)
         {
 
+            VineConf conf = new VineConf(this);
+            conf.exportConfig2();
         }
 
-        private void muteRadioButton_CheckedChanged(object sender, EventArgs e)
+        protected void importSettingsButton_Click(object sender, EventArgs e)
         {
+            VineConf conf = new VineConf(this);
+            conf.importConfig();
 
+            con.sortAndPruneStreamerList();
         }
 
-        private void goToVinesaucecomToolStripMenuItem_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Hyperlinks (LinkLabels)
+
+        protected void pictureBoxArt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://vinesauce.com/vinetalk/index.php?action=profile;u=443");
+            }
+            catch { }
+        }
+
+        protected void aboutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AboutForm box = new AboutForm();
+            box.Show();
+        }
+
+        protected void vinesauceDotcomLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
@@ -509,7 +405,7 @@ namespace VinewatchX.Forms
             catch { }
         }
 
-        private void linkLabelForums_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        protected void linkLabelForums_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
@@ -518,7 +414,7 @@ namespace VinewatchX.Forms
             catch { }
         }
 
-        private void linkLabelBooru_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        protected void linkLabelBooru_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
@@ -527,8 +423,128 @@ namespace VinewatchX.Forms
             catch { }
         }
 
+        #endregion
+
+        #region Form Control Events
+
+        protected void notificationIcon_BalloonTipClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://www.vinesauce.com/");
+            }
+            catch { }
+        }
+
+        protected void notificationIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.BringToFront();
+            this.Location = new System.Drawing.Point(15, 15);
+        }
+
+        protected void notifyTestButton_Click(object sender, EventArgs e)
+        {
+            notifyTest("Guest : This is a test of the notification system.");
+        }
+
+        protected void exitVinewatchXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        protected void startWithWindowsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartWithWindowsPrompt strtp = new StartWithWindowsPrompt();
+            strtp.Show();
+        }
+
+        protected void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            if (gX)
+            {
+                SoundPlayer snd = new SoundPlayer(Properties.Resources.easteregg);
+                snd.Play();
+            }
+
+            gX = true;
+        }
+
+        protected void minToTrayButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        protected void versionLabel_Click(object sender, EventArgs e)
+        {
+            SoundPlayer snd = new SoundPlayer(Properties.Resources.MANGO1);
+            snd.Play();
+            pictureBox1.Image = Properties.Resources.Mango;
+        }
+
+        protected void pictureBox1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Properties.Resources.bigger_icon;
+            pictureBoxArt.Hide();
+        }
+
+
+
+        protected void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VineConf conf = new VineConf(this);
+            conf.importConfig();
+
+            con.sortAndPruneStreamerList();
+        }
+
+        protected void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VineConf conf = new VineConf(this);
+            conf.exportConfig();
+        }
+
+        protected void panel1_DoubleClick(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Icon as String - " + getIconsAsString());
+        }
+
+        protected void goToVinesaucecomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://www.vinesauce.com/");
+            }
+            catch { }
+        }
+
+        protected void newLabel_MouseEnter(object sender, EventArgs e)
+        {
+            newLabel.Hide();
+        }
+
+        #endregion
+
+        #region Misc methods
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            switch (MessageBox.Show(this, "Are you  sure you want to close?", "Closing", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.No:
+                    e.Cancel = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #endregion
 
     }
-
-
 }

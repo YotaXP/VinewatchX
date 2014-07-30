@@ -171,7 +171,6 @@
   <ItemGroup>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\notify_smtdsmts.wav" />
-    <None Include="bin\Release\System.Net.Json.dll" />
     <None Include="Resources\vw.ico" />
     <None Include="Resources\optionsPageImage.bmp" />
     <None Include="Resources\1324240144374.jpg" />
@@ -255,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

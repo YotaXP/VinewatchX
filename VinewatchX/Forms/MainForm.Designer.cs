@@ -278,7 +278,6 @@
             this.supressionRadioButton.TabIndex = 14;
             this.supressionRadioButton.Text = "Supress Connection Errors";
             this.supressionRadioButton.UseVisualStyleBackColor = true;
-            this.supressionRadioButton.CheckedChanged += new System.EventHandler(this.supressionRadioButton_CheckedChanged);
             // 
             // muteRadioButton
             // 
@@ -290,7 +289,6 @@
             this.muteRadioButton.TabIndex = 15;
             this.muteRadioButton.Text = "Mute";
             this.muteRadioButton.UseVisualStyleBackColor = true;
-            this.muteRadioButton.CheckedChanged += new System.EventHandler(this.muteRadioButton_CheckedChanged);
             // 
             // ttsRadioButton
             // 
@@ -348,6 +346,7 @@
             this.newLabel.Size = new System.Drawing.Size(32, 15);
             this.newLabel.TabIndex = 19;
             this.newLabel.Text = "NEW";
+            this.newLabel.MouseEnter += new System.EventHandler(this.newLabel_MouseEnter);
             // 
             // MainForm
             // 

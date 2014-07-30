@@ -141,7 +141,7 @@ namespace VinewatchX.Forms
         private void changePollURLButton_Click(object sender, EventArgs e)
         {
             string promptValue = Prompt.ShowDialog("This is the URL that the poller will check.", "Set new Poll URL");
-            parentForm.setPollerURl(promptValue);
+            parentForm.setPollerURL(promptValue);
         }
 
         private void changePollRateButton_Click(object sender, EventArgs e)
