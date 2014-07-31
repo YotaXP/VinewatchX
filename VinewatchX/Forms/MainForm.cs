@@ -140,7 +140,7 @@ namespace VinewatchX.Forms
         }
 
         /// <summary>
-        /// Plays SAPI5 Text-to-Speech of the given string
+        /// Speaks Text-to-Speech of the given string
         /// </summary>
         /// <param name="phrase">String to be spoken by the TTS engine</param>
         protected void playTTS(string phrase)
@@ -149,8 +149,11 @@ namespace VinewatchX.Forms
             {
                 try
                 {
+                    PromptBuilder pb = new PromptBuilder();
+                    pb.AppendSsmlMarkup("<prosody volume=\"100\">" + phrase + "</prosody>");
+
                     synth.SetOutputToDefaultAudioDevice();
-                    synth.Speak(phrase);
+                    synth.Speak(pb);
                 }
                 catch (Exception)
                 {
