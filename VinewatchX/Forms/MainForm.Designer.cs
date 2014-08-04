@@ -293,6 +293,8 @@
             // ttsRadioButton
             // 
             this.ttsRadioButton.AutoSize = true;
+            this.ttsRadioButton.Checked = true;
+            this.ttsRadioButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ttsRadioButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ttsRadioButton.Location = new System.Drawing.Point(304, 175);
             this.ttsRadioButton.Name = "ttsRadioButton";

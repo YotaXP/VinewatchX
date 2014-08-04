@@ -7,7 +7,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("VinewatchX")]
-[assembly: AssemblyDescription("Desktop Poller for Vinesauce.com - Big thanks to S4INTY, Veeshush, Shikaku, Joel, LordGrayGray, Vinny, Net_Bastard, Matayu, ponjadito23, ircluzar")]
+[assembly: AssemblyDescription("Desktop Poller for Vinesauce.com - Big thanks to S4INTY, Veeshush, Shikaku, Joel, LordGrayGray, Vinny, Net_Bastard, Matayu, ponjadito23, ircluzar, southbird")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Aliababwah @ The Vinesauce forums")]
 [assembly: AssemblyProduct("")]

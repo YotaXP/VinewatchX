@@ -3,18 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinewatchX", "VinewatchX/VinewatchX.csproj", "{3126B170-9C25-471D-A411-AB6510EE480B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinewatchX", "VinewatchX\VinewatchX.csproj", "{3126B170-9C25-471D-A411-AB6510EE480B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Debug2|x64 = Debug2|x64
+		Debug2|x86 = Debug2|x86
+		Release|x64 = Release|x64
 		Release|x86 = Release|x86
+		Release2|x64 = Release2|x64
+		Release2|x86 = Release2|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Debug|x64.ActiveCfg = Debug|x86
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Debug|x64.Build.0 = Debug|x86
 		{3126B170-9C25-471D-A411-AB6510EE480B}.Debug|x86.ActiveCfg = Debug|x86
 		{3126B170-9C25-471D-A411-AB6510EE480B}.Debug|x86.Build.0 = Debug|x86
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Debug2|x64.ActiveCfg = Debug2|x64
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Debug2|x64.Build.0 = Debug2|x64
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Debug2|x86.ActiveCfg = Debug2|x86
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Debug2|x86.Build.0 = Debug2|x86
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Release|x64.ActiveCfg = Release|x86
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Release|x64.Build.0 = Release|x86
 		{3126B170-9C25-471D-A411-AB6510EE480B}.Release|x86.ActiveCfg = Release|x86
 		{3126B170-9C25-471D-A411-AB6510EE480B}.Release|x86.Build.0 = Release|x86
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Release2|x64.ActiveCfg = Release2|x64
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Release2|x64.Build.0 = Release2|x64
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Release2|x64.Deploy.0 = Release2|x64
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Release2|x86.ActiveCfg = Release2|x86
+		{3126B170-9C25-471D-A411-AB6510EE480B}.Release2|x86.Build.0 = Release2|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
