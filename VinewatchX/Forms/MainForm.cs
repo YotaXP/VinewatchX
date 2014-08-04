@@ -147,8 +147,12 @@ namespace VinewatchX.Forms
         {
             using (SpeechSynthesizer synth = new SpeechSynthesizer())
             {
+                phrase = String.Join(",", phrase.Split('|', '\\', '/', (char)166, (char)124));
+
                 try
                 {
+                    Debug.WriteLine("*\tMainForm.cs Phrase:\t" + phrase);
+
                     PromptBuilder pb = new PromptBuilder();
                     pb.AppendSsmlMarkup("<prosody volume=\"100\">" + phrase + "</prosody>");
 
