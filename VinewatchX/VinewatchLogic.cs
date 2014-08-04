@@ -12,16 +12,16 @@ namespace VinewatchX
     /// </summary>
     public class VinewatchLogic
     {
-        private string      twitchTVstreamURL       = "http://api.justin.tv/api/stream/list.json?channel=vinesauce";
-        private string      lastReport              = "init";
-        private string      lastLastReport;
-        
-        public  bool        threaded = false;       //I forgot what this is but it seems important.
-        private bool        twitchTvState;          //Live status of stream
-        private bool        twitchTvPrevAlert;      //Alert Suppression
-        
-        private int         pollRate                = 30;
-        private MainForm    parentForm;             //There is definately a better way of doing this.
+        private string twitchTVstreamURL = "http://api.justin.tv/api/stream/list.json?channel=vinesauce";
+        private string lastReport = "init";
+        private string lastLastReport;
+
+        public bool threaded = false;       //I forgot what this is but it seems important.
+        private bool twitchTvState;          //Live status of stream
+        private bool twitchTvPrevAlert;      //Alert Suppression
+
+        private int pollRate = 30;
+        private MainForm parentForm;             //There is definately a better way of doing this.
 
         public VinewatchLogic(MainForm t)
         {
@@ -61,7 +61,7 @@ namespace VinewatchX
 
                             if (this.twitchTvPrevAlert == false || getLastReport() != getTwitchTitle(twitchJson))
                             {
-                                
+
                                 if (getLastReport() != getLastLastReport())
                                 {
                                     Debug.WriteLine("VinewatchLogic.cs\tNotification will now occur.");
@@ -98,7 +98,7 @@ namespace VinewatchX
                         if (!parentForm.supressionRadioButton.Checked)
                         {
                             parentForm.notify("TwitchTV: No connection Retrying in 30...");
-                        } 
+                        }
 
                         this.twitchTvPrevAlert = false;
                         this.twitchTvState = false;
@@ -110,7 +110,7 @@ namespace VinewatchX
                         if (!parentForm.supressionRadioButton.Checked)
                         {
                             parentForm.notify("TwitchTV: No connection Retrying in 30...");
-                        } 
+                        }
                         this.twitchTvPrevAlert = false;
                         this.twitchTvState = false;
                         updateFormIcon(false);

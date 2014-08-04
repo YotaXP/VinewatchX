@@ -145,20 +145,20 @@ namespace VinewatchX
         private void readConfig(string targetFolder)
         {
             Debug.WriteLine("Shit happens here.");
-                if (File.Exists(targetFolder + "\\vinewatchXConfig.txt"))
+            if (File.Exists(targetFolder + "\\vinewatchXConfig.txt"))
+            {
+                using (System.IO.StreamReader file = new System.IO.StreamReader(targetFolder + "\\vinewatchXConfig.txt"))
                 {
-                    using (System.IO.StreamReader file = new System.IO.StreamReader(targetFolder + "\\vinewatchXConfig.txt"))
+                    while (file.EndOfStream != true)
                     {
-                        while (file.EndOfStream != true)
-                        {
-                            applyConfigByLine(file.ReadLine());
-                        }
+                        applyConfigByLine(file.ReadLine());
                     }
                 }
-                else
-                {
-                    throw new FileNotFoundException();
-                }
+            }
+            else
+            {
+                throw new FileNotFoundException();
+            }
 
         }
 

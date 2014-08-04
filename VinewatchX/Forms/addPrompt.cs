@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace VinewatchX.Forms
 {
@@ -67,7 +62,7 @@ namespace VinewatchX.Forms
                     parentsForm.addStreamer(addPromptNameTextbox.Text, Properties.Resources.notify_smtdsmts);
                     this.Close();
                 }
-              
+
             }
 
             parentsForm.addStreamer(addPromptNameTextbox.Text, this.soundfile);

@@ -31,7 +31,7 @@ namespace VinewatchX
             streamerList.Add(new Streamer("Guest"));
             streamerList.Add(new Streamer("Imakuni"));
             streamerList.Add(new Streamer("KY"));
-            streamerList.Add(new Streamer("Limes"));  
+            streamerList.Add(new Streamer("Limes"));
             streamerList.Add(new Streamer("Study"));
             streamerList.Add(new Streamer("Joel"));
             streamerList.Add(new Streamer("Hootey"));       //1.4; 1.7, Sorry Hootey
@@ -44,7 +44,7 @@ namespace VinewatchX
 
             for (int i = 1; i < streamerList.Count; i++)
             {
-                if (streamerList[i].getName() == streamerList[i-1].getName())
+                if (streamerList[i].getName() == streamerList[i - 1].getName())
                 {
                     streamerList.RemoveAt(i);
                 }
