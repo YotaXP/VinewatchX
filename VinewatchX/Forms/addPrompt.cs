@@ -9,17 +9,17 @@ using System.IO;
 
 namespace VinewatchX.Forms
 {
-    public partial class addPrompt : Form
+    public partial class AddPrompt : Form
     {
         private Stream soundfile;
         private MainForm parentsForm;
 
-        public addPrompt()
+        public AddPrompt()
         {
             InitializeComponent();
         }
 
-        public addPrompt(MainForm reference)
+        public AddPrompt(MainForm reference)
         {
             parentsForm = reference;
             InitializeComponent();

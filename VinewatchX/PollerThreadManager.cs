@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Json;
-using System.Collections.Generic;
 using VinewatchX.Forms;
 
 namespace VinewatchX
@@ -17,22 +17,13 @@ namespace VinewatchX
 
         // PollerThreadManager is to PollerThreads as StreamerUtils is to Streamers.
 
-
         private MainForm parentForm;
         private List<PollerThread> pollerList = new List<PollerThread>();
-
-
-
-
 
         PollerThreadManager(MainForm targetParent)
         {
             parentForm = targetParent;
         }
-
-
-
-
 
         public void notify(string s)
         {
@@ -112,10 +103,6 @@ namespace VinewatchX
         }
     }
 
-
-
-
-
     /* ============================================================================================================== */
 
     public class PollerThread
@@ -132,10 +119,6 @@ namespace VinewatchX
 
         private int pollRate = 30;
 
-
-
-
-
         public PollerThread(PollerThreadManager targetParent, string tPollerDescription, string targetURL)
         {
             pollerDescription = tPollerDescription;
@@ -148,10 +131,6 @@ namespace VinewatchX
             pollerDescription = tPollerDescription;
             twitchTVstreamURL = targetURL;
         }
-
-
-
-
 
         private void run()
         {

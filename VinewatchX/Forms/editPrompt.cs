@@ -8,19 +8,19 @@ using System.Windows.Forms;
 
 namespace VinewatchX.Forms
 {
-    public partial class editPrompt : Form
+    public partial class EditPrompt : Form
     {
         public Streamer targetStreamer = null;
         public MainForm ParentForms = null;
 
-        public editPrompt()
+        public EditPrompt()
         {
             this.Text = "Editing " + targetStreamer.getName();
             this.editPromptInfoLabel.Text = "new Name for streamer " + targetStreamer.getName();
             InitializeComponent();
         }
 
-        public editPrompt(MainForm reference, Streamer target)
+        public EditPrompt(MainForm reference, Streamer target)
         {
             ParentForms = reference;
             targetStreamer = target;

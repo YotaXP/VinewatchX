@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System;
+using System.Linq;
 
 namespace VinewatchX
 {
@@ -13,18 +13,10 @@ namespace VinewatchX
     {
         static private List<Streamer> streamerList = new List<Streamer>();  //ArrayList can suck my big black dick.
 
-
-
-
-
         public StreamerUtils()
         {
             //this.populate();        // Populate the streamerList with preset streamers. Used in debugging.
         }
-
-
-
-
 
         public void populate()
         {
@@ -42,8 +34,8 @@ namespace VinewatchX
             streamerList.Add(new Streamer("Limes"));  
             streamerList.Add(new Streamer("Study"));
             streamerList.Add(new Streamer("Joel"));
-            streamerList.Add(new Streamer("Hootey"));    //1.7+, Sorry Hootey   :s
-            streamerList.Add(new Streamer("Jen"));      //1.4
+            streamerList.Add(new Streamer("Hootey"));       //1.4; 1.7, Sorry Hootey
+            streamerList.Add(new Streamer("Jen"));          //1.4
         }
 
         public void sortAndPruneStreamerList()
@@ -56,18 +48,14 @@ namespace VinewatchX
                 {
                     streamerList.RemoveAt(i);
                 }
-            } // Holy fucking shit I'm l337
+            }
         }
 
-
-
-        
-        
         public void addStreamer(string tname)
         {
             streamerList.Add(new Streamer(tname));
             foreach (Streamer eachStreamer in streamerList.Where(x => x.getName() == tname))
-                eachStreamer.setSoundfile();    //Some men just want to watch the world burn.
+                eachStreamer.setSoundfile();
         }
 
         public void removeStreamer(string tname)
@@ -100,14 +88,13 @@ namespace VinewatchX
         public void findAndPlayStreamerSound(string streamTitle)
         {
             foreach (Streamer eachStreamer in streamerList.Where(x => streamTitle.Contains(x.getName(), StringComparison.OrdinalIgnoreCase)))
-                eachStreamer.playSound();       //Jesus christ what have I become.
+                eachStreamer.playSound();
         }
 
         public List<Streamer> getStreamerList()
         {
             return streamerList;
         }
-
 
         internal void addStreamer(string newStreamerName, Stream newSoundFile)
         {
@@ -118,6 +105,5 @@ namespace VinewatchX
         {
             streamerList.Add(new Streamer(newStreamerName, newSoundFile));
         }
-
     }
 }

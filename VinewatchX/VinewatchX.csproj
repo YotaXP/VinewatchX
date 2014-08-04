@@ -126,17 +126,17 @@
     <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\addPrompt.cs">
+    <Compile Include="Forms\AddPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\addPrompt.Designer.cs">
-      <DependentUpon>addPrompt.cs</DependentUpon>
+    <Compile Include="Forms\AddPrompt.Designer.cs">
+      <DependentUpon>AddPrompt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\editPrompt.cs">
+    <Compile Include="Forms\EditPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\editPrompt.Designer.cs">
-      <DependentUpon>editPrompt.cs</DependentUpon>
+    <Compile Include="Forms\EditPrompt.Designer.cs">
+      <DependentUpon>EditPrompt.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -153,11 +153,11 @@
     <Compile Include="PollerThreadManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\startWithWindowsPrompt.cs">
+    <Compile Include="Forms\StartWithWindowsPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\startWithWindowsPrompt.Designer.cs">
-      <DependentUpon>startWithWindowsPrompt.cs</DependentUpon>
+    <Compile Include="Forms\StartWithWindowsPrompt.Designer.cs">
+      <DependentUpon>StartWithWindowsPrompt.cs</DependentUpon>
     </Compile>
     <Compile Include="Streamer.cs" />
     <Compile Include="StreamerUtils.cs" />
@@ -166,11 +166,11 @@
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\addPrompt.resx">
-      <DependentUpon>addPrompt.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AddPrompt.resx">
+      <DependentUpon>AddPrompt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\editPrompt.resx">
-      <DependentUpon>editPrompt.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EditPrompt.resx">
+      <DependentUpon>EditPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -183,8 +183,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\startWithWindowsPrompt.resx">
-      <DependentUpon>startWithWindowsPrompt.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\StartWithWindowsPrompt.resx">
+      <DependentUpon>StartWithWindowsPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

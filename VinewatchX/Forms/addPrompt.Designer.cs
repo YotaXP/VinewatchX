@@ -1,6 +1,6 @@
 ﻿namespace VinewatchX.Forms
 {
-    partial class addPrompt
+    partial class AddPrompt
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addPrompt));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPrompt));
             this.addPromptNameTextbox = new System.Windows.Forms.TextBox();
             this.addPromptNameLabel = new System.Windows.Forms.Label();
             this.addPomptSoundLabel = new System.Windows.Forms.Label();

@@ -119,7 +119,7 @@ namespace VinewatchX.Forms
 
             string selectedStreamerName = optionsFormStreamerListBox.Items[selectedIndex].ToString();
 
-            editPrompt f = new editPrompt(parentForm, parentForm.getStreamer(selectedStreamerName));
+            EditPrompt f = new EditPrompt(parentForm, parentForm.getStreamer(selectedStreamerName));
             f.Show();
         }
 
@@ -130,7 +130,7 @@ namespace VinewatchX.Forms
 
         private void streamerListAddButton_Click(object sender, EventArgs e)
         {
-            addPrompt f = new addPrompt(parentForm);
+            AddPrompt f = new AddPrompt(parentForm);
             f.Show();
         }
 

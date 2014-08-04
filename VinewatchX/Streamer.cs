@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
 using System.Media;
-using VinewatchX.Properties;
-using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace VinewatchX
 {
@@ -16,20 +14,12 @@ namespace VinewatchX
         private string soundfileName;
         private Stream soundfile;
 
-
-
-
-
         private SoundPlayer refreshSound()
         {
             SoundPlayer snd = new SoundPlayer(this.soundfile);
             snd.Stream.Position = 0;
             return snd;
         }
-
-
-
-
 
         public Streamer(String tname)
         {
@@ -60,12 +50,6 @@ namespace VinewatchX
 
         }
 
-
-
-
-
-
-
         public string getName()
         {
             return this.name;
@@ -80,10 +64,6 @@ namespace VinewatchX
         {
             return this.soundfileName;
         }
-
-
-
-
 
         public void setName(string tname)
         {
@@ -106,10 +86,6 @@ namespace VinewatchX
                 this.soundfileName = openFileDialog1.FileName;
             }
         }
-
-
-
-
 
         public void playSound()
         {

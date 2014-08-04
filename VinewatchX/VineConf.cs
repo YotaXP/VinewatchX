@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using VinewatchX.Forms;
 
@@ -16,19 +14,10 @@ namespace VinewatchX
         private StreamerUtils con = new StreamerUtils();
         private MainForm parentForm = null;
 
-        VineConf()
-        {
-
-        }
-
         public VineConf(MainForm referenceForm)
         {
             this.parentForm = referenceForm;
         }
-
-
-
-
 
         public void bypassPromptsImportConfig(string targetDir)
         {

@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Json;
 using VinewatchX.Forms;
 
-
 namespace VinewatchX
 {
     /// <summary>
@@ -16,20 +15,13 @@ namespace VinewatchX
         private string      twitchTVstreamURL       = "http://api.justin.tv/api/stream/list.json?channel=vinesauce";
         private string      lastReport              = "init";
         private string      lastLastReport;
-
+        
         public  bool        threaded = false;       //I forgot what this is but it seems important.
-
         private bool        twitchTvState;          //Live status of stream
         private bool        twitchTvPrevAlert;      //Alert Suppression
-
+        
         private int         pollRate                = 30;
         private MainForm    parentForm;             //There is definately a better way of doing this.
-
-
-
-
-
-        //public VinewatchLogic(){}
 
         public VinewatchLogic(MainForm t)
         {
@@ -41,9 +33,6 @@ namespace VinewatchX
             setTwitchTVStreamURL(targetURL);
             parentForm = t;
         }
-
-
-
 
         /// <summary>
         /// Starts the stream checking logic. Should be ran as a thread.
@@ -143,10 +132,6 @@ namespace VinewatchX
             }
         }
 
-
-
-
-
         public string getTwitchTVStreamURL()
         {
             return this.twitchTVstreamURL;
@@ -205,7 +190,7 @@ namespace VinewatchX
         }
 
         /// <summary>
-        /// 
+        /// Given a JSON request passed as a string, extracts the TwitchTV channel's current stream title.
         /// </summary>
         /// <param name="s">JSON string</param>
         /// <returns>The title of the stream</returns>
