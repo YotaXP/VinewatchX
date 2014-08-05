@@ -12,7 +12,7 @@ namespace VinewatchX
     /// </summary>
     public class VinewatchLogic
     {
-        private string twitchTVstreamURL = "http://api.justin.tv/api/stream/list.json?channel=vinesauce";
+        private string twitchTVstreamURL = "https://api.twitch.tv/kraken/streams?channel=vinesauce";
         private string lastReport = "init";
         private string lastLastReport;
 
@@ -196,7 +196,7 @@ namespace VinewatchX
         /// <returns>The title of the stream</returns>
         private String getTwitchTitle(String s)
         {
-            String startTag = "title";
+            String startTag = "status";
 
             JsonTextParser parser = new JsonTextParser();
             JsonObject obj = parser.Parse(s);
@@ -211,7 +211,7 @@ namespace VinewatchX
                 {
                     //break;                                                    /* 12 skips Title and punctuations      */
                     Debug.WriteLine(eachLine.Substring(12, eachLine.Length - 14));
-                    return eachLine.Substring(12, eachLine.Length - 14);        /* 2 (+2=14) strips shit of the end.    */
+                    return eachLine.Substring(15, eachLine.Length - 17);        /* 2 (+2=14) strips shit of the end.    */
                 }
             }
 
