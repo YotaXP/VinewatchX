@@ -221,8 +221,6 @@ namespace VinewatchX.Forms
 
         private void OptionsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            parentForm.applyIcons();
-
             VineConf conf = new VineConf(parentForm);
             conf.exportConfig(Directory.GetCurrentDirectory());
             MessageBox.Show("Config saved to " + Directory.GetCurrentDirectory() + @"vinewatchXConfig.txt");

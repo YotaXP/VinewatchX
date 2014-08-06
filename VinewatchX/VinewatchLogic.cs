@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net;
 using System.Net.Json;
+using System.Windows.Forms;
 using VinewatchX.Forms;
 
 namespace VinewatchX
@@ -12,16 +13,16 @@ namespace VinewatchX
     /// </summary>
     public class VinewatchLogic
     {
-        private string twitchTVstreamURL = "https://api.twitch.tv/kraken/streams?channel=vinesauce";
+        private string twitchTVstreamURL = "https://api.twitch.tv/kraken/streams?channel=painuser";
         private string lastReport = "init";
         private string lastLastReport;
 
         public bool threaded = false;       //I forgot what this is but it seems important.
-        private bool twitchTvState;          //Live status of stream
-        private bool twitchTvPrevAlert;      //Alert Suppression
+        private bool twitchTvState;         //Live status of stream
+        private bool twitchTvPrevAlert;     //Alert Suppression
 
         private int pollRate = 30;
-        private MainForm parentForm;             //There is definately a better way of doing this.
+        private MainForm parentForm;        //There is definately a better way of doing this.
 
         public VinewatchLogic(MainForm t)
         {
@@ -50,7 +51,7 @@ namespace VinewatchX
                     {
                         String twitchJson = htmlGet.DownloadString(twitchTVstreamURL);
 
-                        if (twitchJson.Length > 5)
+                        if (twitchJson.Length > 376)
                         {
                             Debug.WriteLine("VinewatchLogic.cs\tJSON Length check successful");
 
@@ -59,25 +60,22 @@ namespace VinewatchX
                             setLastLastReport(getLastReport());         // Merge these
                             setLastReport(getTwitchTitle(twitchJson));  // two methods?
 
-                            if (this.twitchTvPrevAlert == false || getLastReport() != getTwitchTitle(twitchJson))
+                            Debug.WriteLine("VinewatchLogic.cs\t\n*\t\tLast Report:\t" + getLastReport());
+                            Debug.WriteLine("VinewatchLogic.cs\t\n*\tLast Last Report:\t" + getLastLastReport());
+
+                            if (this.twitchTvPrevAlert == false || lastLastReport != lastReport)
                             {
 
-                                if (getLastReport() != getLastLastReport())
-                                {
-                                    Debug.WriteLine("VinewatchLogic.cs\tNotification will now occur.");
-                                    this.twitchTvPrevAlert = true;
+                                Debug.WriteLine("VinewatchLogic.cs\tNotification will now occur.");
+                                this.twitchTvPrevAlert = true;
 
-                                    setLastLastReport(getLastReport());         // Merge these
-                                    setLastReport(getTwitchTitle(twitchJson));  // two methods?
+                                //setLastLastReport(getLastReport());         // Merge these
+                                //setLastReport(getTwitchTitle(twitchJson));  // two methods?
 
-                                    parentForm.notify(getLastReport());
-                                }
+                                parentForm.notify(getLastReport());
 
                                 updateFormProperties(getLastReport());
                                 updateFormIcon(true);
-
-                                Debug.WriteLine("VinewatchLogic.cs\t\n*\t\tLast Report:\t" + getLastReport());
-                                Debug.WriteLine("VinewatchLogic.cs\t\n*\tLast Last Report:\t" + getLastLastReport());
                             }
                         }
                         else
@@ -105,7 +103,7 @@ namespace VinewatchX
                         updateFormIcon(false);
                         updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": Nothing Live right now.");
                     }
-                    catch
+                    catch (Exception e)
                     {
                         if (!parentForm.supressionRadioButton.Checked)
                         {
@@ -115,6 +113,7 @@ namespace VinewatchX
                         this.twitchTvState = false;
                         updateFormIcon(false);
                         updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": Nothing Live right now.");
+                        MessageBox.Show(e.ToString());
                     }
                 }
 
@@ -209,15 +208,20 @@ namespace VinewatchX
             {
                 if (eachLine.Contains(startTag))
                 {
-                    //break;                                                    /* 12 skips Title and punctuations      */
-                    Debug.WriteLine(eachLine.Substring(12, eachLine.Length - 14));
-                    return eachLine.Substring(15, eachLine.Length - 17);        /* 2 (+2=14) strips shit of the end.    */
+                    try
+                    {
+                        string x = eachLine.Substring(15, eachLine.Length - 17);
+                        Debug.WriteLine(x);
+                        return x;        /* 2 (+2=14) strips shit of the end.    */
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
                 }
             }
 
-            //Last resort. This should never occur.
-            String endTag = "video_height";
-            return @s.Substring(s.IndexOf(startTag) + 8, s.IndexOf(endTag) - s.IndexOf(startTag) - 13);
+            return null;
         }
     }
 }

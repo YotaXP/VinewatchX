@@ -12,7 +12,7 @@ namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
-        internal const string gVer = "v1.8_X";
+        internal const string gVer = "v1.8.1";
         internal const string gVersion = "VinewatchX " + gVer;
         internal string IconDescriptor = "InternalResource";
         internal Icon notificationIconIcon = Properties.Resources.vs;
