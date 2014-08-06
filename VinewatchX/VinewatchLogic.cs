@@ -13,7 +13,7 @@ namespace VinewatchX
     /// </summary>
     public class VinewatchLogic
     {
-        private string twitchTVstreamURL = "https://api.twitch.tv/kraken/streams?channel=painuser";
+        private string twitchTVstreamURL = "https://api.twitch.tv/kraken/streams?channel=vinesauce";
         private string lastReport = "init";
         private string lastLastReport;
 
