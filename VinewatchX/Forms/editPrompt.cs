@@ -10,8 +10,8 @@ namespace VinewatchX.Forms
 
         public EditPrompt()
         {
-            this.Text = "Editing " + targetStreamer.getName();
-            this.editPromptInfoLabel.Text = "new Name for streamer " + targetStreamer.getName();
+            this.Text = "Editing " + targetStreamer.Name;
+            this.editPromptInfoLabel.Text = "new Name for streamer " + targetStreamer.Name;
             InitializeComponent();
         }
 
@@ -20,7 +20,7 @@ namespace VinewatchX.Forms
             ParentForms = reference;
             targetStreamer = target;
 
-            this.Text = "Editing Streamer " + targetStreamer.getName();
+            this.Text = "Editing Streamer " + targetStreamer.Name;
             InitializeComponent();
         }
 
@@ -36,7 +36,7 @@ namespace VinewatchX.Forms
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            ParentForms.editStreamerName(targetStreamer, newNameTextBox.Text);
+            targetStreamer.Name = newNameTextBox.Text;
             this.Close();
         }
     }

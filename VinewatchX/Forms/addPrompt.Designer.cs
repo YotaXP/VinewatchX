@@ -96,6 +96,7 @@
             // 
             // addPromptCancelButton
             // 
+            this.addPromptCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.addPromptCancelButton.Location = new System.Drawing.Point(12, 171);
             this.addPromptCancelButton.Name = "addPromptCancelButton";
             this.addPromptCancelButton.Size = new System.Drawing.Size(136, 23);
@@ -104,10 +105,12 @@
             this.addPromptCancelButton.UseVisualStyleBackColor = true;
             this.addPromptCancelButton.Click += new System.EventHandler(this.addPromptCancelButton_Click);
             // 
-            // addPrompt
+            // AddPrompt
             // 
+            this.AcceptButton = this.addPromptConfirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.addPromptCancelButton;
             this.ClientSize = new System.Drawing.Size(161, 206);
             this.Controls.Add(this.addPromptCancelButton);
             this.Controls.Add(this.addPromptConfirmButton);
@@ -119,9 +122,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "addPrompt";
+            this.Name = "AddPrompt";
             this.Text = "Add Streamer";
-            this.Load += new System.EventHandler(this.addPrompt_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

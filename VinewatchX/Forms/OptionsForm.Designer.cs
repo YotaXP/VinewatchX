@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.streamerListAddButton = new System.Windows.Forms.Button();
-            this.streamerListRefreshButton = new System.Windows.Forms.Button();
             this.streamerListChangeNameButton = new System.Windows.Forms.Button();
             this.createStreamerWarningLabel2 = new System.Windows.Forms.Label();
             this.createStreamerWarningLabel1 = new System.Windows.Forms.Label();
@@ -66,7 +65,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.streamerListAddButton);
-            this.groupBox1.Controls.Add(this.streamerListRefreshButton);
             this.groupBox1.Controls.Add(this.streamerListChangeNameButton);
             this.groupBox1.Controls.Add(this.createStreamerWarningLabel2);
             this.groupBox1.Controls.Add(this.createStreamerWarningLabel1);
@@ -91,16 +89,6 @@
             this.streamerListAddButton.Text = "Add Streamer";
             this.streamerListAddButton.UseVisualStyleBackColor = true;
             this.streamerListAddButton.Click += new System.EventHandler(this.streamerListAddButton_Click);
-            // 
-            // streamerListRefreshButton
-            // 
-            this.streamerListRefreshButton.Location = new System.Drawing.Point(325, 36);
-            this.streamerListRefreshButton.Name = "streamerListRefreshButton";
-            this.streamerListRefreshButton.Size = new System.Drawing.Size(100, 23);
-            this.streamerListRefreshButton.TabIndex = 6;
-            this.streamerListRefreshButton.Text = "Refresh List";
-            this.streamerListRefreshButton.UseVisualStyleBackColor = true;
-            this.streamerListRefreshButton.Click += new System.EventHandler(this.streamerListRefreshButton_Click);
             // 
             // streamerListChangeNameButton
             // 
@@ -355,7 +343,6 @@
             this.Name = "OptionsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Options";
-            this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OptionsForm_FormClosed);
             this.Load += new System.EventHandler(this.OptionsForm_Load);
             this.groupBox1.ResumeLayout(false);
@@ -381,7 +368,6 @@
         private System.Windows.Forms.Label createStreamerWarningLabel2;
         private System.Windows.Forms.Button streamerListDeleteButton;
         private System.Windows.Forms.Button streamerListChangeNameButton;
-        private System.Windows.Forms.Button streamerListRefreshButton;
         private System.Windows.Forms.Button streamerListAddButton;
         private System.Windows.Forms.GroupBox streamPollSettingsGroupBox;
         private System.Windows.Forms.Label streamCheckURLLabel;

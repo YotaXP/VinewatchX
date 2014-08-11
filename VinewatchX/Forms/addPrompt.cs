@@ -6,7 +6,7 @@ namespace VinewatchX.Forms
 {
     public partial class AddPrompt : Form
     {
-        private Stream soundfile;
+        private string soundfile = "InternalResource";
         private MainForm parentsForm;
 
         public AddPrompt()
@@ -20,27 +20,20 @@ namespace VinewatchX.Forms
             InitializeComponent();
         }
 
-        private void addPrompt_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            OpenFileDialog dlg = new OpenFileDialog() {
+                Filter = "Wav Files|*.wav",
+                Title = "Select a Wav File for the new Streamer"
+            };
 
-            openFileDialog1.Filter = "Wav Files|*.wav";
-            openFileDialog1.Title = "Select a Wav File for the new Streamer";
+            if (Directory.Exists(Path.Combine(Program.Directory, @"Sample Wavs\")))
+                dlg.InitialDirectory = Path.Combine(Program.Directory, @"Sample Wavs\");
 
-            if (Directory.Exists(@"C:\Program Files (x86)\VinewatchX\Sample Wavs"))
-                openFileDialog1.InitialDirectory = @"C:\Program Files (x86)\VinewatchX\Sample Wavs";
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                this.soundfile = File.Open(openFileDialog1.FileName, FileMode.Open);
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                this.soundfile = dlg.FileName;
+                addPomptCurrentSoundLabel.Text = this.soundfile;
             }
-            if (soundfile != null)
-                addPomptCurrentSoundLabel.Text = this.soundfile.ToString();
         }
 
         private void addPromptCancelButton_Click(object sender, EventArgs e)
@@ -55,19 +48,18 @@ namespace VinewatchX.Forms
                 MessageBox.Show("You dork, you didn't fill in all the fields!");
             }
 
-            if (this.soundfile == null)
+            if (soundfile == null || soundfile == "InternalResource")
             {
-                if (MessageBox.Show("Soundfile is not set! Use buillt-in sound 'Fuck You' by Van Darkholme?", "No soundfile set!", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    parentsForm.addStreamer(addPromptNameTextbox.Text, Properties.Resources.notify_smtdsmts);
-                    this.Close();
+                if (MessageBox.Show("Soundfile is not set! Use buillt-in sound 'So Much To Do So Much To See' by Smash Mouth?", "No soundfile set!", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                    soundfile = "InternalResource";
                 }
-
+                else {
+                    return;
+                }
             }
 
-            parentsForm.addStreamer(addPromptNameTextbox.Text, this.soundfile);
+            StreamerUtils.AddStreamer(addPromptNameTextbox.Text, soundfile);
             this.Close();
-
         }
     }
 }

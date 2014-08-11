@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -61,10 +62,8 @@ namespace VinewatchX.Forms
             {
                 MessageBox.Show("Error loading the local config. Populating the Streamer database with the default entries.\n\n" +
                     "EXPORT YOUR CONFIG BEFORE CLOSING!");
-                con.populate();
+                con.PopulateDefaultStreamers();
             }
-
-            con.sortAndPruneStreamerList();
         }
 
         protected void createTooltips()
@@ -134,7 +133,7 @@ namespace VinewatchX.Forms
                 }
                 else
                 {
-                    con.findAndPlayStreamerSound(streamTitle);
+                    StreamerUtils.FindAndPlayStreamerSound(streamTitle);
                 }
             }
         }
@@ -147,7 +146,7 @@ namespace VinewatchX.Forms
         {
             using (SpeechSynthesizer synth = new SpeechSynthesizer())
             {
-                phrase = String.Join(",", phrase.Split('|', '\\', '/', (char)166, (char)124));
+                phrase = String.Join(",", phrase.Split('<', '>', '&', ';', '|', '\\', '/', (char)166, (char)124));
 
                 try
                 {
@@ -233,67 +232,7 @@ namespace VinewatchX.Forms
         {
             OptionsForm opt = new OptionsForm(this);
 
-            opt.Show();
-        }
-
-        internal List<string> getStreamerListAsStringList()
-        {
-            List<string> rtn = new List<string>();
-            List<Streamer> src = con.getStreamerList();
-
-            foreach (Streamer eachStreamer in src)
-            {
-                rtn.Add(eachStreamer.getName());
-            }
-
-            return rtn;
-        }
-
-        internal void editStreamerName(Streamer target, string newStreamerName)
-        {
-            con.editStreamerName(target, newStreamerName);
-        }
-
-        internal void editStreamerSound(string selectedStreamerName)
-        {
-            con.editStreamerSoundfile(selectedStreamerName);
-        }
-
-        internal void playStreamerSound(string selectedStreamerName)
-        {
-            con.findAndPlayStreamerSound(selectedStreamerName);
-        }
-
-        internal void deleteStreamerByName(string selectedStreamerName)
-        {
-            con.removeStreamer(selectedStreamerName);
-        }
-
-        internal List<Streamer> getStreamerList()
-        {
-            return con.getStreamerList();
-        }
-
-        internal Streamer getStreamer(string selectedStreamerName)
-        {
-            return con.getStreamerByName(selectedStreamerName);
-        }
-
-        internal void addStreamer(string newStreamerName, Stream newSoundFile)
-        {
-            con.addStreamer(newStreamerName, newSoundFile);
-        }
-
-        internal void addStreamer(string newStreamerName, string newSoundFile)
-        {
-            if (newSoundFile.Equals("InternalResource"))
-            {
-                con.addStreamer(newStreamerName, Properties.Resources.notify_smtdsmts);
-            }
-            else
-            {
-                con.addStreamer(newStreamerName, newSoundFile);
-            }
+            opt.ShowDialog();
         }
 
         internal string getStreamURL()
@@ -380,8 +319,6 @@ namespace VinewatchX.Forms
         {
             VineConf conf = new VineConf(this);
             conf.importConfig();
-
-            con.sortAndPruneStreamerList();
         }
 
         #endregion
@@ -400,7 +337,7 @@ namespace VinewatchX.Forms
         protected void aboutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             AboutForm box = new AboutForm();
-            box.Show();
+            box.ShowDialog();
         }
 
         protected void vinesauceDotcomLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -464,7 +401,7 @@ namespace VinewatchX.Forms
         protected void startWithWindowsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StartWithWindowsPrompt strtp = new StartWithWindowsPrompt();
-            strtp.Show();
+            strtp.ShowDialog();
         }
 
         protected void pictureBox1_DoubleClick(object sender, EventArgs e)
@@ -502,8 +439,6 @@ namespace VinewatchX.Forms
         {
             VineConf conf = new VineConf(this);
             conf.importConfig();
-
-            con.sortAndPruneStreamerList();
         }
 
         protected void exportToolStripMenuItem_Click(object sender, EventArgs e)

@@ -11,99 +11,66 @@ namespace VinewatchX
     /// </summary>
     public class StreamerUtils
     {
-        static private List<Streamer> streamerList = new List<Streamer>();  //ArrayList can suck my big black dick.
+        public static SortedSet<Streamer> StreamerList { get; private set; }
 
         public StreamerUtils()
         {
-            //this.populate();        // Populate the streamerList with preset streamers. Used in debugging.
+            StreamerList = new SortedSet<Streamer>();
+            //this.PopulateDefaultStreamers();        // Populate the streamerList with preset streamers. Used in debugging.
         }
 
-        public void populate()
+        public void PopulateDefaultStreamers()
         {
-            streamerList.Add(new Streamer("Vinny"));
+            StreamerList.Add(new Streamer("Vinny"));
             //Sorted Alphabetically, not by preference
-            streamerList.Add(new Streamer("Rev"));
-            streamerList.Add(new Streamer("Bobito"));
-            streamerList.Add(new Streamer("Darren"));
-            streamerList.Add(new Streamer("Direboar"));
-            streamerList.Add(new Streamer("Fred"));
-            streamerList.Add(new Streamer("Gingers"));
-            streamerList.Add(new Streamer("Guest"));
-            streamerList.Add(new Streamer("Imakuni"));
-            streamerList.Add(new Streamer("KY"));
-            streamerList.Add(new Streamer("Limes"));
-            streamerList.Add(new Streamer("Study"));
-            streamerList.Add(new Streamer("Joel"));
-            streamerList.Add(new Streamer("Hootey"));       //1.4; 1.7, Sorry Hootey
-            streamerList.Add(new Streamer("Jen"));          //1.4
+            StreamerList.Add(new Streamer("Rev"));
+            StreamerList.Add(new Streamer("Bobito"));
+            StreamerList.Add(new Streamer("Darren"));
+            StreamerList.Add(new Streamer("Direboar"));
+            StreamerList.Add(new Streamer("Fred"));
+            StreamerList.Add(new Streamer("Gingers"));
+            StreamerList.Add(new Streamer("Guest"));
+            StreamerList.Add(new Streamer("Imakuni"));
+            StreamerList.Add(new Streamer("KY"));
+            StreamerList.Add(new Streamer("Limes"));
+            StreamerList.Add(new Streamer("Study"));
+            StreamerList.Add(new Streamer("Joel"));
+            StreamerList.Add(new Streamer("Hootey"));       //1.4; 1.7, Sorry Hootey
+            StreamerList.Add(new Streamer("Jen"));          //1.4
         }
 
-        public void sortAndPruneStreamerList()
+        public static void AddStreamer(string name)
         {
-            streamerList = streamerList.OrderBy(o => o.getName()).ToList();
-
-            for (int i = 1; i < streamerList.Count; i++)
-            {
-                if (streamerList[i].getName() == streamerList[i - 1].getName())
-                {
-                    streamerList.RemoveAt(i);
-                }
-            }
+            var s = new Streamer(name);
+            StreamerList.Add(s);
+            s.ShowSoundFileSelectDialog();
         }
-
-        public void addStreamer(string tname)
+        internal static void AddStreamer(string newStreamerName, string newSoundFile)
         {
-            streamerList.Add(new Streamer(tname));
-            foreach (Streamer eachStreamer in streamerList.Where(x => x.getName() == tname))
-                eachStreamer.setSoundfile();
+            StreamerList.Add(new Streamer(newStreamerName, newSoundFile));
         }
 
-        public void removeStreamer(string tname)
+        public static void RemoveStreamer(string name)
         {
-            Streamer T = null;
-            foreach (Streamer eachStreamer in streamerList.Where(x => x.getName() == tname))
-                T = this.getStreamerByName(eachStreamer.getName());
-            streamerList.Remove(T);
+            Streamer s = FindStreamerByName(name);
+            if (s != null) StreamerList.Remove(s);
         }
 
-        public Streamer getStreamerByName(string tname)
+        public static Streamer FindStreamerByName(string name)
         {
-            foreach (Streamer eachStreamer in streamerList.Where(x => x.getName() == tname))
-                return eachStreamer;
-            return null;
+            return StreamerList.FirstOrDefault(s => s.Name == name);
         }
 
-        public void editStreamerName(Streamer target, string newStreamerName)
+        public static Streamer FindStreamerByStreamTitle(string streamTitle)
         {
-            foreach (Streamer eachStreamer in streamerList.Where(x => x == target))
-                eachStreamer.setName(newStreamerName);
+            return StreamerList.FirstOrDefault(s => streamTitle.ToLowerInvariant().Contains(s.Name.ToLowerInvariant()));
         }
 
-        public void editStreamerSoundfile(string tname)
+        public static void FindAndPlayStreamerSound(string streamTitle)
         {
-            foreach (Streamer eachStreamer in streamerList.Where(x => x.getName() == tname))
-                eachStreamer.setSoundfile();
+            Streamer s = FindStreamerByStreamTitle(streamTitle);
+            if (s != null) s.PlaySound();
         }
 
-        public void findAndPlayStreamerSound(string streamTitle)
-        {
-            foreach (Streamer eachStreamer in streamerList.Where(x => streamTitle.Contains(x.getName(), StringComparison.OrdinalIgnoreCase)))
-                eachStreamer.playSound();
-        }
-
-        public List<Streamer> getStreamerList()
-        {
-            return streamerList;
-        }
-
-        internal void addStreamer(string newStreamerName, Stream newSoundFile)
-        {
-            streamerList.Add(new Streamer(newStreamerName, newSoundFile));
-        }
-
-        internal void addStreamer(string newStreamerName, string newSoundFile)
-        {
-            streamerList.Add(new Streamer(newStreamerName, newSoundFile));
-        }
     }
 }

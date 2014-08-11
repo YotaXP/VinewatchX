@@ -8,9 +8,13 @@ namespace VinewatchX
 {
     class Program
     {
+        public static string Directory { get; private set; }
+
         [STAThread]
         static void Main(string[] args)
         {
+            Directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
