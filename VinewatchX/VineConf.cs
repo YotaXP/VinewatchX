@@ -11,7 +11,6 @@ namespace VinewatchX
     /// </summary>
     class VineConf
     {
-        private StreamerUtils con = new StreamerUtils();
         private MainForm parentForm = null;
 
         public VineConf(MainForm referenceForm)
@@ -105,19 +104,16 @@ namespace VinewatchX
 
         private void writeConfig(string targetFolder)
         {
-
-            List<Streamer> streamers = parentForm.getStreamerList();
-
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(targetFolder + "\\vinewatchXConfig.txt"))
             {
                 // Streamers
 
                 file.WriteLine("@ Streamers");
                 Debug.WriteLine("@ Streamers");
-                foreach (Streamer eachStreamer in streamers)
+                foreach (Streamer eachStreamer in StreamerUtils.StreamerList)
                 {
-                    file.WriteLine("S " + eachStreamer.getName() + "\t" + eachStreamer.getSoundfileAsString());
-                    Debug.WriteLine("S " + eachStreamer.getName() + "\t" + eachStreamer.getSoundfileAsString());
+                    file.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename);
+                    Debug.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename);
                 }
 
                 // Icons
@@ -169,22 +165,10 @@ namespace VinewatchX
             // Streamer
             if (line[0].Equals('S'))
             {
-                try
-                {
-                    string[] words = line.Split('\t'); feedback = words;
-                    Debug.WriteLine("applyConfigByLine - " + words[0] + "_" + words[1] + "\n" + words[0].Substring(2) + " - " + words[1]);
+                string[] words = line.Split('\t'); feedback = words;
+                Debug.WriteLine("applyConfigByLine - " + words[0] + "_" + words[1] + "\n" + words[0].Substring(2) + " - " + words[1]);
 
-                    parentForm.addStreamer(words[0].Substring(2), words[1]);
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    MessageBox.Show(feedback[0].Substring(2) + "'s soundfile - " + "Directory specificed does not exist (DirectoryNotFoundException)");
-                }
-                catch (FileNotFoundException)
-                {
-                    MessageBox.Show(feedback[0].Substring(2) + "'s soundfile - " + "File specificed does not exist (FileNotFoundException)");
-                }
-
+                StreamerUtils.AddStreamer(words[0].Substring(2), words[1]);
             }
 
             // Icon

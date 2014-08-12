@@ -54,6 +54,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(121, 68);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
@@ -71,17 +72,19 @@
             this.editPromptInfoLabel.TabIndex = 3;
             this.editPromptInfoLabel.Text = "New name:";
             // 
-            // editPrompt
+            // EditPrompt
             // 
+            this.AcceptButton = this.confirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(296, 113);
             this.Controls.Add(this.editPromptInfoLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.newNameTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "editPrompt";
+            this.Name = "EditPrompt";
             this.Text = "Edit: ";
             this.Load += new System.EventHandler(this.editPrompt_Load);
             this.ResumeLayout(false);

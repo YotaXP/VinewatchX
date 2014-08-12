@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -33,13 +34,8 @@ namespace VinewatchX.Forms
 
         private void listBoxPopulate()
         {
-            List<String> T = parentForm.getStreamerListAsStringList();
-            foreach (String s in T)
-            {
-                Debug.Write(" + " + s);
-            } Debug.WriteLine("");
-
-            optionsFormStreamerListBox.DataSource = parentForm.getStreamerListAsStringList();
+            optionsFormStreamerListBox.DataSource = StreamerUtils.StreamerList.ToList();
+            optionsFormStreamerListBox.DisplayMember = "Name";
         }
 
         private void listBoxRePopulate()
@@ -56,8 +52,8 @@ namespace VinewatchX.Forms
             {
                 try
                 {
-                    string selectedStreamerName = optionsFormStreamerListBox.Items[(int)selectedIndex].ToString();
-                    parentForm.editStreamerSound(selectedStreamerName);
+                    var s = optionsFormStreamerListBox.SelectedItem as Streamer;
+                    if (s != null) s.ShowSoundFileSelectDialog();
                 }
                 catch
                 {
@@ -73,8 +69,8 @@ namespace VinewatchX.Forms
             {
                 try
                 {
-                    string selectedStreamerName = optionsFormStreamerListBox.Items[(int)selectedIndex].ToString();
-                    parentForm.playStreamerSound(selectedStreamerName);
+                    var s = optionsFormStreamerListBox.SelectedItem as Streamer;
+                    if (s != null) s.PlaySound();
                 }
                 catch
                 {
@@ -90,8 +86,8 @@ namespace VinewatchX.Forms
             {
                 try
                 {
-                    string selectedStreamerName = optionsFormStreamerListBox.Items[(int)selectedIndex].ToString();
-                    selectionInfoLabel.Text = ("Streamer: " + selectedStreamerName);
+                    var s = optionsFormStreamerListBox.SelectedItem as Streamer;
+                    if (s != null) selectionInfoLabel.Text = ("Streamer: " + s.Name);
                 }
                 catch
                 {
@@ -102,36 +98,27 @@ namespace VinewatchX.Forms
 
         private void streamerListDeleteButton_Click(object sender, EventArgs e)
         {
-            int selectedIndex = optionsFormStreamerListBox.SelectedIndex;
-
-            string selectedStreamerName = optionsFormStreamerListBox.Items[selectedIndex].ToString();
-
-            if (MessageBox.Show("Really delete " + selectedStreamerName + "?", "Confirm delete: " + selectedStreamerName, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            var s = optionsFormStreamerListBox.SelectedItem as Streamer;
+            if (s != null && MessageBox.Show("Really delete " + s.Name + "?", "Confirm delete: " + s.Name, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                parentForm.deleteStreamerByName(selectedStreamerName);
+                StreamerUtils.StreamerList.Remove(s);
                 listBoxRePopulate();
             }
         }
 
         private void streamerListChangeNameButton_Click(object sender, EventArgs e)
         {
-            int selectedIndex = optionsFormStreamerListBox.SelectedIndex;
-
-            string selectedStreamerName = optionsFormStreamerListBox.Items[selectedIndex].ToString();
-
-            EditPrompt f = new EditPrompt(parentForm, parentForm.getStreamer(selectedStreamerName));
-            f.Show();
-        }
-
-        private void streamerListRefreshButton_Click(object sender, EventArgs e)
-        {
-            listBoxRePopulate();
+            var s = optionsFormStreamerListBox.SelectedItem as Streamer;
+            if (s != null) {
+                new EditPrompt(parentForm, s).ShowDialog();
+                listBoxRePopulate();
+            }
         }
 
         private void streamerListAddButton_Click(object sender, EventArgs e)
         {
-            AddPrompt f = new AddPrompt(parentForm);
-            f.Show();
+            new AddPrompt(parentForm).ShowDialog();
+            listBoxRePopulate();
         }
 
         private void changePollURLButton_Click(object sender, EventArgs e)
