@@ -40,11 +40,12 @@
             this.streamerListBoxInteractButton = new System.Windows.Forms.Button();
             this.optionsFormStreamerListBox = new System.Windows.Forms.ListBox();
             this.streamPollSettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.debugButton = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.changeBalloonTipTimeoutButton = new System.Windows.Forms.Button();
             this.balloonTipTimeoutlabel = new System.Windows.Forms.Label();
             this.streamCheckLabel4 = new System.Windows.Forms.Label();
-            this.streamCheckLabel3 = new System.Windows.Forms.Label();
             this.changePollRateButton = new System.Windows.Forms.Button();
             this.streamCheckPollRateLabel = new System.Windows.Forms.Label();
             this.streamCheckLabel2 = new System.Windows.Forms.Label();
@@ -52,14 +53,25 @@
             this.streamCheckURLLabel = new System.Windows.Forms.Label();
             this.streamCheckLabel1 = new System.Windows.Forms.Label();
             this.programSettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.startVinewatchMinimizedCheckbox = new System.Windows.Forms.CheckBox();
+            this.samplePlayingRadioButton = new System.Windows.Forms.RadioButton();
+            this.ttsRadioButton = new System.Windows.Forms.RadioButton();
+            this.runVinewatchStartupCheckbox = new System.Windows.Forms.CheckBox();
             this.changeIconButton = new System.Windows.Forms.Button();
             this.iconDisplayPictureBox = new System.Windows.Forms.PictureBox();
             this.iconLabel1 = new System.Windows.Forms.Label();
+            this.importSettingsButton = new System.Windows.Forms.Button();
+            this.exportSettingsButton = new System.Windows.Forms.Button();
+            this.supressionRadioButton = new System.Windows.Forms.CheckBox();
+            this.notifyTestButton = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.streamPollSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.programSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconDisplayPictureBox)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -75,7 +87,7 @@
             this.groupBox1.Controls.Add(this.optionsFormStreamerListBox);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(489, 256);
+            this.groupBox1.Size = new System.Drawing.Size(489, 264);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Streamer Sounds";
@@ -168,28 +180,43 @@
             // 
             // streamPollSettingsGroupBox
             // 
+            this.streamPollSettingsGroupBox.Controls.Add(this.panel1);
+            this.streamPollSettingsGroupBox.Controls.Add(this.debugButton);
             this.streamPollSettingsGroupBox.Controls.Add(this.pictureBox1);
             this.streamPollSettingsGroupBox.Controls.Add(this.changeBalloonTipTimeoutButton);
             this.streamPollSettingsGroupBox.Controls.Add(this.balloonTipTimeoutlabel);
             this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckLabel4);
-            this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckLabel3);
             this.streamPollSettingsGroupBox.Controls.Add(this.changePollRateButton);
             this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckPollRateLabel);
             this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckLabel2);
             this.streamPollSettingsGroupBox.Controls.Add(this.changePollURLButton);
             this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckURLLabel);
             this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckLabel1);
-            this.streamPollSettingsGroupBox.Location = new System.Drawing.Point(13, 276);
+            this.streamPollSettingsGroupBox.Location = new System.Drawing.Point(13, 293);
             this.streamPollSettingsGroupBox.Name = "streamPollSettingsGroupBox";
-            this.streamPollSettingsGroupBox.Size = new System.Drawing.Size(489, 272);
+            this.streamPollSettingsGroupBox.Size = new System.Drawing.Size(489, 182);
             this.streamPollSettingsGroupBox.TabIndex = 1;
             this.streamPollSettingsGroupBox.TabStop = false;
             this.streamPollSettingsGroupBox.Text = "Stream Poll Settings";
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(412, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(31, 23);
+            this.panel1.TabIndex = 14;
+            // 
+            // debugButton
+            // 
+            this.debugButton.Location = new System.Drawing.Point(449, 19);
+            this.debugButton.Name = "debugButton";
+            this.debugButton.Size = new System.Drawing.Size(31, 23);
+            this.debugButton.TabIndex = 15;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::VinewatchX.Properties.Resources._1324240144374;
-            this.pictureBox1.Location = new System.Drawing.Point(355, 151);
+            this.pictureBox1.Location = new System.Drawing.Point(354, 60);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(125, 115);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -199,7 +226,7 @@
             // 
             // changeBalloonTipTimeoutButton
             // 
-            this.changeBalloonTipTimeoutButton.Location = new System.Drawing.Point(29, 227);
+            this.changeBalloonTipTimeoutButton.Location = new System.Drawing.Point(29, 153);
             this.changeBalloonTipTimeoutButton.Name = "changeBalloonTipTimeoutButton";
             this.changeBalloonTipTimeoutButton.Size = new System.Drawing.Size(118, 23);
             this.changeBalloonTipTimeoutButton.TabIndex = 9;
@@ -210,7 +237,7 @@
             // balloonTipTimeoutlabel
             // 
             this.balloonTipTimeoutlabel.AutoSize = true;
-            this.balloonTipTimeoutlabel.Location = new System.Drawing.Point(193, 210);
+            this.balloonTipTimeoutlabel.Location = new System.Drawing.Point(193, 136);
             this.balloonTipTimeoutlabel.Name = "balloonTipTimeoutlabel";
             this.balloonTipTimeoutlabel.Size = new System.Drawing.Size(59, 13);
             this.balloonTipTimeoutlabel.TabIndex = 8;
@@ -219,25 +246,15 @@
             // streamCheckLabel4
             // 
             this.streamCheckLabel4.AutoSize = true;
-            this.streamCheckLabel4.Location = new System.Drawing.Point(6, 210);
+            this.streamCheckLabel4.Location = new System.Drawing.Point(6, 136);
             this.streamCheckLabel4.Name = "streamCheckLabel4";
             this.streamCheckLabel4.Size = new System.Drawing.Size(172, 13);
             this.streamCheckLabel4.TabIndex = 7;
             this.streamCheckLabel4.Text = "The current Balloon Tip Timeout is:";
             // 
-            // streamCheckLabel3
-            // 
-            this.streamCheckLabel3.AutoSize = true;
-            this.streamCheckLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.streamCheckLabel3.Location = new System.Drawing.Point(26, 24);
-            this.streamCheckLabel3.Name = "streamCheckLabel3";
-            this.streamCheckLabel3.Size = new System.Drawing.Size(220, 13);
-            this.streamCheckLabel3.TabIndex = 6;
-            this.streamCheckLabel3.Text = "TwitchTV JSON refreshes every 60 seconds!";
-            // 
             // changePollRateButton
             // 
-            this.changePollRateButton.Location = new System.Drawing.Point(29, 155);
+            this.changePollRateButton.Location = new System.Drawing.Point(29, 100);
             this.changePollRateButton.Name = "changePollRateButton";
             this.changePollRateButton.Size = new System.Drawing.Size(118, 23);
             this.changePollRateButton.TabIndex = 5;
@@ -248,7 +265,7 @@
             // streamCheckPollRateLabel
             // 
             this.streamCheckPollRateLabel.AutoSize = true;
-            this.streamCheckPollRateLabel.Location = new System.Drawing.Point(193, 137);
+            this.streamCheckPollRateLabel.Location = new System.Drawing.Point(193, 82);
             this.streamCheckPollRateLabel.Name = "streamCheckPollRateLabel";
             this.streamCheckPollRateLabel.Size = new System.Drawing.Size(59, 13);
             this.streamCheckPollRateLabel.TabIndex = 4;
@@ -257,7 +274,7 @@
             // streamCheckLabel2
             // 
             this.streamCheckLabel2.AutoSize = true;
-            this.streamCheckLabel2.Location = new System.Drawing.Point(3, 137);
+            this.streamCheckLabel2.Location = new System.Drawing.Point(3, 82);
             this.streamCheckLabel2.Name = "streamCheckLabel2";
             this.streamCheckLabel2.Size = new System.Drawing.Size(129, 13);
             this.streamCheckLabel2.TabIndex = 3;
@@ -265,7 +282,7 @@
             // 
             // changePollURLButton
             // 
-            this.changePollURLButton.Location = new System.Drawing.Point(29, 82);
+            this.changePollURLButton.Location = new System.Drawing.Point(29, 45);
             this.changePollURLButton.Name = "changePollURLButton";
             this.changePollURLButton.Size = new System.Drawing.Size(118, 23);
             this.changePollURLButton.TabIndex = 2;
@@ -276,7 +293,7 @@
             // streamCheckURLLabel
             // 
             this.streamCheckURLLabel.AutoSize = true;
-            this.streamCheckURLLabel.Location = new System.Drawing.Point(193, 66);
+            this.streamCheckURLLabel.Location = new System.Drawing.Point(193, 29);
             this.streamCheckURLLabel.Name = "streamCheckURLLabel";
             this.streamCheckURLLabel.Size = new System.Drawing.Size(59, 13);
             this.streamCheckURLLabel.TabIndex = 1;
@@ -285,7 +302,7 @@
             // streamCheckLabel1
             // 
             this.streamCheckLabel1.AutoSize = true;
-            this.streamCheckLabel1.Location = new System.Drawing.Point(6, 66);
+            this.streamCheckLabel1.Location = new System.Drawing.Point(6, 29);
             this.streamCheckLabel1.Name = "streamCheckLabel1";
             this.streamCheckLabel1.Size = new System.Drawing.Size(181, 13);
             this.streamCheckLabel1.TabIndex = 0;
@@ -293,19 +310,70 @@
             // 
             // programSettingsGroupBox
             // 
+            this.programSettingsGroupBox.Controls.Add(this.startVinewatchMinimizedCheckbox);
+            this.programSettingsGroupBox.Controls.Add(this.samplePlayingRadioButton);
+            this.programSettingsGroupBox.Controls.Add(this.ttsRadioButton);
+            this.programSettingsGroupBox.Controls.Add(this.runVinewatchStartupCheckbox);
             this.programSettingsGroupBox.Controls.Add(this.changeIconButton);
             this.programSettingsGroupBox.Controls.Add(this.iconDisplayPictureBox);
             this.programSettingsGroupBox.Controls.Add(this.iconLabel1);
+            this.programSettingsGroupBox.Controls.Add(this.importSettingsButton);
+            this.programSettingsGroupBox.Controls.Add(this.exportSettingsButton);
             this.programSettingsGroupBox.Location = new System.Drawing.Point(509, 13);
             this.programSettingsGroupBox.Name = "programSettingsGroupBox";
-            this.programSettingsGroupBox.Size = new System.Drawing.Size(191, 535);
+            this.programSettingsGroupBox.Size = new System.Drawing.Size(191, 264);
             this.programSettingsGroupBox.TabIndex = 2;
             this.programSettingsGroupBox.TabStop = false;
             this.programSettingsGroupBox.Text = "Program Settings";
             // 
+            // startVinewatchMinimizedCheckbox
+            // 
+            this.startVinewatchMinimizedCheckbox.AutoSize = true;
+            this.startVinewatchMinimizedCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startVinewatchMinimizedCheckbox.Location = new System.Drawing.Point(7, 242);
+            this.startVinewatchMinimizedCheckbox.Name = "startVinewatchMinimizedCheckbox";
+            this.startVinewatchMinimizedCheckbox.Size = new System.Drawing.Size(156, 17);
+            this.startVinewatchMinimizedCheckbox.TabIndex = 21;
+            this.startVinewatchMinimizedCheckbox.Text = "Start VinewatchX minimized";
+            this.startVinewatchMinimizedCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // samplePlayingRadioButton
+            // 
+            this.samplePlayingRadioButton.AutoSize = true;
+            this.samplePlayingRadioButton.Checked = true;
+            this.samplePlayingRadioButton.Location = new System.Drawing.Point(7, 180);
+            this.samplePlayingRadioButton.Name = "samplePlayingRadioButton";
+            this.samplePlayingRadioButton.Size = new System.Drawing.Size(127, 17);
+            this.samplePlayingRadioButton.TabIndex = 20;
+            this.samplePlayingRadioButton.TabStop = true;
+            this.samplePlayingRadioButton.Text = "Sample Playing Mode";
+            this.samplePlayingRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // ttsRadioButton
+            // 
+            this.ttsRadioButton.AutoSize = true;
+            this.ttsRadioButton.Location = new System.Drawing.Point(7, 199);
+            this.ttsRadioButton.Name = "ttsRadioButton";
+            this.ttsRadioButton.Size = new System.Drawing.Size(132, 17);
+            this.ttsRadioButton.TabIndex = 19;
+            this.ttsRadioButton.Text = "Text-To-Speech Mode";
+            this.ttsRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // runVinewatchStartupCheckbox
+            // 
+            this.runVinewatchStartupCheckbox.AutoSize = true;
+            this.runVinewatchStartupCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.runVinewatchStartupCheckbox.Location = new System.Drawing.Point(7, 221);
+            this.runVinewatchStartupCheckbox.Name = "runVinewatchStartupCheckbox";
+            this.runVinewatchStartupCheckbox.Size = new System.Drawing.Size(155, 17);
+            this.runVinewatchStartupCheckbox.TabIndex = 18;
+            this.runVinewatchStartupCheckbox.Text = "Run VinewatchX at Startup";
+            this.runVinewatchStartupCheckbox.UseVisualStyleBackColor = true;
+            this.runVinewatchStartupCheckbox.Click += new System.EventHandler(this.runVinewatchStartupCheckbox_Click);
+            // 
             // changeIconButton
             // 
-            this.changeIconButton.Location = new System.Drawing.Point(6, 20);
+            this.changeIconButton.Location = new System.Drawing.Point(6, 18);
             this.changeIconButton.Name = "changeIconButton";
             this.changeIconButton.Size = new System.Drawing.Size(108, 23);
             this.changeIconButton.TabIndex = 2;
@@ -316,7 +384,7 @@
             // iconDisplayPictureBox
             // 
             this.iconDisplayPictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.iconDisplayPictureBox.Location = new System.Drawing.Point(77, 46);
+            this.iconDisplayPictureBox.Location = new System.Drawing.Point(77, 49);
             this.iconDisplayPictureBox.Name = "iconDisplayPictureBox";
             this.iconDisplayPictureBox.Size = new System.Drawing.Size(108, 95);
             this.iconDisplayPictureBox.TabIndex = 1;
@@ -325,21 +393,94 @@
             // iconLabel1
             // 
             this.iconLabel1.AutoSize = true;
-            this.iconLabel1.Location = new System.Drawing.Point(6, 46);
+            this.iconLabel1.Location = new System.Drawing.Point(6, 49);
             this.iconLabel1.Name = "iconLabel1";
             this.iconLabel1.Size = new System.Drawing.Size(68, 13);
             this.iconLabel1.TabIndex = 0;
             this.iconLabel1.Text = "Current Icon:";
             // 
+            // importSettingsButton
+            // 
+            this.importSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importSettingsButton.Location = new System.Drawing.Point(6, 151);
+            this.importSettingsButton.Name = "importSettingsButton";
+            this.importSettingsButton.Size = new System.Drawing.Size(86, 23);
+            this.importSettingsButton.TabIndex = 4;
+            this.importSettingsButton.Text = "Import Settings";
+            this.importSettingsButton.UseVisualStyleBackColor = true;
+            this.importSettingsButton.Click += new System.EventHandler(this.importSettingsButton_Click);
+            // 
+            // exportSettingsButton
+            // 
+            this.exportSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportSettingsButton.Location = new System.Drawing.Point(92, 151);
+            this.exportSettingsButton.Name = "exportSettingsButton";
+            this.exportSettingsButton.Size = new System.Drawing.Size(94, 23);
+            this.exportSettingsButton.TabIndex = 3;
+            this.exportSettingsButton.Text = "Export Settings";
+            this.exportSettingsButton.UseVisualStyleBackColor = true;
+            this.exportSettingsButton.Click += new System.EventHandler(this.exportSettingsButton_Click);
+            // 
+            // supressionRadioButton
+            // 
+            this.supressionRadioButton.AutoSize = true;
+            this.supressionRadioButton.Checked = true;
+            this.supressionRadioButton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.supressionRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supressionRadioButton.Location = new System.Drawing.Point(11, 54);
+            this.supressionRadioButton.Name = "supressionRadioButton";
+            this.supressionRadioButton.Size = new System.Drawing.Size(151, 17);
+            this.supressionRadioButton.TabIndex = 15;
+            this.supressionRadioButton.Text = "Supress Connection Errors";
+            this.supressionRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // notifyTestButton
+            // 
+            this.notifyTestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notifyTestButton.Location = new System.Drawing.Point(9, 24);
+            this.notifyTestButton.Name = "notifyTestButton";
+            this.notifyTestButton.Size = new System.Drawing.Size(105, 23);
+            this.notifyTestButton.TabIndex = 5;
+            this.notifyTestButton.Text = "Test Notify";
+            this.notifyTestButton.UseVisualStyleBackColor = true;
+            this.notifyTestButton.Click += new System.EventHandler(this.notifyTestButton_Click);
+            // 
+            // okButton
+            // 
+            this.okButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.okButton.Location = new System.Drawing.Point(612, 453);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(88, 23);
+            this.okButton.TabIndex = 18;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.notifyTestButton);
+            this.groupBox2.Controls.Add(this.supressionRadioButton);
+            this.groupBox2.Location = new System.Drawing.Point(509, 299);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(191, 143);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Debug Tools";
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 560);
+            this.ClientSize = new System.Drawing.Size(712, 486);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.programSettingsGroupBox);
             this.Controls.Add(this.streamPollSettingsGroupBox);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "OptionsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Options";
@@ -353,6 +494,8 @@
             this.programSettingsGroupBox.ResumeLayout(false);
             this.programSettingsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconDisplayPictureBox)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -376,7 +519,6 @@
         private System.Windows.Forms.Label streamCheckLabel2;
         private System.Windows.Forms.Button changePollURLButton;
         private System.Windows.Forms.Button changePollRateButton;
-        private System.Windows.Forms.Label streamCheckLabel3;
         private System.Windows.Forms.Label balloonTipTimeoutlabel;
         private System.Windows.Forms.Label streamCheckLabel4;
         private System.Windows.Forms.Button changeBalloonTipTimeoutButton;
@@ -385,6 +527,18 @@
         private System.Windows.Forms.Label iconLabel1;
         private System.Windows.Forms.Button changeIconButton;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button importSettingsButton;
+        private System.Windows.Forms.Button exportSettingsButton;
+        private System.Windows.Forms.Button notifyTestButton;
+        internal System.Windows.Forms.CheckBox supressionRadioButton;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel debugButton;
+        private System.Windows.Forms.Button okButton;
+        internal System.Windows.Forms.CheckBox runVinewatchStartupCheckbox;
+        private System.Windows.Forms.RadioButton samplePlayingRadioButton;
+        internal System.Windows.Forms.RadioButton ttsRadioButton;
+        private System.Windows.Forms.GroupBox groupBox2;
+        internal System.Windows.Forms.CheckBox startVinewatchMinimizedCheckbox;
 
     }
 }

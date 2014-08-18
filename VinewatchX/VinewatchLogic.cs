@@ -93,7 +93,7 @@ namespace VinewatchX
                         Debug.WriteLine("VinewatchLogic.cs\t\t\n*\tLast Report:\t" + getLastReport());
                         Debug.WriteLine("VinewatchLogic.cs\t\n*\tLast Last Report:\t" + getLastLastReport());
 
-                        if (!parentForm.supressionRadioButton.Checked)
+                        if (!parentForm.opt.supressionRadioButton.Checked)
                         {
                             parentForm.notify("TwitchTV: No connection Retrying in 30...");
                         }
@@ -105,7 +105,7 @@ namespace VinewatchX
                     }
                     catch (Exception e)
                     {
-                        if (!parentForm.supressionRadioButton.Checked)
+                        if (!parentForm.opt.supressionRadioButton.Checked)
                         {
                             parentForm.notify("TwitchTV: No connection Retrying in 30...");
                         }

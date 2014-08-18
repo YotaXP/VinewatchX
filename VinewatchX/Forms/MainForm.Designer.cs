@@ -35,27 +35,22 @@
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startWithWindowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openVinesaucePlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.goToVinesaucecomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitVinewatchXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.exportSettingsButton = new System.Windows.Forms.Button();
-            this.importSettingsButton = new System.Windows.Forms.Button();
+            this.optionsButton = new System.Windows.Forms.Button();
             this.minToTrayButton = new System.Windows.Forms.Button();
-            this.notifyTestButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.versionLabel = new System.Windows.Forms.Label();
-            this.lastReportDescLabel = new System.Windows.Forms.Label();
             this.pictureBoxArt = new System.Windows.Forms.LinkLabel();
             this.aboutLabel = new System.Windows.Forms.LinkLabel();
             this.vinesauceDotcomLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.debugButton = new System.Windows.Forms.Panel();
-            this.supressionRadioButton = new System.Windows.Forms.CheckBox();
             this.muteRadioButton = new System.Windows.Forms.CheckBox();
-            this.ttsRadioButton = new System.Windows.Forms.CheckBox();
             this.lastReportLabel = new System.Windows.Forms.Label();
             this.linkLabelForums = new System.Windows.Forms.LinkLabel();
             this.linkLabelBooru = new System.Windows.Forms.LinkLabel();
-            this.newLabel = new System.Windows.Forms.Label();
+            this.openPlayerButton = new System.Windows.Forms.Button();
+            this.vinnyEastereggPanel = new System.Windows.Forms.Panel();
             this.notificationIconContextStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -72,10 +67,11 @@
             this.notificationIconContextStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsFileToolStripMenuItem,
             this.startWithWindowsToolStripMenuItem,
+            this.openVinesaucePlayerToolStripMenuItem,
             this.goToVinesaucecomToolStripMenuItem,
             this.exitVinewatchXToolStripMenuItem});
             this.notificationIconContextStrip.Name = "notificationIconContextStrip";
-            this.notificationIconContextStrip.Size = new System.Drawing.Size(196, 92);
+            this.notificationIconContextStrip.Size = new System.Drawing.Size(196, 114);
             // 
             // settingsFileToolStripMenuItem
             // 
@@ -107,6 +103,13 @@
             this.startWithWindowsToolStripMenuItem.Text = "Run at Start-Up ...";
             this.startWithWindowsToolStripMenuItem.Click += new System.EventHandler(this.startWithWindowsToolStripMenuItem_Click);
             // 
+            // openVinesaucePlayerToolStripMenuItem
+            // 
+            this.openVinesaucePlayerToolStripMenuItem.Name = "openVinesaucePlayerToolStripMenuItem";
+            this.openVinesaucePlayerToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openVinesaucePlayerToolStripMenuItem.Text = "Open Vinesauce Player";
+            this.openVinesaucePlayerToolStripMenuItem.Click += new System.EventHandler(this.openVinesaucePlayerToolStripMenuItem_Click);
+            // 
             // goToVinesaucecomToolStripMenuItem
             // 
             this.goToVinesaucecomToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -122,67 +125,34 @@
             this.exitVinewatchXToolStripMenuItem.Text = "Exit VinewatchX";
             this.exitVinewatchXToolStripMenuItem.Click += new System.EventHandler(this.exitVinewatchXToolStripMenuItem_Click);
             // 
-            // button1
+            // optionsButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(304, 42);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Options";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // exportSettingsButton
-            // 
-            this.exportSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportSettingsButton.Location = new System.Drawing.Point(415, 71);
-            this.exportSettingsButton.Name = "exportSettingsButton";
-            this.exportSettingsButton.Size = new System.Drawing.Size(95, 23);
-            this.exportSettingsButton.TabIndex = 1;
-            this.exportSettingsButton.Text = "Export Settings";
-            this.exportSettingsButton.UseVisualStyleBackColor = true;
-            this.exportSettingsButton.Click += new System.EventHandler(this.exportSettingsButton_Click);
-            // 
-            // importSettingsButton
-            // 
-            this.importSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importSettingsButton.Location = new System.Drawing.Point(304, 71);
-            this.importSettingsButton.Name = "importSettingsButton";
-            this.importSettingsButton.Size = new System.Drawing.Size(95, 23);
-            this.importSettingsButton.TabIndex = 2;
-            this.importSettingsButton.Text = "Import Settings";
-            this.importSettingsButton.UseVisualStyleBackColor = true;
-            this.importSettingsButton.Click += new System.EventHandler(this.importSettingsButton_Click);
+            this.optionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsButton.Location = new System.Drawing.Point(340, 468);
+            this.optionsButton.Name = "optionsButton";
+            this.optionsButton.Size = new System.Drawing.Size(95, 23);
+            this.optionsButton.TabIndex = 0;
+            this.optionsButton.Text = "Options";
+            this.optionsButton.UseVisualStyleBackColor = true;
+            this.optionsButton.Click += new System.EventHandler(this.optionsButton_Click);
             // 
             // minToTrayButton
             // 
             this.minToTrayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minToTrayButton.Location = new System.Drawing.Point(304, 100);
+            this.minToTrayButton.Location = new System.Drawing.Point(227, 468);
             this.minToTrayButton.Name = "minToTrayButton";
-            this.minToTrayButton.Size = new System.Drawing.Size(206, 23);
+            this.minToTrayButton.Size = new System.Drawing.Size(107, 23);
             this.minToTrayButton.TabIndex = 3;
             this.minToTrayButton.Text = "Minimize To Tray";
             this.minToTrayButton.UseVisualStyleBackColor = true;
             this.minToTrayButton.Click += new System.EventHandler(this.minToTrayButton_Click);
-            // 
-            // notifyTestButton
-            // 
-            this.notifyTestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notifyTestButton.Location = new System.Drawing.Point(415, 42);
-            this.notifyTestButton.Name = "notifyTestButton";
-            this.notifyTestButton.Size = new System.Drawing.Size(95, 23);
-            this.notifyTestButton.TabIndex = 4;
-            this.notifyTestButton.Text = "Test Notify";
-            this.notifyTestButton.UseVisualStyleBackColor = true;
-            this.notifyTestButton.Click += new System.EventHandler(this.notifyTestButton_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = global::VinewatchX.Properties.Resources.OvYVTBc;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(127, 158);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(282, 270);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -195,31 +165,24 @@
             // 
             this.versionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.versionLabel.AutoSize = true;
+            this.versionLabel.BackColor = System.Drawing.Color.Transparent;
             this.versionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionLabel.Location = new System.Drawing.Point(12, 357);
+            this.versionLabel.ForeColor = System.Drawing.Color.White;
+            this.versionLabel.Location = new System.Drawing.Point(89, 501);
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(59, 13);
             this.versionLabel.TabIndex = 6;
             this.versionLabel.Text = "setOnLoad";
             this.versionLabel.Click += new System.EventHandler(this.versionLabel_Click);
             // 
-            // lastReportDescLabel
-            // 
-            this.lastReportDescLabel.AutoSize = true;
-            this.lastReportDescLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastReportDescLabel.Location = new System.Drawing.Point(9, 285);
-            this.lastReportDescLabel.Name = "lastReportDescLabel";
-            this.lastReportDescLabel.Size = new System.Drawing.Size(65, 13);
-            this.lastReportDescLabel.TabIndex = 7;
-            this.lastReportDescLabel.Text = "Last Report:";
-            // 
             // pictureBoxArt
             // 
             this.pictureBoxArt.ActiveLinkColor = System.Drawing.Color.Green;
             this.pictureBoxArt.AutoSize = true;
+            this.pictureBoxArt.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxArt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pictureBoxArt.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pictureBoxArt.Location = new System.Drawing.Point(222, 285);
+            this.pictureBoxArt.Location = new System.Drawing.Point(338, 432);
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.Size = new System.Drawing.Size(72, 13);
             this.pictureBoxArt.TabIndex = 9;
@@ -232,9 +195,10 @@
             this.aboutLabel.ActiveLinkColor = System.Drawing.Color.Green;
             this.aboutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.aboutLabel.AutoSize = true;
+            this.aboutLabel.BackColor = System.Drawing.Color.Transparent;
             this.aboutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aboutLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.aboutLabel.Location = new System.Drawing.Point(472, 357);
+            this.aboutLabel.Location = new System.Drawing.Point(403, 501);
             this.aboutLabel.Name = "aboutLabel";
             this.aboutLabel.Size = new System.Drawing.Size(35, 13);
             this.aboutLabel.TabIndex = 10;
@@ -245,10 +209,10 @@
             // vinesauceDotcomLinkLabel
             // 
             this.vinesauceDotcomLinkLabel.AutoSize = true;
-            this.vinesauceDotcomLinkLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.vinesauceDotcomLinkLabel.BackColor = System.Drawing.Color.Transparent;
             this.vinesauceDotcomLinkLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vinesauceDotcomLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.vinesauceDotcomLinkLabel.Location = new System.Drawing.Point(300, 9);
+            this.vinesauceDotcomLinkLabel.Location = new System.Drawing.Point(13, 110);
             this.vinesauceDotcomLinkLabel.Name = "vinesauceDotcomLinkLabel";
             this.vinesauceDotcomLinkLabel.Size = new System.Drawing.Size(210, 21);
             this.vinesauceDotcomLinkLabel.TabIndex = 11;
@@ -258,67 +222,39 @@
             this.vinesauceDotcomLinkLabel.VisitedLinkColor = System.Drawing.Color.Green;
             this.vinesauceDotcomLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.vinesauceDotcomLinkLabel_LinkClicked);
             // 
-            // debugButton
-            // 
-            this.debugButton.Location = new System.Drawing.Point(479, 129);
-            this.debugButton.Name = "debugButton";
-            this.debugButton.Size = new System.Drawing.Size(31, 18);
-            this.debugButton.TabIndex = 13;
-            this.debugButton.DoubleClick += new System.EventHandler(this.panel1_DoubleClick);
-            // 
-            // supressionRadioButton
-            // 
-            this.supressionRadioButton.AutoSize = true;
-            this.supressionRadioButton.Checked = true;
-            this.supressionRadioButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.supressionRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supressionRadioButton.Location = new System.Drawing.Point(304, 129);
-            this.supressionRadioButton.Name = "supressionRadioButton";
-            this.supressionRadioButton.Size = new System.Drawing.Size(151, 17);
-            this.supressionRadioButton.TabIndex = 14;
-            this.supressionRadioButton.Text = "Supress Connection Errors";
-            this.supressionRadioButton.UseVisualStyleBackColor = true;
-            // 
             // muteRadioButton
             // 
             this.muteRadioButton.AutoSize = true;
+            this.muteRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.muteRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.muteRadioButton.Location = new System.Drawing.Point(304, 152);
+            this.muteRadioButton.ForeColor = System.Drawing.Color.White;
+            this.muteRadioButton.Location = new System.Drawing.Point(341, 501);
             this.muteRadioButton.Name = "muteRadioButton";
             this.muteRadioButton.Size = new System.Drawing.Size(50, 17);
             this.muteRadioButton.TabIndex = 15;
             this.muteRadioButton.Text = "Mute";
-            this.muteRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // ttsRadioButton
-            // 
-            this.ttsRadioButton.AutoSize = true;
-            this.ttsRadioButton.Checked = true;
-            this.ttsRadioButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ttsRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ttsRadioButton.Location = new System.Drawing.Point(304, 175);
-            this.ttsRadioButton.Name = "ttsRadioButton";
-            this.ttsRadioButton.Size = new System.Drawing.Size(133, 17);
-            this.ttsRadioButton.TabIndex = 16;
-            this.ttsRadioButton.Text = "Text-To-Speech Mode";
-            this.ttsRadioButton.UseVisualStyleBackColor = true;
+            this.muteRadioButton.UseVisualStyleBackColor = false;
             // 
             // lastReportLabel
             // 
-            this.lastReportLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastReportLabel.Location = new System.Drawing.Point(12, 309);
+            this.lastReportLabel.BackColor = System.Drawing.Color.Transparent;
+            this.lastReportLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastReportLabel.ForeColor = System.Drawing.Color.White;
+            this.lastReportLabel.Location = new System.Drawing.Point(4, 72);
             this.lastReportLabel.MaximumSize = new System.Drawing.Size(600, 39);
             this.lastReportLabel.Name = "lastReportLabel";
-            this.lastReportLabel.Size = new System.Drawing.Size(282, 39);
+            this.lastReportLabel.Size = new System.Drawing.Size(531, 22);
             this.lastReportLabel.TabIndex = 8;
             this.lastReportLabel.Text = "Checking poller thread ...";
+            this.lastReportLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // linkLabelForums
             // 
             this.linkLabelForums.AutoSize = true;
+            this.linkLabelForums.BackColor = System.Drawing.Color.Transparent;
             this.linkLabelForums.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.linkLabelForums.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.linkLabelForums.Location = new System.Drawing.Point(301, 261);
+            this.linkLabelForums.Location = new System.Drawing.Point(239, 111);
             this.linkLabelForums.Name = "linkLabelForums";
             this.linkLabelForums.Size = new System.Drawing.Size(137, 21);
             this.linkLabelForums.TabIndex = 17;
@@ -329,9 +265,10 @@
             // linkLabelBooru
             // 
             this.linkLabelBooru.AutoSize = true;
+            this.linkLabelBooru.BackColor = System.Drawing.Color.Transparent;
             this.linkLabelBooru.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.linkLabelBooru.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.linkLabelBooru.Location = new System.Drawing.Point(301, 240);
+            this.linkLabelBooru.Location = new System.Drawing.Point(390, 111);
             this.linkLabelBooru.Name = "linkLabelBooru";
             this.linkLabelBooru.Size = new System.Drawing.Size(126, 21);
             this.linkLabelBooru.TabIndex = 18;
@@ -339,41 +276,47 @@
             this.linkLabelBooru.Text = "Vinesauce Booru";
             this.linkLabelBooru.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelBooru_LinkClicked);
             // 
-            // newLabel
+            // openPlayerButton
             // 
-            this.newLabel.AutoSize = true;
-            this.newLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newLabel.Location = new System.Drawing.Point(474, 175);
-            this.newLabel.Name = "newLabel";
-            this.newLabel.Size = new System.Drawing.Size(36, 13);
-            this.newLabel.TabIndex = 19;
-            this.newLabel.Text = "NEW";
-            this.newLabel.MouseEnter += new System.EventHandler(this.newLabel_MouseEnter);
+            this.openPlayerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.openPlayerButton.Location = new System.Drawing.Point(91, 468);
+            this.openPlayerButton.Name = "openPlayerButton";
+            this.openPlayerButton.Size = new System.Drawing.Size(130, 23);
+            this.openPlayerButton.TabIndex = 19;
+            this.openPlayerButton.Text = "Open Vinesauce Player";
+            this.openPlayerButton.UseVisualStyleBackColor = true;
+            this.openPlayerButton.Click += new System.EventHandler(this.openPlayerButton_Click);
+            // 
+            // vinnyEastereggPanel
+            // 
+            this.vinnyEastereggPanel.BackColor = System.Drawing.Color.Transparent;
+            this.vinnyEastereggPanel.Location = new System.Drawing.Point(43, 21);
+            this.vinnyEastereggPanel.Name = "vinnyEastereggPanel";
+            this.vinnyEastereggPanel.Size = new System.Drawing.Size(37, 37);
+            this.vinnyEastereggPanel.TabIndex = 20;
+            this.vinnyEastereggPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.vinnyEastereggPanel_MouseClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 379);
-            this.Controls.Add(this.newLabel);
+            this.BackgroundImage = global::VinewatchX.Properties.Resources.background;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(536, 536);
+            this.Controls.Add(this.vinnyEastereggPanel);
+            this.Controls.Add(this.openPlayerButton);
             this.Controls.Add(this.linkLabelBooru);
             this.Controls.Add(this.linkLabelForums);
-            this.Controls.Add(this.ttsRadioButton);
             this.Controls.Add(this.muteRadioButton);
-            this.Controls.Add(this.supressionRadioButton);
-            this.Controls.Add(this.debugButton);
-            this.Controls.Add(this.importSettingsButton);
             this.Controls.Add(this.pictureBoxArt);
             this.Controls.Add(this.vinesauceDotcomLinkLabel);
             this.Controls.Add(this.aboutLabel);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.notifyTestButton);
+            this.Controls.Add(this.optionsButton);
             this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.minToTrayButton);
-            this.Controls.Add(this.exportSettingsButton);
-            this.Controls.Add(this.lastReportDescLabel);
             this.Controls.Add(this.lastReportLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -389,15 +332,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button exportSettingsButton;
-        private System.Windows.Forms.Button importSettingsButton;
+        private System.Windows.Forms.Button optionsButton;
         private System.Windows.Forms.Button minToTrayButton;
         private System.Windows.Forms.ContextMenuStrip notificationIconContextStrip;
-        private System.Windows.Forms.Button notifyTestButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label versionLabel;
-        private System.Windows.Forms.Label lastReportDescLabel;
         public System.Windows.Forms.NotifyIcon notificationIcon;
         private System.Windows.Forms.LinkLabel pictureBoxArt;
         private System.Windows.Forms.LinkLabel aboutLabel;
@@ -407,15 +346,14 @@
         private System.Windows.Forms.ToolStripMenuItem settingsFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.Panel debugButton;
-        internal System.Windows.Forms.CheckBox supressionRadioButton;
         internal System.Windows.Forms.CheckBox muteRadioButton;
         private System.Windows.Forms.ToolStripMenuItem goToVinesaucecomToolStripMenuItem;
-        private System.Windows.Forms.CheckBox ttsRadioButton;
+        private System.Windows.Forms.ToolStripMenuItem openVinesaucePlayerToolStripMenuItem;
         public System.Windows.Forms.Label lastReportLabel;
         private System.Windows.Forms.LinkLabel linkLabelForums;
         private System.Windows.Forms.LinkLabel linkLabelBooru;
-        private System.Windows.Forms.Label newLabel;
+        private System.Windows.Forms.Button openPlayerButton;
+        private System.Windows.Forms.Panel vinnyEastereggPanel;
 
     }
 }

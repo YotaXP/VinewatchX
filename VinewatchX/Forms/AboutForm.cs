@@ -7,7 +7,9 @@ namespace VinewatchX.Forms
 {
     partial class AboutForm : Form
     {
-        public AboutForm()
+        MainForm parentForm;
+
+        public AboutForm(MainForm _parentForm)
         {
             InitializeComponent();
             this.Text = String.Format("About VinewatchX");
@@ -16,6 +18,7 @@ namespace VinewatchX.Forms
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
+            parentForm = _parentForm;
         }
 
         #region Assembly Attribute Accessors
@@ -105,15 +108,12 @@ namespace VinewatchX.Forms
 
         private void AboutBox1_Load(object sender, EventArgs e)
         {
-            SoundPlayer snd = new SoundPlayer(Properties.Resources.fantasy);
-            snd.Stream.Position = 0;
-            snd.Play();
+            OmniPlayer.Play("Samples/fantasy.mp3");
         }
 
         private void logoPictureBox_Click(object sender, EventArgs e)
         {
-            SoundPlayer snd = new SoundPlayer(Properties.Resources.calm_down);
-            snd.Play();
+            OmniPlayer.Play("Samples/calm_down.mp3");
         }
     }
 }

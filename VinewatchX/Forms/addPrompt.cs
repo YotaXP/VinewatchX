@@ -23,12 +23,12 @@ namespace VinewatchX.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog() {
-                Filter = "Wav Files|*.wav",
-                Title = "Select a Wav File for the new Streamer"
+                Filter = "Wav/Mp3 Files|*.wav;*.mp3",
+                Title = "Select a Wav/Mp3 File for the new Streamer"
             };
 
-            if (Directory.Exists(Path.Combine(Program.Directory, @"Sample Wavs\")))
-                dlg.InitialDirectory = Path.Combine(Program.Directory, @"Sample Wavs\");
+            if (Directory.Exists(Path.Combine(Program.Directory, @"Samples\")))
+                dlg.InitialDirectory = Path.Combine(Program.Directory, @"Samples\");
 
             if (dlg.ShowDialog() == DialogResult.OK) {
                 this.soundfile = dlg.FileName;

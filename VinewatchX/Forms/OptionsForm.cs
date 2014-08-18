@@ -14,15 +14,17 @@ namespace VinewatchX.Forms
     {
         MainForm parentForm;
 
-        public OptionsForm(MainForm reference)
+        public OptionsForm()
         {
-            parentForm = reference;
 
             InitializeComponent();
+            runVinewatchStartupCheckbox.AutoCheck = false;
         }
 
         private void OptionsForm_Load(object sender, EventArgs e)
         {
+            parentForm = MainForm.mf;
+
             streamCheckURLLabel.Text = parentForm.getStreamURL();
             streamCheckPollRateLabel.Text = parentForm.getStreamPollRate();
             balloonTipTimeoutlabel.Text = parentForm.getBalloonTipTimeout();
@@ -210,7 +212,8 @@ namespace VinewatchX.Forms
         {
             VineConf conf = new VineConf(parentForm);
             conf.exportConfig(Directory.GetCurrentDirectory());
-            MessageBox.Show("Config saved to " + Directory.GetCurrentDirectory() + @"vinewatchXConfig.txt");
+
+            //MessageBox.Show("Config saved to " + Directory.GetCurrentDirectory() + @"vinewatchXConfig.txt");
         }
 
         private void changeIconButton_Click(object sender, EventArgs e)
@@ -243,6 +246,33 @@ namespace VinewatchX.Forms
             Leatherhead l = new Leatherhead();
             l.play();
 
+        }
+
+        private void importSettingsButton_Click(object sender, EventArgs e)
+        {
+            VineConf conf = new VineConf(parentForm);
+            conf.importConfig();
+        }
+
+        private void exportSettingsButton_Click(object sender, EventArgs e)
+        {
+            VineConf conf = new VineConf(parentForm);
+            conf.exportConfig2();
+        }
+
+        private void notifyTestButton_Click(object sender, EventArgs e)
+        {
+            parentForm.notifyTest("Guest : This is a test of the notification system.");
+        }
+
+        private void runVinewatchStartupCheckbox_Click(object sender, EventArgs e)
+        {
+            parentForm.startWithWindowsToolStripMenuItem_Click(sender, e);
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

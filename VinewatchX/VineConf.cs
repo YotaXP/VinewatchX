@@ -123,6 +123,21 @@ namespace VinewatchX
 
                 file.WriteLine("I " + parentForm.getIconsAsString());
                 Debug.WriteLine("I " + parentForm.getIconsAsString());
+
+                // Parameters
+
+                file.WriteLine("@ Params");
+                Debug.WriteLine("@ Params");
+
+                file.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
+                Debug.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
+
+                file.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
+                Debug.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
+
+                file.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
+                Debug.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
+
             }
 
             Debug.WriteLine("Done.\n" + targetFolder + @"\vinewatchXConfig.txt");
@@ -175,6 +190,12 @@ namespace VinewatchX
             if (line[0].Equals('I'))
             {
                 parentForm.setIconsFromString(line.Substring(2));
+            }
+
+            // Parameter
+            if (line[0].Equals('P'))
+            {
+                parentForm.setParamFromString(line.Substring(2));
             }
         }
     }

@@ -6,20 +6,35 @@ namespace VinewatchX.Forms
 {
     public partial class StartWithWindowsPrompt : Form
     {
-        public StartWithWindowsPrompt()
+        MainForm parentForm;
+
+        public StartWithWindowsPrompt(MainForm _parentForm)
         {
             InitializeComponent();
+            parentForm = _parentForm;
         }
 
         private void enableStartUpButton_Click(object sender, EventArgs e)
         {
-            RegisterInStartup(true);
+            try
+            {
+                RegisterInStartup(true);
+            }
+            catch { }
+
+            parentForm.opt.runVinewatchStartupCheckbox.Checked = true;
             this.Close();
         }
 
         private void disableStartUpButton_Click(object sender, EventArgs e)
         {
-            RegisterInStartup(false);
+            try
+            {
+                RegisterInStartup(false);
+            }
+            catch { }
+
+            parentForm.opt.runVinewatchStartupCheckbox.Checked = false;
             this.Close();
         }
 

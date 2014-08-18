@@ -8,21 +8,29 @@ using System.Media;
 using System.Speech.Synthesis;
 using System.Threading;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
-        internal const string gVer = "v1.8.1";
+        internal const string gVer = "v1.8.2";
         internal const string gVersion = "VinewatchX " + gVer;
         internal string IconDescriptor = "InternalResource";
         internal Icon notificationIconIcon = Properties.Resources.vs;
         internal VinewatchLogic thread0;    // Checking live statuses is handled by VinewatchLogic objects
+        internal OptionsForm opt = new OptionsForm();
+        internal MusicPlayer musicPlayer = new MusicPlayer();
 
         protected static bool gX = false;   // Control boolean for an easter-egg
         protected int balloonTipTimeout = 3;
         protected static StreamerUtils con = new StreamerUtils();
         protected Icon currentIcon = Properties.Resources.vs;
+
+        public static MainForm mf = null;
+
+        bool ForceClose = false;
 
         #region Mainform constructor and start-up methods
 
@@ -32,7 +40,9 @@ namespace VinewatchX.Forms
 
             MainFormPrep();
 
-            if (tStartMinimized) WindowState = FormWindowState.Minimized;
+            if (tStartMinimized || opt.startVinewatchMinimizedCheckbox.Checked) WindowState = FormWindowState.Minimized;
+
+            MainForm.mf = this;
         }
 
         protected void MainForm_Load(object sender, EventArgs e)
@@ -44,6 +54,13 @@ namespace VinewatchX.Forms
 
             startThreading();
             createTooltips();
+
+            if(!File.Exists("VinesaucePlayer.exe"))
+            {
+                openPlayerButton.Enabled = false;
+                openVinesaucePlayerToolStripMenuItem.Enabled = false;
+            }
+
         }
 
         protected void MainFormPrep()
@@ -69,7 +86,7 @@ namespace VinewatchX.Forms
         protected void createTooltips()
         {
             ToolTip muteToolTip = new ToolTip(); muteToolTip.SetToolTip(muteRadioButton, "Checked to mute. Unchecked to what are you, a child?");
-            ToolTip supressionToolTip = new ToolTip(); supressionToolTip.SetToolTip(supressionRadioButton, "When checked, disables warnings of failed updates. The poller still retries.");
+            ToolTip supressionToolTip = new ToolTip(); supressionToolTip.SetToolTip(opt.supressionRadioButton, "When checked, disables warnings of failed updates. The poller still retries.");
             ToolTip lastReportLabelToolTip = new ToolTip(); lastReportLabelToolTip.SetToolTip(lastReportLabel, "Last report from the TwitchTV feed");
             // CREATE SOME TOOLTIPS FAGGOT
         }
@@ -86,7 +103,6 @@ namespace VinewatchX.Forms
         #endregion
 
         #region Notification methods
-
         internal void notify(string streamTitle)
         {
             playNotifySound(streamTitle);
@@ -127,7 +143,7 @@ namespace VinewatchX.Forms
         {
             if (muteRadioButton.Checked != true)
             {
-                if (ttsRadioButton.Checked)
+                if (opt.ttsRadioButton.Checked)
                 {
                     new Thread(new ThreadStart(() => playTTS("Vine sauce is Live. " + streamTitle))).Start();
                 }
@@ -228,11 +244,12 @@ namespace VinewatchX.Forms
 
         #region OptionsForm methods
 
-        protected void button1_Click(object sender, EventArgs e)
+        protected void optionsButton_Click(object sender, EventArgs e)
         {
-            OptionsForm opt = new OptionsForm(this);
-
-            opt.ShowDialog();
+            if (!opt.Visible)
+                opt.ShowDialog();
+            else
+                opt.Focus();
         }
 
         internal string getStreamURL()
@@ -281,6 +298,7 @@ namespace VinewatchX.Forms
             }
         }
 
+
         internal void setIconsFromString(string p)
         {
             if (p.Equals("InternalResource"))
@@ -302,6 +320,27 @@ namespace VinewatchX.Forms
                     applyIcons();
                 }
             }
+        }
+
+        internal void setParamFromString(string p)
+        {
+            if(p.Contains("tts="))
+            {
+                if (p.Substring(p.IndexOf('=') + 1).ToUpper() == "TRUE")
+                    opt.ttsRadioButton.Checked = true;
+            }
+            else if (p.Contains("runatstart="))
+            {
+                if (p.Substring(p.IndexOf('=') + 1).ToUpper() == "TRUE")
+                    opt.runVinewatchStartupCheckbox.Checked = true;
+            }
+            else if (p.Contains("startminimized="))
+            {
+                if (p.Substring(p.IndexOf('=') + 1).ToUpper() == "TRUE")
+                    opt.startVinewatchMinimizedCheckbox.Checked = true;
+            }
+
+
         }
 
         #endregion
@@ -336,7 +375,7 @@ namespace VinewatchX.Forms
 
         protected void aboutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AboutForm box = new AboutForm();
+            AboutForm box = new AboutForm(this);
             box.ShowDialog();
         }
 
@@ -375,7 +414,15 @@ namespace VinewatchX.Forms
         {
             try
             {
-                System.Diagnostics.Process.Start("http://www.vinesauce.com/");
+
+                //fallback to vinesauce.com if Vinesauce Player can't be found
+
+                if (File.Exists("VinesaucePlayer.exe"))
+                    openVinesaucePlayer();
+                else
+                    System.Diagnostics.Process.Start("http://www.vinesauce.com/");
+                
+                
             }
             catch { }
         }
@@ -395,12 +442,13 @@ namespace VinewatchX.Forms
 
         protected void exitVinewatchXToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ForceClose = true;
             this.Close();
         }
 
-        protected void startWithWindowsToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void startWithWindowsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StartWithWindowsPrompt strtp = new StartWithWindowsPrompt();
+            StartWithWindowsPrompt strtp = new StartWithWindowsPrompt(this);
             strtp.ShowDialog();
         }
 
@@ -408,8 +456,7 @@ namespace VinewatchX.Forms
         {
             if (gX)
             {
-                SoundPlayer snd = new SoundPlayer(Properties.Resources.easteregg);
-                snd.Play();
+                OmniPlayer.Play("Samples/easteregg.mp3");
             }
 
             gX = true;
@@ -422,8 +469,9 @@ namespace VinewatchX.Forms
 
         protected void versionLabel_Click(object sender, EventArgs e)
         {
-            SoundPlayer snd = new SoundPlayer(Properties.Resources.MANGO1);
-            snd.Play();
+
+            OmniPlayer.Play("Samples/MANGO.mp3");
+
             pictureBox1.Image = Properties.Resources.Mango;
         }
 
@@ -452,6 +500,11 @@ namespace VinewatchX.Forms
             Debug.WriteLine("Icon as String - " + getIconsAsString());
         }
 
+        protected void openVinesaucePlayerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openVinesaucePlayer(null, false);
+        }
+
         protected void goToVinesaucecomToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -461,10 +514,6 @@ namespace VinewatchX.Forms
             catch { }
         }
 
-        protected void newLabel_MouseEnter(object sender, EventArgs e)
-        {
-            newLabel.Hide();
-        }
 
         #endregion
 
@@ -474,9 +523,16 @@ namespace VinewatchX.Forms
         {
             base.OnFormClosing(e);
 
+            if (e.CloseReason != CloseReason.FormOwnerClosing && !ForceClose)
+            {
+                e.Cancel = true;
+                minToTrayButton_Click(new object(), e);
+                return;
+            }
+
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
 
-            switch (MessageBox.Show(this, "Are you  sure you want to close?", "Closing", MessageBoxButtons.YesNo))
+            switch (MessageBox.Show(this, "Are you sure you want to close?", "Closing", MessageBoxButtons.YesNo))
             {
                 case DialogResult.No:
                     e.Cancel = true;
@@ -486,7 +542,93 @@ namespace VinewatchX.Forms
             }
         }
 
+        protected void openVinesaucePlayer()
+        {
+            openVinesaucePlayer("vinesauce");
+        }
+
+        protected void openVinesaucePlayer(string channel)
+        {
+            openVinesaucePlayer(channel, true);
+        }
+
+        protected void openVinesaucePlayer(string channel, bool live)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("VinesaucePlayer.exe", ( channel == null ? "" : "-" + channel) + (live ? " -live" : ""));
+            }
+            catch { }
+        }
+
+
         #endregion
 
+        private void openPlayerButton_Click(object sender, EventArgs e)
+        {
+            openVinesaucePlayer(null,false);
+        }
+
+        private void vinnyEastereggPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            OmniPlayer.Play("Samples/rolling.mp3");
+        }
+
+
     }
+
+    #region Libs
+
+    public static class OmniPlayer
+    {
+        public static MusicPlayer mp = new MusicPlayer();
+
+        public static void Play(string Filename)
+        {
+            try { mp.stop(); }
+            catch{}
+
+            try { mp.open(Filename);}
+            catch { }
+
+            try { mp.play(); }
+            catch { }
+        }
+
+        public static void Stop()
+        {
+            try { mp.stop(); }
+            catch { }
+
+        }
+    }
+
+    public class MusicPlayer
+    {
+        [DllImport("winmm.dll")]
+        private static extern long mciSendString(string lpstrCommand, StringBuilder lpstrReturnString, int uReturnLength, int hwndCallback);
+
+        public void open(string file)
+        {
+            string command = "open \"" + file + "\" type MPEGVideo alias MyMp3";
+            mciSendString(command, null, 0, 0);
+        }
+
+        public void play()
+        {
+            string command = "play MyMp3";
+            mciSendString(command, null, 0, 0);
+        }
+
+        public void stop()
+        {
+            string command = "stop MyMp3";
+            mciSendString(command, null, 0, 0);
+
+            command = "close MyMp3";
+            mciSendString(command, null, 0, 0);
+        }
+    }
+    #endregion
+
 }

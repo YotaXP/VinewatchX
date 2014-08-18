@@ -12,7 +12,6 @@ namespace VinewatchX
     public class Streamer : IComparable<Streamer>
     {
         public string SoundFilename { get; private set; }
-        private SoundPlayer player;
 
         private string _name;
         public string Name {
@@ -27,31 +26,31 @@ namespace VinewatchX
 
         public void ShowSoundFileSelectDialog() {
             OpenFileDialog dlg = new OpenFileDialog() {
-                Filter = "Wav Files|*.wav",
-                Title = "Select a Wav File for streamer: " + Name
+                Filter = "Wav/Mp3 Files|*.wav;*.mp3",
+                Title = "Select a Wav/Mp3 File for streamer: " + Name
             };
 
-            if (Directory.Exists(Path.Combine(Program.Directory, @"Sample Wavs\")))
-                dlg.InitialDirectory = Path.Combine(Program.Directory, @"Sample Wavs\");
+            if (Directory.Exists(Path.Combine(Program.Directory, @"Samples\")))
+                dlg.InitialDirectory = Path.Combine(Program.Directory, @"Samples\");
 
             if (dlg.ShowDialog() == DialogResult.OK) {
                 this.SoundFilename = dlg.FileName;
-                if (player != null) {
-                    player.Dispose();
-                    player = null;
-                }
+                Forms.OmniPlayer.Stop();
             }
         }
 
         public void PlaySound() {
             try {
-                if (player == null) {
+
                     if (SoundFilename == "InternalResource")
-                        player = new SoundPlayer(Properties.Resources.notify_smtdsmts);
+                    {
+                        Forms.OmniPlayer.Play("Samples/notify_smtdsmts.mp3");
+                    }
                     else
-                        player = new SoundPlayer(SoundFilename);
-                }
-                player.Play();
+                    {
+                        Forms.OmniPlayer.Play(SoundFilename);
+                    }
+
             }
             catch (System.IO.FileNotFoundException) { }
             catch (InvalidOperationException) { }

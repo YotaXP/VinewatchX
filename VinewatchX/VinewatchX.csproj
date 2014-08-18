@@ -159,6 +159,11 @@
     <Compile Include="Forms\StartWithWindowsPrompt.Designer.cs">
       <DependentUpon>StartWithWindowsPrompt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Streamer.cs" />
     <Compile Include="StreamerUtils.cs" />
     <Compile Include="VineConf.cs" />
@@ -180,17 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StartWithWindowsPrompt.resx">
       <DependentUpon>StartWithWindowsPrompt.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,29 +202,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\notify_van.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\app.manifest" />
-    <None Include="Resources\notify_smtdsmts.wav" />
     <None Include="Resources\vw.ico" />
     <None Include="Resources\optionsPageImage.bmp" />
     <None Include="Resources\1324240144374.jpg" />
     <None Include="Resources\OvYVTBc.png" />
     <None Include="Resources\live.ico" />
-    <None Include="Resources\fantasy.wav" />
     <None Include="Resources\2Ycuo01.png" />
     <None Include="VinewatchX.snk" />
-    <None Include="Resources\easteregg.wav" />
-    <None Include="Resources\calm down.wav" />
     <None Include="Resources\Mango.jpg" />
-    <None Include="Resources\MANGO.wav" />
     <None Include="Resources\bigger_icon.png" />
     <None Include="Resources\1388169663907.jpg" />
     <None Include="Resources\vwvso.ico" />
     <None Include="Resources\third.ico" />
     <None Include="Changelog.txt" />
     <None Include="References\System.Net.Json.dll" />
+    <None Include="Resources\background.png" />
     <Content Include="vinewatchXConfig.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -237,7 +230,7 @@
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
-      <ProductName>.NET Framework Client Profile</ProductName>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -288,7 +281,17 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
