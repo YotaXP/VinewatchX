@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.resetDefaultSoundButton = new System.Windows.Forms.Button();
             this.streamerListAddButton = new System.Windows.Forms.Button();
             this.streamerListChangeNameButton = new System.Windows.Forms.Button();
             this.createStreamerWarningLabel2 = new System.Windows.Forms.Label();
@@ -49,9 +50,6 @@
             this.changePollRateButton = new System.Windows.Forms.Button();
             this.streamCheckPollRateLabel = new System.Windows.Forms.Label();
             this.streamCheckLabel2 = new System.Windows.Forms.Label();
-            this.changePollURLButton = new System.Windows.Forms.Button();
-            this.streamCheckURLLabel = new System.Windows.Forms.Label();
-            this.streamCheckLabel1 = new System.Windows.Forms.Label();
             this.programSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.startVinewatchMinimizedCheckbox = new System.Windows.Forms.CheckBox();
             this.samplePlayingRadioButton = new System.Windows.Forms.RadioButton();
@@ -66,6 +64,7 @@
             this.notifyTestButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.resetToDefaultConfigButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.streamPollSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,6 +75,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.resetDefaultSoundButton);
             this.groupBox1.Controls.Add(this.streamerListAddButton);
             this.groupBox1.Controls.Add(this.streamerListChangeNameButton);
             this.groupBox1.Controls.Add(this.createStreamerWarningLabel2);
@@ -92,11 +92,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Streamer Sounds";
             // 
+            // resetDefaultSoundButton
+            // 
+            this.resetDefaultSoundButton.Location = new System.Drawing.Point(362, 65);
+            this.resetDefaultSoundButton.Name = "resetDefaultSoundButton";
+            this.resetDefaultSoundButton.Size = new System.Drawing.Size(115, 23);
+            this.resetDefaultSoundButton.TabIndex = 8;
+            this.resetDefaultSoundButton.Text = "Reset Default Sound";
+            this.resetDefaultSoundButton.UseVisualStyleBackColor = true;
+            this.resetDefaultSoundButton.Click += new System.EventHandler(this.resetDefaultSoundButton_Click);
+            // 
             // streamerListAddButton
             // 
-            this.streamerListAddButton.Location = new System.Drawing.Point(325, 65);
+            this.streamerListAddButton.Location = new System.Drawing.Point(117, 36);
             this.streamerListAddButton.Name = "streamerListAddButton";
-            this.streamerListAddButton.Size = new System.Drawing.Size(100, 23);
+            this.streamerListAddButton.Size = new System.Drawing.Size(115, 23);
             this.streamerListAddButton.TabIndex = 7;
             this.streamerListAddButton.Text = "Add Streamer";
             this.streamerListAddButton.UseVisualStyleBackColor = true;
@@ -104,9 +114,9 @@
             // 
             // streamerListChangeNameButton
             // 
-            this.streamerListChangeNameButton.Location = new System.Drawing.Point(219, 65);
+            this.streamerListChangeNameButton.Location = new System.Drawing.Point(240, 36);
             this.streamerListChangeNameButton.Name = "streamerListChangeNameButton";
-            this.streamerListChangeNameButton.Size = new System.Drawing.Size(100, 23);
+            this.streamerListChangeNameButton.Size = new System.Drawing.Size(115, 23);
             this.streamerListChangeNameButton.TabIndex = 5;
             this.streamerListChangeNameButton.Text = "Edit Selected";
             this.streamerListChangeNameButton.UseVisualStyleBackColor = true;
@@ -115,7 +125,7 @@
             // createStreamerWarningLabel2
             // 
             this.createStreamerWarningLabel2.AutoSize = true;
-            this.createStreamerWarningLabel2.Location = new System.Drawing.Point(113, 104);
+            this.createStreamerWarningLabel2.Location = new System.Drawing.Point(113, 109);
             this.createStreamerWarningLabel2.Name = "createStreamerWarningLabel2";
             this.createStreamerWarningLabel2.Size = new System.Drawing.Size(300, 13);
             this.createStreamerWarningLabel2.TabIndex = 4;
@@ -124,26 +134,26 @@
             // createStreamerWarningLabel1
             // 
             this.createStreamerWarningLabel1.AutoSize = true;
-            this.createStreamerWarningLabel1.Location = new System.Drawing.Point(113, 91);
+            this.createStreamerWarningLabel1.Location = new System.Drawing.Point(113, 96);
             this.createStreamerWarningLabel1.Name = "createStreamerWarningLabel1";
-            this.createStreamerWarningLabel1.Size = new System.Drawing.Size(367, 13);
+            this.createStreamerWarningLabel1.Size = new System.Drawing.Size(364, 13);
             this.createStreamerWarningLabel1.TabIndex = 4;
-            this.createStreamerWarningLabel1.Text = "The streamer\'s name as it is entered here is the  search string for their sound.";
+            this.createStreamerWarningLabel1.Text = "The streamer\'s name as it is entered here is the search string for their sound.";
             // 
             // selectionInfoLabel
             // 
             this.selectionInfoLabel.AutoSize = true;
             this.selectionInfoLabel.Location = new System.Drawing.Point(113, 20);
             this.selectionInfoLabel.Name = "selectionInfoLabel";
-            this.selectionInfoLabel.Size = new System.Drawing.Size(89, 13);
+            this.selectionInfoLabel.Size = new System.Drawing.Size(92, 13);
             this.selectionInfoLabel.TabIndex = 3;
-            this.selectionInfoLabel.Text = "Select a streamer";
+            this.selectionInfoLabel.Text = "Select a streamer:";
             // 
             // streamerListDeleteButton
             // 
-            this.streamerListDeleteButton.Location = new System.Drawing.Point(219, 36);
+            this.streamerListDeleteButton.Location = new System.Drawing.Point(362, 36);
             this.streamerListDeleteButton.Name = "streamerListDeleteButton";
-            this.streamerListDeleteButton.Size = new System.Drawing.Size(100, 23);
+            this.streamerListDeleteButton.Size = new System.Drawing.Size(115, 23);
             this.streamerListDeleteButton.TabIndex = 2;
             this.streamerListDeleteButton.Text = "Delete Selected";
             this.streamerListDeleteButton.UseVisualStyleBackColor = true;
@@ -151,9 +161,9 @@
             // 
             // streamerListPlayButton
             // 
-            this.streamerListPlayButton.Location = new System.Drawing.Point(113, 65);
+            this.streamerListPlayButton.Location = new System.Drawing.Point(240, 65);
             this.streamerListPlayButton.Name = "streamerListPlayButton";
-            this.streamerListPlayButton.Size = new System.Drawing.Size(100, 23);
+            this.streamerListPlayButton.Size = new System.Drawing.Size(115, 23);
             this.streamerListPlayButton.TabIndex = 2;
             this.streamerListPlayButton.Text = "Play Sound";
             this.streamerListPlayButton.UseVisualStyleBackColor = true;
@@ -161,9 +171,9 @@
             // 
             // streamerListBoxInteractButton
             // 
-            this.streamerListBoxInteractButton.Location = new System.Drawing.Point(113, 36);
+            this.streamerListBoxInteractButton.Location = new System.Drawing.Point(117, 65);
             this.streamerListBoxInteractButton.Name = "streamerListBoxInteractButton";
-            this.streamerListBoxInteractButton.Size = new System.Drawing.Size(100, 23);
+            this.streamerListBoxInteractButton.Size = new System.Drawing.Size(115, 23);
             this.streamerListBoxInteractButton.TabIndex = 1;
             this.streamerListBoxInteractButton.Text = "Change Sound";
             this.streamerListBoxInteractButton.UseVisualStyleBackColor = true;
@@ -189,26 +199,23 @@
             this.streamPollSettingsGroupBox.Controls.Add(this.changePollRateButton);
             this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckPollRateLabel);
             this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckLabel2);
-            this.streamPollSettingsGroupBox.Controls.Add(this.changePollURLButton);
-            this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckURLLabel);
-            this.streamPollSettingsGroupBox.Controls.Add(this.streamCheckLabel1);
-            this.streamPollSettingsGroupBox.Location = new System.Drawing.Point(13, 293);
+            this.streamPollSettingsGroupBox.Location = new System.Drawing.Point(13, 287);
             this.streamPollSettingsGroupBox.Name = "streamPollSettingsGroupBox";
-            this.streamPollSettingsGroupBox.Size = new System.Drawing.Size(489, 182);
+            this.streamPollSettingsGroupBox.Size = new System.Drawing.Size(489, 145);
             this.streamPollSettingsGroupBox.TabIndex = 1;
             this.streamPollSettingsGroupBox.TabStop = false;
             this.streamPollSettingsGroupBox.Text = "Stream Poll Settings";
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(412, 19);
+            this.panel1.Location = new System.Drawing.Point(281, 109);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(31, 23);
             this.panel1.TabIndex = 14;
             // 
             // debugButton
             // 
-            this.debugButton.Location = new System.Drawing.Point(449, 19);
+            this.debugButton.Location = new System.Drawing.Point(318, 109);
             this.debugButton.Name = "debugButton";
             this.debugButton.Size = new System.Drawing.Size(31, 23);
             this.debugButton.TabIndex = 15;
@@ -216,7 +223,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::VinewatchX.Properties.Resources._1324240144374;
-            this.pictureBox1.Location = new System.Drawing.Point(354, 60);
+            this.pictureBox1.Location = new System.Drawing.Point(355, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(125, 115);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -226,7 +233,7 @@
             // 
             // changeBalloonTipTimeoutButton
             // 
-            this.changeBalloonTipTimeoutButton.Location = new System.Drawing.Point(29, 153);
+            this.changeBalloonTipTimeoutButton.Location = new System.Drawing.Point(32, 103);
             this.changeBalloonTipTimeoutButton.Name = "changeBalloonTipTimeoutButton";
             this.changeBalloonTipTimeoutButton.Size = new System.Drawing.Size(118, 23);
             this.changeBalloonTipTimeoutButton.TabIndex = 9;
@@ -237,7 +244,7 @@
             // balloonTipTimeoutlabel
             // 
             this.balloonTipTimeoutlabel.AutoSize = true;
-            this.balloonTipTimeoutlabel.Location = new System.Drawing.Point(193, 136);
+            this.balloonTipTimeoutlabel.Location = new System.Drawing.Point(196, 86);
             this.balloonTipTimeoutlabel.Name = "balloonTipTimeoutlabel";
             this.balloonTipTimeoutlabel.Size = new System.Drawing.Size(59, 13);
             this.balloonTipTimeoutlabel.TabIndex = 8;
@@ -246,7 +253,7 @@
             // streamCheckLabel4
             // 
             this.streamCheckLabel4.AutoSize = true;
-            this.streamCheckLabel4.Location = new System.Drawing.Point(6, 136);
+            this.streamCheckLabel4.Location = new System.Drawing.Point(9, 86);
             this.streamCheckLabel4.Name = "streamCheckLabel4";
             this.streamCheckLabel4.Size = new System.Drawing.Size(172, 13);
             this.streamCheckLabel4.TabIndex = 7;
@@ -254,7 +261,7 @@
             // 
             // changePollRateButton
             // 
-            this.changePollRateButton.Location = new System.Drawing.Point(29, 100);
+            this.changePollRateButton.Location = new System.Drawing.Point(32, 47);
             this.changePollRateButton.Name = "changePollRateButton";
             this.changePollRateButton.Size = new System.Drawing.Size(118, 23);
             this.changePollRateButton.TabIndex = 5;
@@ -265,7 +272,7 @@
             // streamCheckPollRateLabel
             // 
             this.streamCheckPollRateLabel.AutoSize = true;
-            this.streamCheckPollRateLabel.Location = new System.Drawing.Point(193, 82);
+            this.streamCheckPollRateLabel.Location = new System.Drawing.Point(196, 29);
             this.streamCheckPollRateLabel.Name = "streamCheckPollRateLabel";
             this.streamCheckPollRateLabel.Size = new System.Drawing.Size(59, 13);
             this.streamCheckPollRateLabel.TabIndex = 4;
@@ -274,39 +281,11 @@
             // streamCheckLabel2
             // 
             this.streamCheckLabel2.AutoSize = true;
-            this.streamCheckLabel2.Location = new System.Drawing.Point(3, 82);
+            this.streamCheckLabel2.Location = new System.Drawing.Point(6, 29);
             this.streamCheckLabel2.Name = "streamCheckLabel2";
             this.streamCheckLabel2.Size = new System.Drawing.Size(129, 13);
             this.streamCheckLabel2.TabIndex = 3;
             this.streamCheckLabel2.Text = "The current polling rate is:";
-            // 
-            // changePollURLButton
-            // 
-            this.changePollURLButton.Location = new System.Drawing.Point(29, 45);
-            this.changePollURLButton.Name = "changePollURLButton";
-            this.changePollURLButton.Size = new System.Drawing.Size(118, 23);
-            this.changePollURLButton.TabIndex = 2;
-            this.changePollURLButton.Text = "Change URL";
-            this.changePollURLButton.UseVisualStyleBackColor = true;
-            this.changePollURLButton.Click += new System.EventHandler(this.changePollURLButton_Click);
-            // 
-            // streamCheckURLLabel
-            // 
-            this.streamCheckURLLabel.AutoSize = true;
-            this.streamCheckURLLabel.Location = new System.Drawing.Point(193, 29);
-            this.streamCheckURLLabel.Name = "streamCheckURLLabel";
-            this.streamCheckURLLabel.Size = new System.Drawing.Size(59, 13);
-            this.streamCheckURLLabel.TabIndex = 1;
-            this.streamCheckURLLabel.Text = "setOnLoad";
-            // 
-            // streamCheckLabel1
-            // 
-            this.streamCheckLabel1.AutoSize = true;
-            this.streamCheckLabel1.Location = new System.Drawing.Point(6, 29);
-            this.streamCheckLabel1.Name = "streamCheckLabel1";
-            this.streamCheckLabel1.Size = new System.Drawing.Size(181, 13);
-            this.streamCheckLabel1.TabIndex = 0;
-            this.streamCheckLabel1.Text = "The current stream checking URL is:";
             // 
             // programSettingsGroupBox
             // 
@@ -427,7 +406,7 @@
             this.supressionRadioButton.Checked = true;
             this.supressionRadioButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.supressionRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supressionRadioButton.Location = new System.Drawing.Point(11, 54);
+            this.supressionRadioButton.Location = new System.Drawing.Point(11, 48);
             this.supressionRadioButton.Name = "supressionRadioButton";
             this.supressionRadioButton.Size = new System.Drawing.Size(151, 17);
             this.supressionRadioButton.TabIndex = 15;
@@ -437,18 +416,18 @@
             // notifyTestButton
             // 
             this.notifyTestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notifyTestButton.Location = new System.Drawing.Point(9, 24);
+            this.notifyTestButton.Location = new System.Drawing.Point(9, 19);
             this.notifyTestButton.Name = "notifyTestButton";
-            this.notifyTestButton.Size = new System.Drawing.Size(105, 23);
+            this.notifyTestButton.Size = new System.Drawing.Size(143, 23);
             this.notifyTestButton.TabIndex = 5;
-            this.notifyTestButton.Text = "Test Notify";
+            this.notifyTestButton.Text = "Test Notifications";
             this.notifyTestButton.UseVisualStyleBackColor = true;
             this.notifyTestButton.Click += new System.EventHandler(this.notifyTestButton_Click);
             // 
             // okButton
             // 
             this.okButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.okButton.Location = new System.Drawing.Point(612, 453);
+            this.okButton.Location = new System.Drawing.Point(612, 409);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(88, 23);
             this.okButton.TabIndex = 18;
@@ -458,20 +437,31 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.resetToDefaultConfigButton);
             this.groupBox2.Controls.Add(this.notifyTestButton);
             this.groupBox2.Controls.Add(this.supressionRadioButton);
-            this.groupBox2.Location = new System.Drawing.Point(509, 299);
+            this.groupBox2.Location = new System.Drawing.Point(509, 288);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(191, 143);
+            this.groupBox2.Size = new System.Drawing.Size(191, 107);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Debug Tools";
+            // 
+            // resetToDefaultConfigButton
+            // 
+            this.resetToDefaultConfigButton.Location = new System.Drawing.Point(11, 70);
+            this.resetToDefaultConfigButton.Name = "resetToDefaultConfigButton";
+            this.resetToDefaultConfigButton.Size = new System.Drawing.Size(141, 23);
+            this.resetToDefaultConfigButton.TabIndex = 9;
+            this.resetToDefaultConfigButton.Text = "Reset to Default Config";
+            this.resetToDefaultConfigButton.UseVisualStyleBackColor = true;
+            this.resetToDefaultConfigButton.Click += new System.EventHandler(this.resetToDefaultConfigButton_Click);
             // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 486);
+            this.ClientSize = new System.Drawing.Size(712, 443);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.programSettingsGroupBox);
@@ -513,11 +503,8 @@
         private System.Windows.Forms.Button streamerListChangeNameButton;
         private System.Windows.Forms.Button streamerListAddButton;
         private System.Windows.Forms.GroupBox streamPollSettingsGroupBox;
-        private System.Windows.Forms.Label streamCheckURLLabel;
-        private System.Windows.Forms.Label streamCheckLabel1;
         private System.Windows.Forms.Label streamCheckPollRateLabel;
         private System.Windows.Forms.Label streamCheckLabel2;
-        private System.Windows.Forms.Button changePollURLButton;
         private System.Windows.Forms.Button changePollRateButton;
         private System.Windows.Forms.Label balloonTipTimeoutlabel;
         private System.Windows.Forms.Label streamCheckLabel4;
@@ -539,6 +526,8 @@
         internal System.Windows.Forms.RadioButton ttsRadioButton;
         private System.Windows.Forms.GroupBox groupBox2;
         internal System.Windows.Forms.CheckBox startVinewatchMinimizedCheckbox;
+        private System.Windows.Forms.Button resetDefaultSoundButton;
+        private System.Windows.Forms.Button resetToDefaultConfigButton;
 
     }
 }

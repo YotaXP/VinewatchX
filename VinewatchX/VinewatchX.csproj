@@ -167,6 +167,7 @@
     <Compile Include="Streamer.cs" />
     <Compile Include="StreamerUtils.cs" />
     <Compile Include="VineConf.cs" />
+    <Compile Include="VinewatchLogicEZTWAPI.cs" />
     <Compile Include="VinewatchLogic.cs" />
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>

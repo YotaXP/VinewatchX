@@ -19,7 +19,7 @@ namespace VinewatchX.Forms
         internal const string gVersion = "VinewatchX " + gVer;
         internal string IconDescriptor = "InternalResource";
         internal Icon notificationIconIcon = Properties.Resources.vs;
-        internal VinewatchLogic thread0;    // Checking live statuses is handled by VinewatchLogic objects
+        internal VinewatchLogicEZTWAPI thread0;    // Checking live statuses is handled by VinewatchLogic objects
         internal OptionsForm opt = new OptionsForm();
         internal MusicPlayer musicPlayer = new MusicPlayer();
 
@@ -65,7 +65,7 @@ namespace VinewatchX.Forms
 
         protected void MainFormPrep()
         {
-            thread0 = new VinewatchLogic(this);
+            thread0 = new VinewatchLogicEZTWAPI(this);
 
             notificationIcon.BalloonTipClicked += new EventHandler(notificationIcon_BalloonTipClicked);
 
@@ -252,19 +252,9 @@ namespace VinewatchX.Forms
                 opt.Focus();
         }
 
-        internal string getStreamURL()
-        {
-            return thread0.getTwitchTVStreamURL();
-        }
-
-        internal string getStreamPollRate()
+        internal string getPollRate()
         {
             return thread0.getPollRate().ToString();
-        }
-
-        internal void setPollerURL(string newPollURL)
-        {
-            thread0.setTwitchTVStreamURL(newPollURL);
         }
 
         internal void setPollRate(int newPollRate)
@@ -339,7 +329,23 @@ namespace VinewatchX.Forms
                 if (p.Substring(p.IndexOf('=') + 1).ToUpper() == "TRUE")
                     opt.startVinewatchMinimizedCheckbox.Checked = true;
             }
-
+            else if (p.Contains("balloontimeout="))
+            {
+                try
+                {
+                    setBalloonTipTimeout(Convert.ToInt32(p.Substring(p.IndexOf('=') + 1)));
+                }
+                catch { }
+            }
+            else if (p.Contains("pollrate="))
+            {
+                try
+                {
+                    setPollRate(Convert.ToInt32(p.Substring(p.IndexOf('=') + 1)));
+                   
+                }
+                catch { }
+            }
 
         }
 

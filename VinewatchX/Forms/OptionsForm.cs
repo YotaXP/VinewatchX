@@ -13,6 +13,7 @@ namespace VinewatchX.Forms
     public partial class OptionsForm : Form
     {
         MainForm parentForm;
+        bool NoSave = false;
 
         public OptionsForm()
         {
@@ -21,12 +22,22 @@ namespace VinewatchX.Forms
             runVinewatchStartupCheckbox.AutoCheck = false;
         }
 
+        public OptionsForm(bool show)
+        {
+
+            InitializeComponent();
+            runVinewatchStartupCheckbox.AutoCheck = false;
+
+            if (show)
+                this.Show();
+                
+        }
+
         private void OptionsForm_Load(object sender, EventArgs e)
         {
             parentForm = MainForm.mf;
 
-            streamCheckURLLabel.Text = parentForm.getStreamURL();
-            streamCheckPollRateLabel.Text = parentForm.getStreamPollRate();
+            streamCheckPollRateLabel.Text = parentForm.getPollRate();
             balloonTipTimeoutlabel.Text = parentForm.getBalloonTipTimeout();
 
             refreshIconPictureBox();
@@ -123,12 +134,6 @@ namespace VinewatchX.Forms
             listBoxRePopulate();
         }
 
-        private void changePollURLButton_Click(object sender, EventArgs e)
-        {
-            string promptValue = Prompt.ShowDialog("This is the URL that the poller will check.", "Set new Poll URL");
-            parentForm.setPollerURL(promptValue);
-        }
-
         private void changePollRateButton_Click(object sender, EventArgs e)
         {
             string promptValue = Prompt.ShowDialog("This is the timout between poll checks", "Set new Poll Rate");
@@ -167,7 +172,7 @@ namespace VinewatchX.Forms
                 }
             }
 
-            streamCheckPollRateLabel.Text = parentForm.getStreamPollRate();
+            streamCheckPollRateLabel.Text = parentForm.getPollRate();
         }
 
         private void changeBalloonTipTimeoutButton_Click(object sender, EventArgs e)
@@ -210,10 +215,11 @@ namespace VinewatchX.Forms
 
         private void OptionsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            VineConf conf = new VineConf(parentForm);
-            conf.exportConfig(Directory.GetCurrentDirectory());
-
-            //MessageBox.Show("Config saved to " + Directory.GetCurrentDirectory() + @"vinewatchXConfig.txt");
+            if(!NoSave)
+            { 
+                VineConf conf = new VineConf(parentForm);
+                conf.exportConfig(Directory.GetCurrentDirectory());
+            }
         }
 
         private void changeIconButton_Click(object sender, EventArgs e)
@@ -273,6 +279,33 @@ namespace VinewatchX.Forms
         private void okButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void resetDefaultSoundButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var s = optionsFormStreamerListBox.SelectedItem as Streamer;
+                s.SoundFilename = "InternalResource";
+            }
+            catch
+            {
+                Debug.WriteLine("!!!\n  OptionsForm.cs - resetDefaultSoundButton_Click\n\ttry has failed!");
+            }
+        }
+
+        private void resetToDefaultConfigButton_Click(object sender, EventArgs e)
+        {
+            VineConf conf = new VineConf(parentForm);
+            conf.writeDefaultConfig();
+
+            NoSave = true;
+            this.Close();
+            conf.bypassPromptsImportConfig(Directory.GetCurrentDirectory());
+
+            parentForm.opt = new OptionsForm(true);
+
+
         }
 
     }

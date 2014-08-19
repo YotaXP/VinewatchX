@@ -128,7 +128,7 @@
             // optionsButton
             // 
             this.optionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionsButton.Location = new System.Drawing.Point(340, 468);
+            this.optionsButton.Location = new System.Drawing.Point(343, 468);
             this.optionsButton.Name = "optionsButton";
             this.optionsButton.Size = new System.Drawing.Size(95, 23);
             this.optionsButton.TabIndex = 0;
@@ -139,7 +139,7 @@
             // minToTrayButton
             // 
             this.minToTrayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minToTrayButton.Location = new System.Drawing.Point(227, 468);
+            this.minToTrayButton.Location = new System.Drawing.Point(230, 468);
             this.minToTrayButton.Name = "minToTrayButton";
             this.minToTrayButton.Size = new System.Drawing.Size(107, 23);
             this.minToTrayButton.TabIndex = 3;
@@ -168,7 +168,7 @@
             this.versionLabel.BackColor = System.Drawing.Color.Transparent;
             this.versionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versionLabel.ForeColor = System.Drawing.Color.White;
-            this.versionLabel.Location = new System.Drawing.Point(89, 501);
+            this.versionLabel.Location = new System.Drawing.Point(92, 501);
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(59, 13);
             this.versionLabel.TabIndex = 6;
@@ -198,7 +198,7 @@
             this.aboutLabel.BackColor = System.Drawing.Color.Transparent;
             this.aboutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aboutLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.aboutLabel.Location = new System.Drawing.Point(403, 501);
+            this.aboutLabel.Location = new System.Drawing.Point(406, 501);
             this.aboutLabel.Name = "aboutLabel";
             this.aboutLabel.Size = new System.Drawing.Size(35, 13);
             this.aboutLabel.TabIndex = 10;
@@ -228,7 +228,7 @@
             this.muteRadioButton.BackColor = System.Drawing.Color.Transparent;
             this.muteRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.muteRadioButton.ForeColor = System.Drawing.Color.White;
-            this.muteRadioButton.Location = new System.Drawing.Point(341, 501);
+            this.muteRadioButton.Location = new System.Drawing.Point(344, 501);
             this.muteRadioButton.Name = "muteRadioButton";
             this.muteRadioButton.Size = new System.Drawing.Size(50, 17);
             this.muteRadioButton.TabIndex = 15;
@@ -279,7 +279,7 @@
             // openPlayerButton
             // 
             this.openPlayerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openPlayerButton.Location = new System.Drawing.Point(91, 468);
+            this.openPlayerButton.Location = new System.Drawing.Point(94, 468);
             this.openPlayerButton.Name = "openPlayerButton";
             this.openPlayerButton.Size = new System.Drawing.Size(130, 23);
             this.openPlayerButton.TabIndex = 19;

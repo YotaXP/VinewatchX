@@ -11,7 +11,7 @@ namespace VinewatchX
     ///</summary>
     public class Streamer : IComparable<Streamer>
     {
-        public string SoundFilename { get; private set; }
+        public string SoundFilename { get; set; }
 
         private string _name;
         public string Name {

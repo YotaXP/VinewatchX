@@ -43,20 +43,15 @@ namespace VinewatchX.Forms
 
         private void addPromptConfirmButton_Click(object sender, EventArgs e)
         {
-            if (addPromptNameTextbox.Text == null || this.soundfile == null)
+            if (addPromptNameTextbox.Text == null)
             {
-                MessageBox.Show("You dork, you didn't fill in all the fields!");
+                MessageBox.Show("You dork, you didn't fill the name field!");
+                return;
             }
 
-            if (soundfile == null || soundfile == "InternalResource")
-            {
-                if (MessageBox.Show("Soundfile is not set! Use buillt-in sound 'So Much To Do So Much To See' by Smash Mouth?", "No soundfile set!", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                    soundfile = "InternalResource";
-                }
-                else {
-                    return;
-                }
-            }
+            if (soundfile == null)
+                soundfile = "InternalResource";
+
 
             StreamerUtils.AddStreamer(addPromptNameTextbox.Text, soundfile);
             this.Close();

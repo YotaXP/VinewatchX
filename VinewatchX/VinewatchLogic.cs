@@ -11,6 +11,11 @@ namespace VinewatchX
     /// Most of the logic for Vinewatch X was lifted from the Python Beta and the now deprecated Vinewatch Sharp.
     /// A lot of cleaning is due in here.
     /// </summary>
+    /// 
+
+    // This class was replaced with VinewatchLogicEZTWAPI (Twitch API proxy).
+    // The EZTWAPI proxy allows for updating the API reading without having to redistribute the software.
+
     public class VinewatchLogic
     {
         private string twitchTVstreamURL = "https://api.twitch.tv/kraken/streams?channel=vinesauce";

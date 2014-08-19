@@ -138,9 +138,57 @@ namespace VinewatchX
                 file.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
                 Debug.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
 
+                file.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
+                Debug.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
+
+                file.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
+                Debug.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
+
             }
 
             Debug.WriteLine("Done.\n" + targetFolder + @"\vinewatchXConfig.txt");
+        }
+
+        public void writeDefaultConfig()
+        {
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(Directory.GetCurrentDirectory() + "\\vinewatchXConfig.txt"))
+            {
+                // Streamers
+
+                file.WriteLine("@ Streamers");
+                file.WriteLine("S Bobito" + "\t" + "InternalResource");
+                file.WriteLine("S Darren" + "\t" + "InternalResource");
+                file.WriteLine("S Direboar" + "\t" + "InternalResource");
+                file.WriteLine("S Fred" + "\t" + "InternalResource");
+                file.WriteLine("S Gingers" + "\t" + "InternalResource");
+                file.WriteLine("S Guest" + "\t" + "InternalResource");
+                file.WriteLine("S Hooty" + "\t" + "InternalResource");
+                file.WriteLine("S Imakuni" + "\t" + "InternalResource");
+                file.WriteLine("S Jen" + "\t" + "InternalResource");
+                file.WriteLine("S Joel" + "\t" + "InternalResource");
+                file.WriteLine("S KY" + "\t" + "InternalResource");
+                file.WriteLine("S Limes" + "\t" + "InternalResource");
+                file.WriteLine("S Rev" + "\t" + "InternalResource");
+                file.WriteLine("S Study" + "\t" + "InternalResource");
+                file.WriteLine("S Vinny" + "\t" + "InternalResource");
+
+                // Icons
+
+                file.WriteLine("@ Icons");
+                file.WriteLine("I InternalResource");
+
+                // Parameters
+
+                file.WriteLine("@ Params");
+                file.WriteLine("P " + "tts=false");
+                file.WriteLine("P " + "startminimized=False");
+                file.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
+                file.WriteLine("P " + "balloontimeout=3");
+                file.WriteLine("P " + "pollrate=30");
+
+            }
+
+            Debug.WriteLine("Done.\n" + Directory.GetCurrentDirectory() + @"\vinewatchXConfig.txt");
         }
 
         private string establishPath()
