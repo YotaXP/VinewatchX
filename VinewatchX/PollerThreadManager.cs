@@ -175,7 +175,7 @@ namespace VinewatchX
                     }
                     catch (WebException)
                     {
-                        parentManager.notify("TwitchTV: No connection Retrying in 30...");
+                        parentManager.notify("Service: No connection Retrying in 30...");
                         this.twitchTvPrevAlert = false;
                         this.twitchTvState = false;
 
@@ -184,7 +184,7 @@ namespace VinewatchX
                     }
                     catch
                     {
-                        parentManager.notify("TwitchTV: No connection Retrying in 30...");
+                        parentManager.notify("Service: No connection Retrying in 30...");
                         this.twitchTvPrevAlert = false;
                         this.twitchTvState = false;
 

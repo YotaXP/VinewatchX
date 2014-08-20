@@ -50,6 +50,47 @@ namespace VinewatchX
             StreamerList.Add(new Streamer(newStreamerName, newSoundFile));
         }
 
+        internal static void AddStreamer(string[] words)
+        {
+            string newStreamerName = words[0].Substring(2);
+            string newSoundFile = words[1];
+
+            Streamer str = new Streamer(newStreamerName, newSoundFile);
+
+            if(words.Length >2)
+            {
+                try
+                {
+                    //try reading the extended streamer info
+
+                    str.Aliases = words[2];
+                    str.AltService = words[3];
+                    str.AltChannel = words[4];
+                    str.MonitorAltChannel = Convert.ToBoolean(words[5]);
+                }
+                catch
+                {
+                    // set default if tail is corrupted
+
+                    str.Aliases = "";
+                    str.AltService = "";
+                    str.AltChannel = "";
+                    str.MonitorAltChannel = false;
+                }
+            }
+            else
+            {
+                // Tail wasn't present
+
+                str.Aliases = "";
+                str.AltService = "";
+                str.AltChannel = "";
+                str.MonitorAltChannel = false;
+            }
+
+            StreamerList.Add(str);
+        }
+
         public static void RemoveStreamer(string name)
         {
             Streamer s = FindStreamerByName(name);
@@ -63,7 +104,32 @@ namespace VinewatchX
 
         public static Streamer FindStreamerByStreamTitle(string streamTitle)
         {
-            return StreamerList.FirstOrDefault(s => streamTitle.ToLowerInvariant().Contains(s.Name.ToLowerInvariant()));
+            Streamer found = null;
+
+            foreach (Streamer str in StreamerList)
+            {
+                if(streamTitle.ToLowerInvariant().Contains(str.Name.ToLowerInvariant()))
+                {
+                        found = str;
+                        break;
+                }
+
+                string[] aliases = str.Aliases.Split(';');
+
+                if(aliases.Length > 0 && aliases[0] != "")
+                    foreach (string alias in aliases)
+                        if (streamTitle.ToLowerInvariant().Contains(alias.ToLowerInvariant()))
+                        {
+                            found = str;
+                            break;
+                        }
+
+                if (found != null)
+                    break;
+            }
+
+            return found;
+            //return StreamerList.FirstOrDefault(s => streamTitle.ToLowerInvariant().Contains(s.Name.ToLowerInvariant()));
         }
 
         public static void FindAndPlayStreamerSound(string streamTitle)

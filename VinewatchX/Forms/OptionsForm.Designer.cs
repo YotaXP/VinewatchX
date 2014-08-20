@@ -30,6 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.altChannelServiceCombobox = new System.Windows.Forms.ComboBox();
+            this.saveStreamerParametersButton = new System.Windows.Forms.Button();
+            this.altChannelNameTextbox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.monitorAltChannelCheckbox = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.streamerAliasesTextbox = new System.Windows.Forms.TextBox();
             this.resetDefaultSoundButton = new System.Windows.Forms.Button();
             this.streamerListAddButton = new System.Windows.Forms.Button();
             this.streamerListChangeNameButton = new System.Windows.Forms.Button();
@@ -66,6 +75,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.resetToDefaultConfigButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.streamPollSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.programSettingsGroupBox.SuspendLayout();
@@ -75,6 +85,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.resetDefaultSoundButton);
             this.groupBox1.Controls.Add(this.streamerListAddButton);
             this.groupBox1.Controls.Add(this.streamerListChangeNameButton);
@@ -85,12 +96,101 @@
             this.groupBox1.Controls.Add(this.streamerListPlayButton);
             this.groupBox1.Controls.Add(this.streamerListBoxInteractButton);
             this.groupBox1.Controls.Add(this.optionsFormStreamerListBox);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Location = new System.Drawing.Point(13, 11);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(489, 264);
+            this.groupBox1.Size = new System.Drawing.Size(489, 266);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Streamer Sounds";
+            this.groupBox1.Text = "Streamer Sounds and Parameters";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.altChannelServiceCombobox);
+            this.groupBox3.Controls.Add(this.saveStreamerParametersButton);
+            this.groupBox3.Controls.Add(this.altChannelNameTextbox);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.monitorAltChannelCheckbox);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.streamerAliasesTextbox);
+            this.groupBox3.Location = new System.Drawing.Point(117, 131);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(360, 118);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Parameters";
+            // 
+            // altChannelServiceCombobox
+            // 
+            this.altChannelServiceCombobox.FormattingEnabled = true;
+            this.altChannelServiceCombobox.Items.AddRange(new object[] {
+            "twitch",
+            "hitbox"});
+            this.altChannelServiceCombobox.Location = new System.Drawing.Point(74, 60);
+            this.altChannelServiceCombobox.Name = "altChannelServiceCombobox";
+            this.altChannelServiceCombobox.Size = new System.Drawing.Size(132, 21);
+            this.altChannelServiceCombobox.TabIndex = 16;
+            // 
+            // saveStreamerParametersButton
+            // 
+            this.saveStreamerParametersButton.Location = new System.Drawing.Point(238, 87);
+            this.saveStreamerParametersButton.Name = "saveStreamerParametersButton";
+            this.saveStreamerParametersButton.Size = new System.Drawing.Size(113, 22);
+            this.saveStreamerParametersButton.TabIndex = 10;
+            this.saveStreamerParametersButton.Text = "Save parameters";
+            this.saveStreamerParametersButton.UseVisualStyleBackColor = true;
+            this.saveStreamerParametersButton.Click += new System.EventHandler(this.saveStreamerParametersButton_Click);
+            // 
+            // altChannelNameTextbox
+            // 
+            this.altChannelNameTextbox.Location = new System.Drawing.Point(74, 87);
+            this.altChannelNameTextbox.Name = "altChannelNameTextbox";
+            this.altChannelNameTextbox.Size = new System.Drawing.Size(132, 20);
+            this.altChannelNameTextbox.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 90);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Alt channel ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Alt service";
+            // 
+            // monitorAltChannelCheckbox
+            // 
+            this.monitorAltChannelCheckbox.AutoSize = true;
+            this.monitorAltChannelCheckbox.Location = new System.Drawing.Point(239, 68);
+            this.monitorAltChannelCheckbox.Name = "monitorAltChannelCheckbox";
+            this.monitorAltChannelCheckbox.Size = new System.Drawing.Size(117, 17);
+            this.monitorAltChannelCheckbox.TabIndex = 11;
+            this.monitorAltChannelCheckbox.Text = "Monitor Alt channel";
+            this.monitorAltChannelCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(211, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Streamer aliases (separated by character ; )";
+            // 
+            // streamerAliasesTextbox
+            // 
+            this.streamerAliasesTextbox.Location = new System.Drawing.Point(9, 34);
+            this.streamerAliasesTextbox.Name = "streamerAliasesTextbox";
+            this.streamerAliasesTextbox.Size = new System.Drawing.Size(342, 20);
+            this.streamerAliasesTextbox.TabIndex = 0;
             // 
             // resetDefaultSoundButton
             // 
@@ -145,9 +245,9 @@
             this.selectionInfoLabel.AutoSize = true;
             this.selectionInfoLabel.Location = new System.Drawing.Point(113, 20);
             this.selectionInfoLabel.Name = "selectionInfoLabel";
-            this.selectionInfoLabel.Size = new System.Drawing.Size(92, 13);
+            this.selectionInfoLabel.Size = new System.Drawing.Size(89, 13);
             this.selectionInfoLabel.TabIndex = 3;
-            this.selectionInfoLabel.Text = "Select a streamer:";
+            this.selectionInfoLabel.Text = "Select a streamer";
             // 
             // streamerListDeleteButton
             // 
@@ -182,7 +282,7 @@
             // optionsFormStreamerListBox
             // 
             this.optionsFormStreamerListBox.FormattingEnabled = true;
-            this.optionsFormStreamerListBox.Location = new System.Drawing.Point(7, 20);
+            this.optionsFormStreamerListBox.Location = new System.Drawing.Point(7, 24);
             this.optionsFormStreamerListBox.Name = "optionsFormStreamerListBox";
             this.optionsFormStreamerListBox.Size = new System.Drawing.Size(100, 225);
             this.optionsFormStreamerListBox.TabIndex = 0;
@@ -298,9 +398,9 @@
             this.programSettingsGroupBox.Controls.Add(this.iconLabel1);
             this.programSettingsGroupBox.Controls.Add(this.importSettingsButton);
             this.programSettingsGroupBox.Controls.Add(this.exportSettingsButton);
-            this.programSettingsGroupBox.Location = new System.Drawing.Point(509, 13);
+            this.programSettingsGroupBox.Location = new System.Drawing.Point(509, 11);
             this.programSettingsGroupBox.Name = "programSettingsGroupBox";
-            this.programSettingsGroupBox.Size = new System.Drawing.Size(191, 264);
+            this.programSettingsGroupBox.Size = new System.Drawing.Size(191, 266);
             this.programSettingsGroupBox.TabIndex = 2;
             this.programSettingsGroupBox.TabStop = false;
             this.programSettingsGroupBox.Text = "Program Settings";
@@ -309,7 +409,7 @@
             // 
             this.startVinewatchMinimizedCheckbox.AutoSize = true;
             this.startVinewatchMinimizedCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startVinewatchMinimizedCheckbox.Location = new System.Drawing.Point(7, 242);
+            this.startVinewatchMinimizedCheckbox.Location = new System.Drawing.Point(7, 244);
             this.startVinewatchMinimizedCheckbox.Name = "startVinewatchMinimizedCheckbox";
             this.startVinewatchMinimizedCheckbox.Size = new System.Drawing.Size(156, 17);
             this.startVinewatchMinimizedCheckbox.TabIndex = 21;
@@ -320,7 +420,7 @@
             // 
             this.samplePlayingRadioButton.AutoSize = true;
             this.samplePlayingRadioButton.Checked = true;
-            this.samplePlayingRadioButton.Location = new System.Drawing.Point(7, 180);
+            this.samplePlayingRadioButton.Location = new System.Drawing.Point(7, 182);
             this.samplePlayingRadioButton.Name = "samplePlayingRadioButton";
             this.samplePlayingRadioButton.Size = new System.Drawing.Size(127, 17);
             this.samplePlayingRadioButton.TabIndex = 20;
@@ -331,7 +431,7 @@
             // ttsRadioButton
             // 
             this.ttsRadioButton.AutoSize = true;
-            this.ttsRadioButton.Location = new System.Drawing.Point(7, 199);
+            this.ttsRadioButton.Location = new System.Drawing.Point(7, 201);
             this.ttsRadioButton.Name = "ttsRadioButton";
             this.ttsRadioButton.Size = new System.Drawing.Size(132, 17);
             this.ttsRadioButton.TabIndex = 19;
@@ -342,7 +442,7 @@
             // 
             this.runVinewatchStartupCheckbox.AutoSize = true;
             this.runVinewatchStartupCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.runVinewatchStartupCheckbox.Location = new System.Drawing.Point(7, 221);
+            this.runVinewatchStartupCheckbox.Location = new System.Drawing.Point(7, 223);
             this.runVinewatchStartupCheckbox.Name = "runVinewatchStartupCheckbox";
             this.runVinewatchStartupCheckbox.Size = new System.Drawing.Size(155, 17);
             this.runVinewatchStartupCheckbox.TabIndex = 18;
@@ -478,6 +578,8 @@
             this.Load += new System.EventHandler(this.OptionsForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.streamPollSettingsGroupBox.ResumeLayout(false);
             this.streamPollSettingsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -528,6 +630,15 @@
         internal System.Windows.Forms.CheckBox startVinewatchMinimizedCheckbox;
         private System.Windows.Forms.Button resetDefaultSoundButton;
         private System.Windows.Forms.Button resetToDefaultConfigButton;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox altChannelNameTextbox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox monitorAltChannelCheckbox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox streamerAliasesTextbox;
+        private System.Windows.Forms.Button saveStreamerParametersButton;
+        private System.Windows.Forms.ComboBox altChannelServiceCombobox;
 
     }
 }

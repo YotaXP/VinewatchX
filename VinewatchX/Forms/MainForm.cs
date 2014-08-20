@@ -21,21 +21,24 @@ namespace VinewatchX.Forms
         internal Icon notificationIconIcon = Properties.Resources.vs;
         internal VinewatchLogicEZTWAPI thread0;    // Checking live statuses is handled by VinewatchLogic objects
         internal OptionsForm opt = new OptionsForm();
-        internal MusicPlayer musicPlayer = new MusicPlayer();
 
         protected static bool gX = false;   // Control boolean for an easter-egg
         protected int balloonTipTimeout = 3;
         protected static StreamerUtils con = new StreamerUtils();
         protected Icon currentIcon = Properties.Resources.vs;
 
+        internal System.Windows.Forms.Timer formThreadWatcher = new System.Windows.Forms.Timer();
+        internal string SoundToPlay = "";
+
         public static MainForm mf = null;
 
-        bool ForceClose = false;
+        public bool ForceClose = false;
 
         #region Mainform constructor and start-up methods
 
         internal MainForm(bool tStartMinimized)
         {
+
             InitializeComponent();
 
             MainFormPrep();
@@ -61,6 +64,7 @@ namespace VinewatchX.Forms
                 openVinesaucePlayerToolStripMenuItem.Enabled = false;
             }
 
+            SetSoundTimer();
         }
 
         protected void MainFormPrep()
@@ -107,9 +111,14 @@ namespace VinewatchX.Forms
         {
             playNotifySound(streamTitle);
 
-            notifyX(streamTitle);   // I forgot why I did this.
+            if(streamTitle.Contains("[Vinesauce]"))
+                notifyX(streamTitle.Substring(streamTitle.IndexOf(']')+1));   // updating vinesauce ticker only for vinesauce channel
 
-            setNotificationIconBalloonText(streamTitle.Length > 63 ? streamTitle.Substring(0, 63) : streamTitle);
+
+            string channelname = streamTitle.Substring(0, streamTitle.IndexOf(']') + 1);
+            string channelstatus = (streamTitle.Length > 63 ? streamTitle.Substring(0, 63) : streamTitle);
+                   channelstatus = channelstatus.Substring(channelstatus.IndexOf(']') + 2);
+            setNotificationIconBalloonText(channelstatus, channelname);
 
             showBalloonTip(balloonTipTimeout);
         }
@@ -121,12 +130,12 @@ namespace VinewatchX.Forms
             //Record previous text
             string oldNotificationIconText = notificationIcon.Text;
 
-            setNotificationIconBalloonText(streamTitle.Length > 63 ? streamTitle.Substring(0, 63) : streamTitle);
+            setNotificationIconBalloonText(streamTitle.Length > 63 ? streamTitle.Substring(0, 63) : streamTitle, "");
 
             showBalloonTip(balloonTipTimeout);
 
             //Re-apply old text
-            setNotificationIconBalloonText(oldNotificationIconText);
+            setNotificationIconBalloonText(oldNotificationIconText, "");
         }
 
         /// <summary>
@@ -210,15 +219,15 @@ namespace VinewatchX.Forms
 
         #region BalloonTip methods
 
-        protected void setNotificationIconBalloonText(string newValue)
+        protected void setNotificationIconBalloonText(string text, string channel)
         {
-            notificationIcon.Text = newValue;
-            notificationIcon.BalloonTipText = newValue;
+            notificationIcon.Text = text;
+            notificationIcon.BalloonTipText = text;
+            notificationIcon.BalloonTipTitle = "Vinewatch X : " + channel;
         }
 
         protected void showBalloonTip(int timeout)
         {
-            notificationIcon.BalloonTipTitle = "Vinewatch X";
             notificationIcon.ShowBalloonTip(timeout);
         }
 
@@ -430,7 +439,10 @@ namespace VinewatchX.Forms
                 
                 
             }
-            catch { }
+            catch 
+            {
+                new object();
+            }
         }
 
         protected void notificationIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -475,7 +487,6 @@ namespace VinewatchX.Forms
 
         protected void versionLabel_Click(object sender, EventArgs e)
         {
-
             OmniPlayer.Play("Samples/MANGO.mp3");
 
             pictureBox1.Image = Properties.Resources.Mango;
@@ -538,14 +549,15 @@ namespace VinewatchX.Forms
 
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
 
-            switch (MessageBox.Show(this, "Are you sure you want to close?", "Closing", MessageBoxButtons.YesNo))
-            {
-                case DialogResult.No:
-                    e.Cancel = true;
-                    break;
-                default:
-                    break;
-            }
+            if(!ForceClose)
+                switch (MessageBox.Show(this, "Are you sure you want to close?", "Closing", MessageBoxButtons.YesNo))
+                {
+                    case DialogResult.No:
+                        e.Cancel = true;
+                        break;
+                    default:
+                        break;
+                }
         }
 
         protected void openVinesaucePlayer()
@@ -580,6 +592,29 @@ namespace VinewatchX.Forms
             OmniPlayer.Play("Samples/rolling.mp3");
         }
 
+        public void SetSoundTimer()
+        {
+            // i know this timer thing is stupid but the media player api has some kind of
+            // security that disables being called from a different thread that it was imported
+            // and it also doesn't want to be imported twice for some reason. i might be wrong tho.
+
+            formThreadWatcher = new System.Windows.Forms.Timer();
+            formThreadWatcher.Interval = 2000;
+            formThreadWatcher.Tick += new EventHandler(safeThreadPlay);
+            formThreadWatcher.Start();
+
+        }
+
+        public void safeThreadPlay(object sender, EventArgs e)
+        {
+            if (SoundToPlay == "")
+                return;
+
+            OmniPlayer.Play(SoundToPlay);
+            SoundToPlay = "";
+        }
+
+        public delegate void PlayMusic(string filename);
 
     }
 
@@ -587,46 +622,22 @@ namespace VinewatchX.Forms
 
     public static class OmniPlayer
     {
-        public static MusicPlayer mp = new MusicPlayer();
-
-        public static void Play(string Filename)
-        {
-            try { mp.stop(); }
-            catch{}
-
-            try { mp.open(Filename);}
-            catch { }
-
-            try { mp.play(); }
-            catch { }
-        }
-
-        public static void Stop()
-        {
-            try { mp.stop(); }
-            catch { }
-
-        }
-    }
-
-    public class MusicPlayer
-    {
         [DllImport("winmm.dll")]
         private static extern long mciSendString(string lpstrCommand, StringBuilder lpstrReturnString, int uReturnLength, int hwndCallback);
 
-        public void open(string file)
+        private static void _open(string file)
         {
             string command = "open \"" + file + "\" type MPEGVideo alias MyMp3";
             mciSendString(command, null, 0, 0);
         }
 
-        public void play()
+        private static void _play()
         {
             string command = "play MyMp3";
             mciSendString(command, null, 0, 0);
         }
 
-        public void stop()
+        private static void _stop()
         {
             string command = "stop MyMp3";
             mciSendString(command, null, 0, 0);
@@ -634,7 +645,40 @@ namespace VinewatchX.Forms
             command = "close MyMp3";
             mciSendString(command, null, 0, 0);
         }
+
+        public static void Play(string Filename)
+        {
+
+            try { _stop(); }
+            catch
+            {
+                new object();
+            }
+
+            try { _open(Filename); }
+            catch 
+            {
+                new object();
+            }
+
+            try { _play(); }
+            catch 
+            {
+                new object();
+            }
+        }
+
+        public static void Stop()
+        {
+            try { _stop(); }
+            catch 
+            {
+                new object();
+            }
+
+        }
     }
+
     #endregion
 
 }

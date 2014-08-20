@@ -100,7 +100,15 @@ namespace VinewatchX.Forms
                 try
                 {
                     var s = optionsFormStreamerListBox.SelectedItem as Streamer;
-                    if (s != null) selectionInfoLabel.Text = ("Streamer: " + s.Name);
+                    if (s != null)
+                    { 
+                        selectionInfoLabel.Text = ("Streamer: " + s.Name);
+
+                        streamerAliasesTextbox.Text = s.Aliases;
+                        altChannelNameTextbox.Text = s.AltChannel;
+                        altChannelServiceCombobox.Text = s.AltService;
+                        monitorAltChannelCheckbox.Checked = s.MonitorAltChannel;
+                    }
                 }
                 catch
                 {
@@ -300,12 +308,21 @@ namespace VinewatchX.Forms
             conf.writeDefaultConfig();
 
             NoSave = true;
-            this.Close();
-            conf.bypassPromptsImportConfig(Directory.GetCurrentDirectory());
+            parentForm.ForceClose = true;
+            MessageBox.Show("Please restart VinewatchX");
+            Application.Exit();
 
-            parentForm.opt = new OptionsForm(true);
 
+        }
 
+        private void saveStreamerParametersButton_Click(object sender, EventArgs e)
+        {
+            var s = optionsFormStreamerListBox.SelectedItem as Streamer;
+            s.Aliases = streamerAliasesTextbox.Text;
+            s.AltChannel = altChannelNameTextbox.Text;
+            s.AltService = altChannelServiceCombobox.Text;
+            s.MonitorAltChannel = monitorAltChannelCheckbox.Checked;
+            
         }
 
     }

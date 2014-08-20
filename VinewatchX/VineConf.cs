@@ -112,8 +112,8 @@ namespace VinewatchX
                 Debug.WriteLine("@ Streamers");
                 foreach (Streamer eachStreamer in StreamerUtils.StreamerList)
                 {
-                    file.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename);
-                    Debug.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename);
+                    file.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases  + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel  + "\t" + eachStreamer.MonitorAltChannel.ToString());
+                    Debug.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel + "\t" + eachStreamer.MonitorAltChannel.ToString());
                 }
 
                 // Icons
@@ -231,7 +231,10 @@ namespace VinewatchX
                 string[] words = line.Split('\t'); feedback = words;
                 Debug.WriteLine("applyConfigByLine - " + words[0] + "_" + words[1] + "\n" + words[0].Substring(2) + " - " + words[1]);
 
-                StreamerUtils.AddStreamer(words[0].Substring(2), words[1]);
+                if(words.Length == 2)
+                    StreamerUtils.AddStreamer(words[0].Substring(2), words[1]);
+                else
+                    StreamerUtils.AddStreamer(words);
             }
 
             // Icon
