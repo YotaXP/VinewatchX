@@ -15,6 +15,8 @@ http://vinesauce.com/vinetalk/index.php?topic=3045.0
 Primary Contributors
 ====================
 
-@Aliababwah Creator
+@Aliababwah (Creator)
+
 @Ircluzar
+
 @YotaXP
