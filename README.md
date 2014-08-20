@@ -1,7 +1,7 @@
-VinewatchX
-==========
+Vinewatch X
+===========
 
-Vinewatch X Desktop Notification and Live-Status Poller written in C# using a custom PHP service.
+Vinewatch X is a Desktop Notification and Live-Status Poller written in C# using a custom PHP service.
 
 This program is developed and maintained using Visual Studio 2013 for [Vinesauce.com](Vinesauce.com). 
 
