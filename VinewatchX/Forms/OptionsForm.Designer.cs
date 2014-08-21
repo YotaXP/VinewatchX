@@ -124,8 +124,8 @@
             // 
             this.altChannelServiceCombobox.FormattingEnabled = true;
             this.altChannelServiceCombobox.Items.AddRange(new object[] {
-            "twitch",
-            "hitbox"});
+            "Twitch",
+            "Hitbox"});
             this.altChannelServiceCombobox.Location = new System.Drawing.Point(74, 60);
             this.altChannelServiceCombobox.Name = "altChannelServiceCombobox";
             this.altChannelServiceCombobox.Size = new System.Drawing.Size(132, 21);

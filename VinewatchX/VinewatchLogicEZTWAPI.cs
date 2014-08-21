@@ -17,17 +17,13 @@ namespace VinewatchX
     {
         private string eztwapiURL = "http://perso.maskatel.net/lib/EZTWAPI/GETSTATUS.php";
 
-        // ready for multi-channel implementation
-        private string service = "twitch";   //twitch, hitbox
-        private string channel = "vinesauce";    //channel name
-        private bool showChannelName = false;
-
-        public bool threaded = false;           //I forgot what this is but it seems important.
-        private bool serviceState;              //Live status of stream
-        private bool servicePrevAlert;          //Alert Suppression
+        // Main channel info
+        private string service = "Twitch";                      //main channel service (twitch, hitbox)
+        public static volatile string channel = "Vinesauce";    //main channel name
 
         private int pollRate = 30;
-        private MainForm parentForm;        //There is definately a better way of doing this.
+        private MainForm parentForm;        //There is definately a better way of doing this. (no there isn't, MainForm.mf is worse.)
+        StreamerChannel currentStreamerChannel = new StreamerChannel("","");
 
         public VinewatchLogicEZTWAPI(MainForm t)
         {
@@ -48,19 +44,21 @@ namespace VinewatchX
                     Debug.WriteLine("VinewatchLogic.cs\thtmlGet");
                     try
                     {
-                        
                         String status = htmlGet.DownloadString(eztwapiURL + "?channel=" + channel.ToLower() + "&showname=true" + "&service=" + service);
 
                         List<String[]> allStatus = new List<string[]>();
 
                         foreach (Streamer str in StreamerUtils.StreamerList)
+                        {
                             if(str.MonitorAltChannel)
                             {
                                 string status2 = htmlGet.DownloadString(eztwapiURL + "?channel=" + str.AltChannel + "&showname=true" + "&service=" + str.AltService);
                                 allStatus.Add(new string[]{str.AltChannel, str.AltService, status2});
                             }
+                        }
 
-                        allStatus.Add(new string[] { channel, service, status }); //Vinesauce is VIP
+                        allStatus.Add(new string[] { channel, service, status });   //Main Channel is always the last one
+                                                                                    //Because the last crated bubble tooltip is the one on the front
 
                         foreach(string[] channelstatus in allStatus)
                         {
@@ -79,10 +77,10 @@ namespace VinewatchX
                             parentForm.notify("Service: No connection Retrying in 30...");
                         }
 
-                        this.servicePrevAlert = false;
-                        this.serviceState = false;
+                        currentStreamerChannel.servicePrevAlert = false;
+                        currentStreamerChannel.serviceState = false;
                         updateFormIcon(false);
-                        updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": Vinesauce is currently Offline.");
+                        updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
                     }
                     catch (Exception e)
                     {
@@ -90,20 +88,20 @@ namespace VinewatchX
                         {
                             parentForm.notify("Service: No connection Retrying in 30...");
                         }
-                        this.servicePrevAlert = false;
-                        this.serviceState = false;
+                        currentStreamerChannel.servicePrevAlert = false;
+                        currentStreamerChannel.serviceState = false;
                         updateFormIcon(false);
-                        updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": Vinesauce is currently Offline.");
+                        updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
                         MessageBox.Show(e.ToString());
                     }
                 }
 
-                if (this.serviceState == false)
+                if (currentStreamerChannel.serviceState == false)
                 {
-                    this.servicePrevAlert = false;
-                    this.serviceState = false;
+                    currentStreamerChannel.servicePrevAlert = false;
+                    currentStreamerChannel.serviceState = false;
                     updateFormIcon(false);
-                    updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": Vinesauce is currently Offline.");
+                    updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
                 }
 
 
@@ -118,24 +116,24 @@ namespace VinewatchX
             {
                 Debug.WriteLine("VinewatchLogic.cs\tEZTWAPI get successful");
 
-                this.serviceState = true;
-
                 StreamerChannel sc = StreamerChannel.getOrAddChannel(_channel, _service);
+                currentStreamerChannel = sc;
+
+                currentStreamerChannel.serviceState = true;
 
                 sc.setLastLastReport(sc.getLastReport());
-                //setLastReport(getTwitchTitle(twitchJson));  // two methods?
-                sc.setLastReport(status);  // two methods?
+                sc.setLastReport(status);
 
                 Debug.WriteLine("VinewatchLogic.cs\t\n*\t\tLast Report:\t" + sc.getLastReport());
                 Debug.WriteLine("VinewatchLogic.cs\t\n*\tLast Last Report:\t" + sc.getLastLastReport());
 
-                if (this.servicePrevAlert == false || sc.getLastLastReport() != sc.getLastReport())
+                if (currentStreamerChannel.servicePrevAlert == false || sc.getLastLastReport() != sc.getLastReport())
                 {
 
                     Debug.WriteLine("VinewatchLogic.cs\tNotification will now occur.");
-                    this.servicePrevAlert = true;
+                    currentStreamerChannel.servicePrevAlert = true;
 
-                    if(status.Contains("[Vinesauce]"))
+                    if(status.Contains("[" + channel + "]"))
                         updateFormIcon(true);
 
                     parentForm.notify(sc.getLastReport());
@@ -148,14 +146,17 @@ namespace VinewatchX
             {
                 Debug.WriteLine("VinewatchLogic.cs\tEZTWAPI returned a string that contains IS OFFLINE");
 
-                this.servicePrevAlert = false;
-                this.serviceState = false;
+                StreamerChannel sc = StreamerChannel.getOrAddChannel(_channel, _service);
+                currentStreamerChannel = sc;
+
+                currentStreamerChannel.servicePrevAlert = false;
+                currentStreamerChannel.serviceState = false;
 
 
-                if(status.Contains("[Vinesauce]"))
+                if(status.Contains("[" + channel + "]"))
                 {
                     updateFormIcon(false);
-                    updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": Vinesauce is currently Offline.");
+                    updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + channel + " is currently Offline.");
                 }
 
             }
@@ -188,50 +189,19 @@ namespace VinewatchX
             }
         }
 
-        /// <summary>
-        /// Given a JSON request passed as a string, extracts the TwitchTV channel's current stream title.
-        /// </summary>
-        /// <param name="s">JSON string</param>
-        /// <returns>The title of the stream</returns>
-        private String getTwitchTitle(String s)
-        {
-            String startTag = "status";
 
-            JsonTextParser parser = new JsonTextParser();
-            JsonObject obj = parser.Parse(s);
-
-            //Debug.WriteLine(obj.ToString());
-
-            string[] metas = obj.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-
-            foreach (String eachLine in metas)
-            {
-                if (eachLine.Contains(startTag))
-                {
-                    try
-                    {
-                        string x = eachLine.Substring(15, eachLine.Length - 17);
-                        Debug.WriteLine(x);
-                        return x;        /* 2 (+2=14) strips shit of the end.    */
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.ToString());
-                    }
-                }
-            }
-
-            return null;
-        }
     }
 
     public class StreamerChannel{
-        string channel = "vinesauce";
-        string service = "twitch";
+        string channel = "Vinesauce";
+        string service = "Twitch";
         public string fullchannel
         {
             get{return channel + "@" + service;}
         }
+
+        public bool serviceState;              //Live status of stream
+        public bool servicePrevAlert;          //Alert Suppression
 
         private string lastReport = "init";
         private string lastLastReport;

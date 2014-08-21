@@ -10,7 +10,10 @@ namespace VinewatchX
 {
     public class PollerThreadManager
     {
+        // Ircluzar: A single thread approach was implemented for multiple streamers in VinewatchLogicEZTWAPI.cs
+
         // THIS SHIT ISN'T IMPLEMENTED YET
+
         // Someone on the forums asked me in a PM if I could make the program able to
         // check the live status of numerous TwitchTV streams, and this was my approach.
         // Just a list of objects each of which represent a stream, you get the idea.

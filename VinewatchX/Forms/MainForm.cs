@@ -26,6 +26,7 @@ namespace VinewatchX.Forms
         protected int balloonTipTimeout = 3;
         protected static StreamerUtils con = new StreamerUtils();
         protected Icon currentIcon = Properties.Resources.vs;
+        protected string mainchannel;
 
         internal System.Windows.Forms.Timer formThreadWatcher = new System.Windows.Forms.Timer();
         internal string SoundToPlay = "";
@@ -91,7 +92,7 @@ namespace VinewatchX.Forms
         {
             ToolTip muteToolTip = new ToolTip(); muteToolTip.SetToolTip(muteRadioButton, "Checked to mute. Unchecked to what are you, a child?");
             ToolTip supressionToolTip = new ToolTip(); supressionToolTip.SetToolTip(opt.supressionRadioButton, "When checked, disables warnings of failed updates. The poller still retries.");
-            ToolTip lastReportLabelToolTip = new ToolTip(); lastReportLabelToolTip.SetToolTip(lastReportLabel, "Last report from the TwitchTV feed");
+            ToolTip lastReportLabelToolTip = new ToolTip(); lastReportLabelToolTip.SetToolTip(lastReportLabel, "Last report from the stream's feed");
             // CREATE SOME TOOLTIPS FAGGOT
         }
 
@@ -111,8 +112,8 @@ namespace VinewatchX.Forms
         {
             playNotifySound(streamTitle);
 
-            if(streamTitle.Contains("[Vinesauce]"))
-                notifyX(streamTitle.Substring(streamTitle.IndexOf(']')+1));   // updating vinesauce ticker only for vinesauce channel
+            if(streamTitle.Contains("[" + VinewatchLogicEZTWAPI.channel + "]"))
+                notifyX(streamTitle.Substring(streamTitle.IndexOf(']')+1));   // updating main ticker only for main channel
 
 
             string channelname = streamTitle.Substring(0, streamTitle.IndexOf(']') + 1);
@@ -221,7 +222,10 @@ namespace VinewatchX.Forms
 
         protected void setNotificationIconBalloonText(string text, string channel)
         {
-            notificationIcon.Text = text;
+            mainchannel = "[" + VinewatchLogicEZTWAPI.channel + "]";
+            if(channel.ToLower() == mainchannel.ToLower())
+                notificationIcon.Text = text;
+
             notificationIcon.BalloonTipText = text;
             notificationIcon.BalloonTipTitle = "Vinewatch X : " + channel;
         }
