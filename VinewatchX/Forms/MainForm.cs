@@ -15,7 +15,7 @@ namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
-        internal const string gVer = "v1.8.2";
+        internal const string gVer = "v2.0 beta";
         internal const string gVersion = "VinewatchX " + gVer;
         internal string IconDescriptor = "InternalResource";
         internal Icon notificationIconIcon = Properties.Resources.vs;
@@ -437,7 +437,12 @@ namespace VinewatchX.Forms
                 //fallback to vinesauce.com if Vinesauce Player can't be found
 
                 if (File.Exists("VinesaucePlayer.exe"))
-                    openVinesaucePlayer();
+                {
+                    string title = ((NotifyIcon)sender).BalloonTipTitle;
+                    string _channel = title.Substring(title.IndexOf('[') + 1, (title.IndexOf(']') - 1) - title.IndexOf('['));
+                    openVinesaucePlayer(_channel);
+                }
+                    
                 else
                     System.Diagnostics.Process.Start("http://www.vinesauce.com/");
                 
@@ -578,7 +583,7 @@ namespace VinewatchX.Forms
         {
             try
             {
-                System.Diagnostics.Process.Start("VinesaucePlayer.exe", ( channel == null ? "" : "-" + channel) + (live ? " -live" : ""));
+                System.Diagnostics.Process.Start("VinesaucePlayer.exe", ( channel == null ? "" : "-channel:" + channel) + (live ? " -live" : ""));
             }
             catch { }
         }

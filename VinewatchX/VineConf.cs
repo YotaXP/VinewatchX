@@ -156,21 +156,21 @@ namespace VinewatchX
                 // Streamers
 
                 file.WriteLine("@ Streamers");
-                file.WriteLine("S Bobito" + "\t" + "InternalResource");
-                file.WriteLine("S Darren" + "\t" + "InternalResource");
-                file.WriteLine("S Direboar" + "\t" + "InternalResource");
-                file.WriteLine("S Fred" + "\t" + "InternalResource");
-                file.WriteLine("S Gingers" + "\t" + "InternalResource");
-                file.WriteLine("S Guest" + "\t" + "InternalResource");
-                file.WriteLine("S Hooty" + "\t" + "InternalResource");
-                file.WriteLine("S Imakuni" + "\t" + "InternalResource");
-                file.WriteLine("S Jen" + "\t" + "InternalResource");
-                file.WriteLine("S Joel" + "\t" + "InternalResource");
-                file.WriteLine("S KY" + "\t" + "InternalResource");
-                file.WriteLine("S Limes" + "\t" + "InternalResource");
-                file.WriteLine("S Rev" + "\t" + "InternalResource");
-                file.WriteLine("S Study" + "\t" + "InternalResource");
-                file.WriteLine("S Vinny" + "\t" + "InternalResource");
+                file.WriteLine("S Bobito" + "\t" + "InternalResource" + "\t" + "Bobo;Presidente" + "\t" + "" + "\t" + "" + "\t" + "False");
+                file.WriteLine("S Darren" + "\t" + "InternalResource" + "\t" + "Spud;Potato" + "\t" + "Twitch" + "\t" + "Iwantapotato" + "\t" + "False");
+                file.WriteLine("S Direboar" + "\t" + "InternalResource" + "\t" + "Dire;Boar;Durrbore;Durbur" + "\t" + "Twitch" + "\t" + "Direboar" + "\t" + "False");
+                file.WriteLine("S Fred" + "\t" + "InternalResource" + "\t" + "Froob" + "\t" + "Twitch" + "\t" + "Fredsauce" + "\t" + "False");
+                file.WriteLine("S Gingers" + "\t" + "InternalResource" + "\t" + "Fear" + "\t" + "Twitch" + "\t" + "Feargingers" + "\t" + "False");
+                file.WriteLine("S Guest" + "\t" + "InternalResource" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "False");
+                file.WriteLine("S Hooty" + "\t" + "InternalResource" + "\t" + "Owl;Hoots;Hootet" + "\t" + "Twitch" + "\t" + "Hootey" + "\t" + "False");
+                file.WriteLine("S Imakuni" + "\t" + "InternalResource" + "\t" + "Ima;Pelicuni" + "\t" + "Twitch" + "\t" + "Pelikuni" + "\t" + "False");
+                file.WriteLine("S Jen" + "\t" + "InternalResource" + "\t" + "Jenna;Harley Quinn" + "\t" + "Twitch" + "\t" + "Mentaljen" + "\t" + "False");
+                file.WriteLine("S Joel" + "\t" + "InternalResource" + "\t" + "Jobel;Jorbel;Jogel;Skeletor;Joestar;Jojo" + "\t" + "Twitch" + "\t" + "Vargskelethor" + "\t" + "False");
+                file.WriteLine("S KY" + "\t" + "InternalResource" + "\t" + "Kwheezy" + "\t" + "Livebyfoma" + "\t" + "Twitch" + "\t" + "False");
+                file.WriteLine("S Limes" + "\t" + "InternalResource" + "\t" + "Limey;Seal;Aisha;Aishy" + "\t" + "Twitch" + "\t" + "Limealicious" + "\t" + "False");
+                file.WriteLine("S Rev" + "\t" + "InternalResource" + "\t" + "Collin;Muffin" + "\t" + "Twitch" + "\t" + "Revscarecrow" + "\t" + "False");
+                file.WriteLine("S Study" + "\t" + "InternalResource" + "\t" + "Study" + "\t" + "" + "\t" + "" + "\t" + "False");
+                file.WriteLine("S Vinny" + "\t" + "InternalResource" + "\t" + "Vine;Vince;Vingle;Pizzapasta" + "\t" + "" + "\t" + "" + "\t" + "False");
 
                 // Icons
 

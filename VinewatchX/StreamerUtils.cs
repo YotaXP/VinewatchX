@@ -108,7 +108,7 @@ namespace VinewatchX
 
             foreach (Streamer str in StreamerList)
             {
-                if(streamTitle.ToLowerInvariant().Contains(str.Name.ToLowerInvariant()))
+                if(streamTitle.ToLowerInvariant().Contains(str.Name.ToLowerInvariant())) // Search for streamer name
                 {
                         found = str;
                         break;
@@ -116,13 +116,19 @@ namespace VinewatchX
 
                 string[] aliases = str.Aliases.Split(';');
 
-                if(aliases.Length > 0 && aliases[0] != "")
+                if(aliases.Length > 0 && aliases[0] != "") // Search for streamer aliases
                     foreach (string alias in aliases)
                         if (streamTitle.ToLowerInvariant().Contains(alias.ToLowerInvariant()))
                         {
                             found = str;
                             break;
                         }
+
+                if (streamTitle.ToLowerInvariant().Contains(str.AltChannel.ToLowerInvariant())) // Search for streamer alt channel
+                {
+                    found = str;
+                    break;
+                }
 
                 if (found != null)
                     break;
