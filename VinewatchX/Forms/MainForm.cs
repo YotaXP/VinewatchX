@@ -10,12 +10,14 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Net;
 
 namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
         internal const string gVer = "1.9";
+        internal string DownloadFolder = "http://perso.maskatel.net/lib/VINEWATCHX/UPDATE/";
         internal const string gVersion = "VinewatchX v" + gVer + " beta";
         internal string IconDescriptor = "InternalResource";
         internal Icon notificationIconIcon = Properties.Resources.vs;
@@ -33,7 +35,7 @@ namespace VinewatchX.Forms
 
         public static MainForm mf = null;
 
-        public bool ForceClose = false;
+        public static bool ForceClose = false;
 
         #region Mainform constructor and start-up methods
 
@@ -41,16 +43,17 @@ namespace VinewatchX.Forms
         {
 
             InitializeComponent();
-
+            MainForm.mf = this;
             MainFormPrep();
 
             if (tStartMinimized || opt.startVinewatchMinimizedCheckbox.Checked) WindowState = FormWindowState.Minimized;
 
-            MainForm.mf = this;
+
         }
 
         protected void MainForm_Load(object sender, EventArgs e)
         {
+
             versionLabel.Text = gVersion;
 
             //Apply Icons
@@ -66,11 +69,46 @@ namespace VinewatchX.Forms
             }
 
             SetSoundTimer();
+
+            // self-updater code
+            try
+            {
+                if (File.Exists("VWUPDATE_NEW.exe"))
+                {
+                    if (File.Exists("VWUPDATE.exe"))
+                        File.Delete("VWUPDATE.exe");
+
+                    File.Move("VWUPDATE_NEW.exe", "VWUPDATE.exe");
+                }
+
+
+
+                if (File.Exists("VWUPDATE.exe"))
+                {
+                    string updateVer = gVer;
+                    try
+                    {
+                        using (WebClient htmlGet = new WebClient())
+                        {
+                            updateVer = htmlGet.DownloadString(DownloadFolder + "version.txt");
+                        }
+                    }
+                    catch { }
+
+                    if (gVer != updateVer)
+                    {
+                        updateButton.Text += updateVer;
+                        updateButton.Visible = true;
+                    }
+                }
+            }
+            catch { }
         }
 
         protected void MainFormPrep()
         {
             thread0 = new VinewatchLogicEZTWAPI(this);
+
 
             notificationIcon.BalloonTipClicked += new EventHandler(notificationIcon_BalloonTipClicked);
 
@@ -82,9 +120,13 @@ namespace VinewatchX.Forms
             }
             catch
             {
-                MessageBox.Show("Error loading the local config. Populating the Streamer database with the default entries.\n\n" +
-                    "EXPORT YOUR CONFIG BEFORE CLOSING!");
-                con.PopulateDefaultStreamers();
+                // Don't even bother asking for 
+
+                //MessageBox.Show("Error loading the local config. Default config will now be restored.");
+                //con.PopulateDefaultStreamers();
+                if (opt.resetToDefaultConfigButton_Click(new object(), new EventArgs(), false))
+                    MainFormPrep();
+
             }
         }
 
@@ -173,10 +215,13 @@ namespace VinewatchX.Forms
         {
             using (SpeechSynthesizer synth = new SpeechSynthesizer())
             {
+
                 phrase = String.Join(",", phrase.Split('<', '>', '&', ';', '|', '\\', '/', (char)166, (char)124));
 
                 try
                 {
+
+
                     Debug.WriteLine("*\tMainForm.cs Phrase:\t" + phrase);
 
                     PromptBuilder pb = new PromptBuilder();
@@ -468,10 +513,18 @@ namespace VinewatchX.Forms
             notifyTest("Guest : This is a test of the notification system.");
         }
 
-        protected void exitVinewatchXToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void exitVinewatchXToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            exitVinewatchXToolStripMenuItem_Click(sender, e, false);
+        }
+        internal void exitVinewatchXToolStripMenuItem_Click(object sender, EventArgs e, bool updateAtExit)
+        {
+            if (updateAtExit)
+                if (!Rights.UAC.ExecuteElevated("VWUPDATE.exe"))
+                    return;
+
             ForceClose = true;
-            this.Close();
+            Application.Exit();
         }
 
         internal void startWithWindowsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -625,6 +678,11 @@ namespace VinewatchX.Forms
         }
 
         public delegate void PlayMusic(string filename);
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            exitVinewatchXToolStripMenuItem_Click(sender, e, true);
+        }
 
     }
 

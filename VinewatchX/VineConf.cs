@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Security.AccessControl;
 using VinewatchX.Forms;
+using System;
 
 namespace VinewatchX
 {
@@ -104,91 +106,128 @@ namespace VinewatchX
 
         private void writeConfig(string targetFolder)
         {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(targetFolder + "\\vinewatchXConfig.txt"))
+            try
             {
-                // Streamers
-
-                file.WriteLine("@ Streamers");
-                Debug.WriteLine("@ Streamers");
-                foreach (Streamer eachStreamer in StreamerUtils.StreamerList)
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(targetFolder + "\\vinewatchXConfig.txt"))
                 {
-                    file.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases  + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel  + "\t" + eachStreamer.MonitorAltChannel.ToString());
-                    Debug.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel + "\t" + eachStreamer.MonitorAltChannel.ToString());
+                    // Streamers
+
+                    file.WriteLine("@ Streamers");
+                    Debug.WriteLine("@ Streamers");
+                    foreach (Streamer eachStreamer in StreamerUtils.StreamerList)
+                    {
+                        file.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel + "\t" + eachStreamer.MonitorAltChannel.ToString());
+                        Debug.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel + "\t" + eachStreamer.MonitorAltChannel.ToString());
+                    }
+
+                    // Icons
+
+                    file.WriteLine("@ Icons");
+                    Debug.WriteLine("@ Icons");
+
+                    file.WriteLine("I " + parentForm.getIconsAsString());
+                    Debug.WriteLine("I " + parentForm.getIconsAsString());
+
+                    // Parameters
+
+                    file.WriteLine("@ Params");
+                    Debug.WriteLine("@ Params");
+
+                    file.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
+                    Debug.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
+
+                    file.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
+                    Debug.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
+
+                    file.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
+                    Debug.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
+
+                    file.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
+                    Debug.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
+
+                    file.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
+                    Debug.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
+
                 }
-
-                // Icons
-
-                file.WriteLine("@ Icons");
-                Debug.WriteLine("@ Icons");
-
-                file.WriteLine("I " + parentForm.getIconsAsString());
-                Debug.WriteLine("I " + parentForm.getIconsAsString());
-
-                // Parameters
-
-                file.WriteLine("@ Params");
-                Debug.WriteLine("@ Params");
-
-                file.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
-                Debug.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
-
-                file.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
-                Debug.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
-
-                file.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
-                Debug.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
-
-                file.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
-                Debug.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
-
-                file.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
-                Debug.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
+            }
+            catch
+            {
+                if (Rights.UAC.IsRunAsAdmin() || Rights.UAC.IsProcessElevated())
+                    MessageBox.Show("The config file couldn't be written.");
+                else
+                    if (MessageBox.Show("Could not write the config file, do you want to try restarting VinewatchX with more privileges?", "Retry writing?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        if (Rights.UAC.ExecuteElevated())
+                            MainForm.mf.exitVinewatchXToolStripMenuItem_Click(new object(), new EventArgs());
 
             }
-
             Debug.WriteLine("Done.\n" + targetFolder + @"\vinewatchXConfig.txt");
         }
 
-        public void writeDefaultConfig()
+        public bool writeDefaultConfig()
         {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(Directory.GetCurrentDirectory() + "\\vinewatchXConfig.txt"))
+            try
             {
-                // Streamers
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(Directory.GetCurrentDirectory() + "\\vinewatchXConfig.txt"))
+                {
+                    // Streamers
 
-                file.WriteLine("@ Streamers");
-                file.WriteLine("S Bobito" + "\t" + "InternalResource" + "\t" + "Bobo;Presidente" + "\t" + "" + "\t" + "" + "\t" + "False");
-                file.WriteLine("S Darren" + "\t" + "InternalResource" + "\t" + "Spud;Potato" + "\t" + "Twitch" + "\t" + "Iwantapotato" + "\t" + "False");
-                file.WriteLine("S Direboar" + "\t" + "InternalResource" + "\t" + "Dire;Boar;Durrbore;Durbur" + "\t" + "Twitch" + "\t" + "Direboar" + "\t" + "False");
-                file.WriteLine("S Fred" + "\t" + "InternalResource" + "\t" + "Froob" + "\t" + "Twitch" + "\t" + "Fredsauce" + "\t" + "False");
-                file.WriteLine("S Gingers" + "\t" + "InternalResource" + "\t" + "Fear" + "\t" + "Twitch" + "\t" + "Feargingers" + "\t" + "False");
-                file.WriteLine("S Guest" + "\t" + "InternalResource" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "False");
-                file.WriteLine("S Hooty" + "\t" + "InternalResource" + "\t" + "Owl;Hoots;Hootet" + "\t" + "Twitch" + "\t" + "Hootey" + "\t" + "False");
-                file.WriteLine("S Imakuni" + "\t" + "InternalResource" + "\t" + "Ima;Pelicuni" + "\t" + "Twitch" + "\t" + "Pelikuni" + "\t" + "False");
-                file.WriteLine("S Jen" + "\t" + "InternalResource" + "\t" + "Jenna;Harley Quinn" + "\t" + "Twitch" + "\t" + "Mentaljen" + "\t" + "False");
-                file.WriteLine("S Joel" + "\t" + "InternalResource" + "\t" + "Jobel;Jorbel;Jogel;Skeletor;Joestar;Jojo" + "\t" + "Twitch" + "\t" + "Vargskelethor" + "\t" + "False");
-                file.WriteLine("S KY" + "\t" + "InternalResource" + "\t" + "Kwheezy" + "\t" + "Livebyfoma" + "\t" + "Twitch" + "\t" + "False");
-                file.WriteLine("S Limes" + "\t" + "InternalResource" + "\t" + "Limey;Seal;Aisha;Aishy" + "\t" + "Twitch" + "\t" + "Limealicious" + "\t" + "False");
-                file.WriteLine("S Rev" + "\t" + "InternalResource" + "\t" + "Collin;Muffin" + "\t" + "Twitch" + "\t" + "Revscarecrow" + "\t" + "False");
-                file.WriteLine("S Study" + "\t" + "InternalResource" + "\t" + "Study" + "\t" + "" + "\t" + "" + "\t" + "False");
-                file.WriteLine("S Vinny" + "\t" + "InternalResource" + "\t" + "Vine;Vince;Vingle;Pizzapasta" + "\t" + "" + "\t" + "" + "\t" + "False");
+                    file.WriteLine("@ Streamers");
+                    file.WriteLine("S Bobito" + "\t" + "InternalResource" + "\t" + "Bobo;Presidente" + "\t" + "" + "\t" + "" + "\t" + "False");
+                    file.WriteLine("S Darren" + "\t" + "InternalResource" + "\t" + "Spud;Potato" + "\t" + "Twitch" + "\t" + "Iwantapotato" + "\t" + "False");
+                    file.WriteLine("S Direboar" + "\t" + "InternalResource" + "\t" + "Dire;Boar;Durrbore;Durbur" + "\t" + "Twitch" + "\t" + "Direboar" + "\t" + "False");
+                    file.WriteLine("S Fred" + "\t" + "InternalResource" + "\t" + "Froob" + "\t" + "Twitch" + "\t" + "Fredsauce" + "\t" + "False");
+                    file.WriteLine("S Gingers" + "\t" + "InternalResource" + "\t" + "Fear" + "\t" + "Twitch" + "\t" + "Feargingers" + "\t" + "False");
+                    file.WriteLine("S Guest" + "\t" + "InternalResource" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "False");
+                    file.WriteLine("S Hooty" + "\t" + "InternalResource" + "\t" + "Owl;Hoots;Hootet" + "\t" + "Twitch" + "\t" + "Hootey" + "\t" + "False");
+                    file.WriteLine("S Imakuni" + "\t" + "InternalResource" + "\t" + "Ima;Pelicuni" + "\t" + "Twitch" + "\t" + "Pelikuni" + "\t" + "False");
+                    file.WriteLine("S Jen" + "\t" + "InternalResource" + "\t" + "Jenna;Harley Quinn" + "\t" + "Twitch" + "\t" + "Mentaljen" + "\t" + "False");
+                    file.WriteLine("S Joel" + "\t" + "InternalResource" + "\t" + "Jobel;Jorbel;Jogel;Skeletor;Joestar;Jojo" + "\t" + "Twitch" + "\t" + "Vargskelethor" + "\t" + "False");
+                    file.WriteLine("S KY" + "\t" + "InternalResource" + "\t" + "Kwheezy" + "\t" + "Livebyfoma" + "\t" + "Twitch" + "\t" + "False");
+                    file.WriteLine("S Limes" + "\t" + "InternalResource" + "\t" + "Limey;Seal;Aisha;Aishy" + "\t" + "Twitch" + "\t" + "Limealicious" + "\t" + "False");
+                    file.WriteLine("S Rev" + "\t" + "InternalResource" + "\t" + "Collin;Muffin" + "\t" + "Twitch" + "\t" + "Revscarecrow" + "\t" + "False");
+                    file.WriteLine("S Study" + "\t" + "InternalResource" + "\t" + "Study" + "\t" + "" + "\t" + "" + "\t" + "False");
+                    file.WriteLine("S Vinny" + "\t" + "InternalResource" + "\t" + "Vine;Vince;Vingle;Pizzapasta" + "\t" + "" + "\t" + "" + "\t" + "False");
 
-                // Icons
+                    // Icons
 
-                file.WriteLine("@ Icons");
-                file.WriteLine("I InternalResource");
+                    file.WriteLine("@ Icons");
+                    file.WriteLine("I InternalResource");
 
-                // Parameters
+                    // Parameters
 
-                file.WriteLine("@ Params");
-                file.WriteLine("P " + "tts=false");
-                file.WriteLine("P " + "startminimized=False");
-                file.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
-                file.WriteLine("P " + "balloontimeout=3");
-                file.WriteLine("P " + "pollrate=30");
+                    file.WriteLine("@ Params");
+                    file.WriteLine("P " + "tts=false");
+                    file.WriteLine("P " + "startminimized=False");
+                    file.WriteLine("P " + "runatstart=" + (parentForm != null ? parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString() : "false"));
+                    file.WriteLine("P " + "balloontimeout=3");
+                    file.WriteLine("P " + "pollrate=30");
 
+                }
+
+                Debug.WriteLine("Done.\n" + Directory.GetCurrentDirectory() + @"\vinewatchXConfig.txt");
+                return true;
+            }
+            catch
+            {
+                if (Rights.UAC.IsRunAsAdmin() || Rights.UAC.IsProcessElevated())
+                {
+                    MessageBox.Show("The config file couldn't be written.");
+                    return false;
+                }
+                else
+                {
+                    if (Rights.UAC.ExecuteElevated())
+                    {
+                        VinewatchX.Forms.MainForm.ForceClose = true;
+                        Application.Exit();
+                        return false;
+                    }
+                    else
+                        return false;
+                }
             }
 
-            Debug.WriteLine("Done.\n" + Directory.GetCurrentDirectory() + @"\vinewatchXConfig.txt");
+            
         }
 
         private string establishPath()

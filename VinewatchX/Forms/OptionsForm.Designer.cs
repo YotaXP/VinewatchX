@@ -518,7 +518,7 @@
             this.notifyTestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notifyTestButton.Location = new System.Drawing.Point(9, 19);
             this.notifyTestButton.Name = "notifyTestButton";
-            this.notifyTestButton.Size = new System.Drawing.Size(143, 23);
+            this.notifyTestButton.Size = new System.Drawing.Size(176, 23);
             this.notifyTestButton.TabIndex = 5;
             this.notifyTestButton.Text = "Test Notifications";
             this.notifyTestButton.UseVisualStyleBackColor = true;
@@ -551,7 +551,7 @@
             // 
             this.resetToDefaultConfigButton.Location = new System.Drawing.Point(11, 70);
             this.resetToDefaultConfigButton.Name = "resetToDefaultConfigButton";
-            this.resetToDefaultConfigButton.Size = new System.Drawing.Size(141, 23);
+            this.resetToDefaultConfigButton.Size = new System.Drawing.Size(174, 23);
             this.resetToDefaultConfigButton.TabIndex = 9;
             this.resetToDefaultConfigButton.Text = "Reset to Default Config";
             this.resetToDefaultConfigButton.UseVisualStyleBackColor = true;
@@ -629,7 +629,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         internal System.Windows.Forms.CheckBox startVinewatchMinimizedCheckbox;
         private System.Windows.Forms.Button resetDefaultSoundButton;
-        private System.Windows.Forms.Button resetToDefaultConfigButton;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox altChannelNameTextbox;
         private System.Windows.Forms.Label label3;
@@ -639,6 +638,7 @@
         private System.Windows.Forms.TextBox streamerAliasesTextbox;
         private System.Windows.Forms.Button saveStreamerParametersButton;
         private System.Windows.Forms.ComboBox altChannelServiceCombobox;
+        public System.Windows.Forms.Button resetToDefaultConfigButton;
 
     }
 }

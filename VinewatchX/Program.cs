@@ -20,7 +20,11 @@ namespace VinewatchX
 
             bool startMinimized = args.Any(a => Regex.IsMatch(a, @"--minimi[sz]ed", RegexOptions.IgnoreCase));
 
-            Application.Run(new MainForm(startMinimized));
+            MainForm mf = new MainForm(startMinimized);
+
+            if (!MainForm.ForceClose)
+            Application.Run(mf);
+
         }
     }
 }

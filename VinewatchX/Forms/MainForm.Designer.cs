@@ -51,6 +51,7 @@
             this.linkLabelBooru = new System.Windows.Forms.LinkLabel();
             this.openPlayerButton = new System.Windows.Forms.Button();
             this.vinnyEastereggPanel = new System.Windows.Forms.Panel();
+            this.updateButton = new System.Windows.Forms.Button();
             this.notificationIconContextStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -296,6 +297,17 @@
             this.vinnyEastereggPanel.TabIndex = 20;
             this.vinnyEastereggPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.vinnyEastereggPanel_MouseClick);
             // 
+            // updateButton
+            // 
+            this.updateButton.Location = new System.Drawing.Point(14, 157);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(98, 50);
+            this.updateButton.TabIndex = 21;
+            this.updateButton.Text = "An update is available, click to update to v";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Visible = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +315,7 @@
             this.BackgroundImage = global::VinewatchX.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(536, 536);
+            this.Controls.Add(this.updateButton);
             this.Controls.Add(this.vinnyEastereggPanel);
             this.Controls.Add(this.openPlayerButton);
             this.Controls.Add(this.linkLabelBooru);
@@ -354,6 +367,7 @@
         private System.Windows.Forms.LinkLabel linkLabelBooru;
         private System.Windows.Forms.Button openPlayerButton;
         private System.Windows.Forms.Panel vinnyEastereggPanel;
+        private System.Windows.Forms.Button updateButton;
 
     }
 }

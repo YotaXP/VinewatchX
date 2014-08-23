@@ -302,17 +302,26 @@ namespace VinewatchX.Forms
             }
         }
 
-        private void resetToDefaultConfigButton_Click(object sender, EventArgs e)
+        public void resetToDefaultConfigButton_Click(object sender, EventArgs e)
+        {
+            resetToDefaultConfigButton_Click(sender, e, true);
+        }
+
+
+        public bool resetToDefaultConfigButton_Click(object sender, EventArgs e, bool configAlreadyLoaded)
         {
             VineConf conf = new VineConf(parentForm);
-            conf.writeDefaultConfig();
+            if(!conf.writeDefaultConfig())
+                return false;
 
-            NoSave = true;
-            parentForm.ForceClose = true;
-            MessageBox.Show("Please restart VinewatchX");
-            Application.Exit();
-
-
+            if (configAlreadyLoaded)
+            {
+                NoSave = true;
+                MessageBox.Show("Please restart VinewatchX");
+                parentForm.exitVinewatchXToolStripMenuItem_Click(new object(), new EventArgs());
+                return true;
+            }
+            return true;
         }
 
         private void saveStreamerParametersButton_Click(object sender, EventArgs e)

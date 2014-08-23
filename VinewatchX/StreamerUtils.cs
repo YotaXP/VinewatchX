@@ -33,7 +33,7 @@ namespace VinewatchX
             StreamerList.Add(new Streamer("Imakuni"));
             StreamerList.Add(new Streamer("KY"));
             StreamerList.Add(new Streamer("Limes"));
-            StreamerList.Add(new Streamer("Study"));
+            StreamerList.Add(new Streamer("Studyguy"));
             StreamerList.Add(new Streamer("Joel"));
             StreamerList.Add(new Streamer("Hootey"));       //1.4; 1.7, Sorry Hootey
             StreamerList.Add(new Streamer("Jen"));          //1.4
