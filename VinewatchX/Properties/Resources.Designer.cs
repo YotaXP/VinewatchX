@@ -63,9 +63,9 @@ namespace VinewatchX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1324240144374 {
+        internal static System.Drawing.Bitmap background {
             get {
-                object obj = ResourceManager.GetObject("_1324240144374", resourceCulture);
+                object obj = ResourceManager.GetObject("background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace VinewatchX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap background {
+        internal static System.Drawing.Bitmap barney {
             get {
-                object obj = ResourceManager.GetObject("background", resourceCulture);
+                object obj = ResourceManager.GetObject("barney", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace VinewatchX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hannibal {
+        internal static System.Drawing.Bitmap fantasy {
             get {
-                object obj = ResourceManager.GetObject("hannibal", resourceCulture);
+                object obj = ResourceManager.GetObject("fantasy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -122,9 +122,9 @@ namespace VinewatchX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Mango {
+        internal static System.Drawing.Bitmap mango {
             get {
-                object obj = ResourceManager.GetObject("Mango", resourceCulture);
+                object obj = ResourceManager.GetObject("mango", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -132,9 +132,9 @@ namespace VinewatchX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap OvYVTBc {
+        internal static System.Drawing.Bitmap rideneverends {
             get {
-                object obj = ResourceManager.GetObject("OvYVTBc", resourceCulture);
+                object obj = ResourceManager.GetObject("rideneverends", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

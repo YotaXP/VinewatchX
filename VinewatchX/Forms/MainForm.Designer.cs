@@ -151,7 +151,7 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::VinewatchX.Properties.Resources.OvYVTBc;
+            this.pictureBox1.Image = global::VinewatchX.Properties.Resources.rideneverends;
             this.pictureBox1.Location = new System.Drawing.Point(127, 158);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(282, 270);

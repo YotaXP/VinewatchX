@@ -15,8 +15,8 @@ namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
-        internal const string gVer = "v2.0 beta";
-        internal const string gVersion = "VinewatchX " + gVer;
+        internal const string gVer = "1.9";
+        internal const string gVersion = "VinewatchX v" + gVer + " beta";
         internal string IconDescriptor = "InternalResource";
         internal Icon notificationIconIcon = Properties.Resources.vs;
         internal VinewatchLogicEZTWAPI thread0;    // Checking live statuses is handled by VinewatchLogic objects
@@ -117,8 +117,9 @@ namespace VinewatchX.Forms
 
 
             string channelname = streamTitle.Substring(0, streamTitle.IndexOf(']') + 1);
-            string channelstatus = (streamTitle.Length > 63 ? streamTitle.Substring(0, 63) : streamTitle);
-                   channelstatus = channelstatus.Substring(channelstatus.IndexOf(']') + 2);
+
+            string channelstatus = streamTitle.Substring(streamTitle.IndexOf(']') + 2);
+                   channelstatus = (channelstatus.Length > 63 ? channelstatus.Substring(0, 63) : channelstatus); 
             setNotificationIconBalloonText(channelstatus, channelname);
 
             showBalloonTip(balloonTipTimeout);
@@ -498,7 +499,7 @@ namespace VinewatchX.Forms
         {
             OmniPlayer.Play("Samples/MANGO.mp3");
 
-            pictureBox1.Image = Properties.Resources.Mango;
+            pictureBox1.Image = Properties.Resources.mango;
         }
 
         protected void pictureBox1_Click(object sender, EventArgs e)

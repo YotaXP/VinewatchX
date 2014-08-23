@@ -322,7 +322,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::VinewatchX.Properties.Resources._1324240144374;
+            this.pictureBox1.Image = global::VinewatchX.Properties.Resources.fantasy;
             this.pictureBox1.Location = new System.Drawing.Point(355, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(125, 115);

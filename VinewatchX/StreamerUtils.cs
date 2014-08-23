@@ -102,10 +102,10 @@ namespace VinewatchX
             return StreamerList.FirstOrDefault(s => s.Name == name);
         }
 
-        public static Streamer FindStreamerByStreamTitle(string streamTitle)
+        public static Streamer FindStreamerByStreamTitle(string _streamTitle)
         {
             Streamer found = null;
-
+            string streamTitle = _streamTitle.Substring(_streamTitle.IndexOf(']') + 1);
             foreach (Streamer str in StreamerList)
             {
                 if(streamTitle.ToLowerInvariant().Contains(str.Name.ToLowerInvariant())) // Search for streamer name
@@ -124,7 +124,7 @@ namespace VinewatchX
                             break;
                         }
 
-                if (streamTitle.ToLowerInvariant().Contains(str.AltChannel.ToLowerInvariant())) // Search for streamer alt channel
+                if (str.AltChannel != "" &&streamTitle.ToLowerInvariant().Contains(str.AltChannel.ToLowerInvariant())) // Search for streamer alt channel
                 {
                     found = str;
                     break;
@@ -133,6 +133,9 @@ namespace VinewatchX
                 if (found != null)
                     break;
             }
+
+            if(found == null)
+            return new Streamer("Default");
 
             return found;
             //return StreamerList.FirstOrDefault(s => streamTitle.ToLowerInvariant().Contains(s.Name.ToLowerInvariant()));

@@ -105,10 +105,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\System.Net.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -150,7 +146,6 @@
     <Compile Include="Forms\OptionsForm.Designer.cs">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PollerThreadManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\StartWithWindowsPrompt.cs">
@@ -168,7 +163,6 @@
     <Compile Include="StreamerUtils.cs" />
     <Compile Include="VineConf.cs" />
     <Compile Include="VinewatchLogicEZTWAPI.cs" />
-    <Compile Include="VinewatchLogic.cs" />
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,19 +199,15 @@
   <ItemGroup>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\vw.ico" />
-    <None Include="Resources\optionsPageImage.bmp" />
-    <None Include="Resources\1324240144374.jpg" />
-    <None Include="Resources\OvYVTBc.png" />
+    <None Include="Resources\fantasy.jpg" />
+    <None Include="Resources\rideneverends.png" />
     <None Include="Resources\live.ico" />
-    <None Include="Resources\2Ycuo01.png" />
     <None Include="VinewatchX.snk" />
-    <None Include="Resources\Mango.jpg" />
+    <None Include="Resources\mango.jpg" />
     <None Include="Resources\bigger_icon.png" />
-    <None Include="Resources\1388169663907.jpg" />
-    <None Include="Resources\vwvso.ico" />
-    <None Include="Resources\third.ico" />
+    <None Include="Resources\barney.jpg" />
+    <None Include="Resources\vinemushroom.ico" />
     <None Include="Changelog.txt" />
-    <None Include="References\System.Net.Json.dll" />
     <None Include="Resources\background.png" />
     <Content Include="vinewatchXConfig.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -292,6 +282,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
