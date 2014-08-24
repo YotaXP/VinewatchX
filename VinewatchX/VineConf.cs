@@ -155,7 +155,7 @@ namespace VinewatchX
                 if (Rights.UAC.IsRunAsAdmin() || Rights.UAC.IsProcessElevated())
                     MessageBox.Show("The config file couldn't be written.");
                 else
-                    if (MessageBox.Show("Could not write the config file, do you want to try restarting VinewatchX with more privileges?", "Retry writing?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("Could not write the config file, do you want to try restarting VinewatchX with more privileges?", "Need Elevation?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         if (Rights.UAC.ExecuteElevated())
                             MainForm.mf.exitVinewatchXToolStripMenuItem_Click(new object(), new EventArgs());
 
@@ -163,7 +163,7 @@ namespace VinewatchX
             Debug.WriteLine("Done.\n" + targetFolder + @"\vinewatchXConfig.txt");
         }
 
-        public bool writeDefaultConfig()
+        public bool writeDefaultConfig(bool configAlreadyLoaded)
         {
             try
             {
@@ -216,14 +216,21 @@ namespace VinewatchX
                 }
                 else
                 {
-                    if (Rights.UAC.ExecuteElevated())
+                    if (configAlreadyLoaded)
                     {
-                        VinewatchX.Forms.MainForm.ForceClose = true;
-                        Application.Exit();
                         return false;
                     }
                     else
-                        return false;
+                    {
+                        if (Rights.UAC.ExecuteElevated())
+                        {
+                            VinewatchX.Forms.MainForm.ForceClose = true;
+                            Application.Exit();
+                            return false;
+                        }
+                        else
+                            return false;
+                    }
                 }
             }
 

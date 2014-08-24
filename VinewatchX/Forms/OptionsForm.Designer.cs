@@ -576,6 +576,7 @@
             this.Text = "Options";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OptionsForm_FormClosed);
             this.Load += new System.EventHandler(this.OptionsForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.OptionsForm_VisibleChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);

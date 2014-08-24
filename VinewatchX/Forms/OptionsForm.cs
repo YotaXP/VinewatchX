@@ -305,13 +305,14 @@ namespace VinewatchX.Forms
         public void resetToDefaultConfigButton_Click(object sender, EventArgs e)
         {
             resetToDefaultConfigButton_Click(sender, e, true);
+            okButton_Click(sender, e);
         }
 
 
         public bool resetToDefaultConfigButton_Click(object sender, EventArgs e, bool configAlreadyLoaded)
         {
             VineConf conf = new VineConf(parentForm);
-            if(!conf.writeDefaultConfig())
+            if (!conf.writeDefaultConfig(configAlreadyLoaded))
                 return false;
 
             if (configAlreadyLoaded)
@@ -332,6 +333,14 @@ namespace VinewatchX.Forms
             s.AltService = altChannelServiceCombobox.Text;
             s.MonitorAltChannel = monitorAltChannelCheckbox.Checked;
             
+        }
+
+        private void OptionsForm_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible)
+                parentForm.formThreadWatcher.Interval = 50;
+            else
+                parentForm.formThreadWatcher.Interval = 2000;
         }
 
     }
