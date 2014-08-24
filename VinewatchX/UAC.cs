@@ -8,6 +8,9 @@ using Microsoft.Win32.SafeHandles;
 
 namespace VinewatchX.Rights
 {
+    // This code is derived from the following msdn example
+    // http://code.msdn.microsoft.com/windowsapps/CSUACSelfElevation-644673d3
+
     public static class UAC
     {
         public static Button btnElevate = new Button();

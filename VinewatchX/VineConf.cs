@@ -113,40 +113,40 @@ namespace VinewatchX
                     // Streamers
 
                     file.WriteLine("@ Streamers");
-                    Debug.WriteLine("@ Streamers");
+                    xDebug.WriteLine("@ Streamers");
                     foreach (Streamer eachStreamer in StreamerUtils.StreamerList)
                     {
                         file.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel + "\t" + eachStreamer.MonitorAltChannel.ToString());
-                        Debug.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel + "\t" + eachStreamer.MonitorAltChannel.ToString());
+                        xDebug.WriteLine("S " + eachStreamer.Name + "\t" + eachStreamer.SoundFilename + "\t" + eachStreamer.Aliases + "\t" + eachStreamer.AltService + "\t" + eachStreamer.AltChannel + "\t" + eachStreamer.MonitorAltChannel.ToString());
                     }
 
                     // Icons
 
                     file.WriteLine("@ Icons");
-                    Debug.WriteLine("@ Icons");
+                    xDebug.WriteLine("@ Icons");
 
                     file.WriteLine("I " + parentForm.getIconsAsString());
-                    Debug.WriteLine("I " + parentForm.getIconsAsString());
+                    xDebug.WriteLine("I " + parentForm.getIconsAsString());
 
                     // Parameters
 
                     file.WriteLine("@ Params");
-                    Debug.WriteLine("@ Params");
+                    xDebug.WriteLine("@ Params");
 
                     file.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
-                    Debug.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
+                    xDebug.WriteLine("P " + "tts=" + parentForm.opt.ttsRadioButton.Checked.ToString());
 
                     file.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
-                    Debug.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
+                    xDebug.WriteLine("P " + "startminimized=" + parentForm.opt.startVinewatchMinimizedCheckbox.Checked.ToString());
 
                     file.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
-                    Debug.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
+                    xDebug.WriteLine("P " + "runatstart=" + parentForm.opt.runVinewatchStartupCheckbox.Checked.ToString());
 
                     file.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
-                    Debug.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
+                    xDebug.WriteLine("P " + "balloontimeout=" + parentForm.getBalloonTipTimeout());
 
                     file.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
-                    Debug.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
+                    xDebug.WriteLine("P " + "pollrate=" + parentForm.getPollRate());
 
                 }
             }
@@ -160,7 +160,7 @@ namespace VinewatchX
                             MainForm.mf.exitVinewatchXToolStripMenuItem_Click(new object(), new EventArgs());
 
             }
-            Debug.WriteLine("Done.\n" + targetFolder + @"\vinewatchXConfig.txt");
+            xDebug.WriteLine("Done.\n" + targetFolder + @"\vinewatchXConfig.txt");
         }
 
         public bool writeDefaultConfig(bool configAlreadyLoaded)
@@ -204,7 +204,7 @@ namespace VinewatchX
 
                 }
 
-                Debug.WriteLine("Done.\n" + Directory.GetCurrentDirectory() + @"\vinewatchXConfig.txt");
+                xDebug.WriteLine("Done.\n" + Directory.GetCurrentDirectory() + @"\vinewatchXConfig.txt");
                 return true;
             }
             catch
@@ -243,13 +243,13 @@ namespace VinewatchX
 
             fbd.ShowDialog();
 
-            Debug.WriteLine("VineConf:\t Working Dir. set to - " + (fbd.SelectedPath == "" ? "Nothing! Defaulting to exe. dir." : fbd.SelectedPath));
+            xDebug.WriteLine("VineConf:\t Working Dir. set to - " + (fbd.SelectedPath == "" ? "Nothing! Defaulting to exe. dir." : fbd.SelectedPath));
             return fbd.SelectedPath;
         }
 
         private void readConfig(string targetFolder)
         {
-            Debug.WriteLine("Shit happens here.");
+            xDebug.WriteLine("Shit happens here.");
             if (File.Exists(targetFolder + "\\vinewatchXConfig.txt"))
             {
                 using (System.IO.StreamReader file = new System.IO.StreamReader(targetFolder + "\\vinewatchXConfig.txt"))
@@ -275,7 +275,7 @@ namespace VinewatchX
             if (line[0].Equals('S'))
             {
                 string[] words = line.Split('\t'); feedback = words;
-                Debug.WriteLine("applyConfigByLine - " + words[0] + "_" + words[1] + "\n" + words[0].Substring(2) + " - " + words[1]);
+                xDebug.WriteLine("applyConfigByLine - " + words[0] + "_" + words[1] + "\n" + words[0].Substring(2) + " - " + words[1]);
 
                 if(words.Length == 2)
                     StreamerUtils.AddStreamer(words[0].Substring(2), words[1]);

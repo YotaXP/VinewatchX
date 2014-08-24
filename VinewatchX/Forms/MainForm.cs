@@ -144,7 +144,7 @@ namespace VinewatchX.Forms
             t.IsBackground = true;
             t.Name = "Main thread.";
             t.Start();
-            Debug.WriteLine("Form1.cs\t\tThreading Started");
+            xDebug.WriteLine("Form1.cs\t\tThreading Started");
         }
 
         #endregion
@@ -222,7 +222,7 @@ namespace VinewatchX.Forms
                 {
 
 
-                    Debug.WriteLine("*\tMainForm.cs Phrase:\t" + phrase);
+                    xDebug.WriteLine("*\tMainForm.cs Phrase:\t" + phrase);
 
                     PromptBuilder pb = new PromptBuilder();
                     pb.AppendSsmlMarkup("<prosody volume=\"100\">" + phrase + "</prosody>");
@@ -536,9 +536,7 @@ namespace VinewatchX.Forms
         protected void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             if (gX)
-            {
                 OmniPlayer.Play("Samples/easteregg.mp3");
-            }
 
             gX = true;
         }
@@ -577,7 +575,7 @@ namespace VinewatchX.Forms
 
         protected void panel1_DoubleClick(object sender, EventArgs e)
         {
-            Debug.WriteLine("Icon as String - " + getIconsAsString());
+            xDebug.WriteLine("Icon as String - " + getIconsAsString());
         }
 
         protected void openVinesaucePlayerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -679,7 +677,7 @@ namespace VinewatchX.Forms
 
         public delegate void PlayMusic(string filename);
 
-        private void updateButton_Click(object sender, EventArgs e)
+        internal void updateButton_Click(object sender, EventArgs e)
         {
             exitVinewatchXToolStripMenuItem_Click(sender, e, true);
         }

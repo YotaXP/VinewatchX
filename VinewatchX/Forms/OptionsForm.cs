@@ -70,7 +70,7 @@ namespace VinewatchX.Forms
                 }
                 catch
                 {
-                    Debug.WriteLine("!!!\n  OptionsForm.cs - streamerListBoxInteractButton_Click\n\ttry has failed!");
+                    xDebug.WriteLine("!!!\n  OptionsForm.cs - streamerListBoxInteractButton_Click\n\ttry has failed!");
                 }
             }
         }
@@ -87,7 +87,7 @@ namespace VinewatchX.Forms
                 }
                 catch
                 {
-                    Debug.WriteLine("!!!\n  OptionsForm.cs - streamerListPlayButton_Click\n\ttry has failed!");
+                    xDebug.WriteLine("!!!\n  OptionsForm.cs - streamerListPlayButton_Click\n\ttry has failed!");
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace VinewatchX.Forms
                 }
                 catch
                 {
-                    Debug.WriteLine("!!!\n  OptionsForm.cs - optionsFormStreamerListBox_SelectedIndexChanged\n\ttry has failed! selectedIndex = " + selectedIndex);
+                    xDebug.WriteLine("!!!\n  OptionsForm.cs - optionsFormStreamerListBox_SelectedIndexChanged\n\ttry has failed! selectedIndex = " + selectedIndex);
                 }
             }
         }
@@ -298,7 +298,7 @@ namespace VinewatchX.Forms
             }
             catch
             {
-                Debug.WriteLine("!!!\n  OptionsForm.cs - resetDefaultSoundButton_Click\n\ttry has failed!");
+                xDebug.WriteLine("!!!\n  OptionsForm.cs - resetDefaultSoundButton_Click\n\ttry has failed!");
             }
         }
 
@@ -341,6 +341,16 @@ namespace VinewatchX.Forms
                 parentForm.formThreadWatcher.Interval = 50;
             else
                 parentForm.formThreadWatcher.Interval = 2000;
+        }
+
+        private void showDebugButton_Click(object sender, EventArgs e)
+        {
+            xDebug.x.Show();
+        }
+
+        private void forceUpdateButton_Click(object sender, EventArgs e)
+        {
+            parentForm.updateButton_Click(sender, e);
         }
 
     }

@@ -34,13 +34,13 @@ namespace VinewatchX
         /// </summary>
         public void init()
         {
-            Debug.WriteLine("VinewatchLogic.cs\tThreading Started");
+            xDebug.WriteLine("Logic Thread Started");
 
             while (true)
             {
                 using (WebClient htmlGet = new WebClient())
                 {
-                    Debug.WriteLine("VinewatchLogic.cs\thtmlGet");
+                    xDebug.WriteLine(">htmlGet");
                     try
                     {
                         String status = htmlGet.DownloadString(eztwapiURL + "?channel=" + channel.ToLower() + "&showname=true" + "&service=" + service);
@@ -61,15 +61,14 @@ namespace VinewatchX
 
                         foreach(string[] channelstatus in allStatus)
                         {
-                            processStatus(channelstatus[0], channelstatus[1], channelstatus[2]);
+                            if(channelstatus[0] != "" && channelstatus[1] != "")
+                                processStatus(channelstatus[0], channelstatus[1], channelstatus[2]);
                         }
                         
                     }
-                    catch (WebException)
+                    catch (WebException e)
                     {
-                        Debug.WriteLine("VinewatchLogic.cs\tWeb Exception");
-                        //Debug.WriteLine("VinewatchLogic.cs\t\t\n*\tLast Report:\t" + getLastReport());
-                        //Debug.WriteLine("VinewatchLogic.cs\t\n*\tLast Last Report:\t" + getLastLastReport());
+                        xDebug.WriteLine("!!! >>> Web Exception");
 
                         if (!parentForm.opt.supressionRadioButton.Checked)
                         {
@@ -80,9 +79,12 @@ namespace VinewatchX
                         currentStreamerChannel.serviceState = false;
                         updateFormIcon(false);
                         updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
+                        xDebug.WriteLine(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
+                        xDebug.WriteLine(e.ToString());
                     }
                     catch (Exception e)
                     {
+                        xDebug.WriteLine("!!! >>> General Exception");
                         if (!parentForm.opt.supressionRadioButton.Checked)
                         {
                             parentForm.notify("Service: No connection Retrying in 30...");
@@ -91,7 +93,8 @@ namespace VinewatchX
                         currentStreamerChannel.serviceState = false;
                         updateFormIcon(false);
                         updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
-                        MessageBox.Show(e.ToString());
+                        xDebug.WriteLine(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
+                        xDebug.WriteLine(e.ToString());
                     }
                 }
 
@@ -101,6 +104,7 @@ namespace VinewatchX
                     currentStreamerChannel.serviceState = false;
                     updateFormIcon(false);
                     updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
+                    xDebug.WriteLine(DateTime.Now.ToString("HH:mm:ss tt") + ": " + VinewatchLogicEZTWAPI.channel + " is currently Offline.");
                 }
 
 
@@ -113,7 +117,8 @@ namespace VinewatchX
         {
             if (!status.Contains("is Offline"))
             {
-                Debug.WriteLine("VinewatchLogic.cs\tEZTWAPI get successful");
+                xDebug.WriteLine(_channel + " on " + _service + " reported online");
+                xDebug.WriteLine("with status: " + status);
 
                 StreamerChannel sc = StreamerChannel.getOrAddChannel(_channel, _service);
                 currentStreamerChannel = sc;
@@ -123,13 +128,13 @@ namespace VinewatchX
                 sc.setLastLastReport(sc.getLastReport());
                 sc.setLastReport(status);
 
-                Debug.WriteLine("VinewatchLogic.cs\t\n*\t\tLast Report:\t" + sc.getLastReport());
-                Debug.WriteLine("VinewatchLogic.cs\t\n*\tLast Last Report:\t" + sc.getLastLastReport());
+                xDebug.WriteLine(_channel + " on " + _service + "Last Report:\t" + sc.getLastReport());
+                xDebug.WriteLine(_channel + " on " + _service + "Last Last Report:\t" + sc.getLastLastReport());
 
                 if (currentStreamerChannel.servicePrevAlert == false || sc.getLastLastReport() != sc.getLastReport())
                 {
 
-                    Debug.WriteLine("VinewatchLogic.cs\tNotification will now occur.");
+                    xDebug.WriteLine("> Notification will now occur.");
                     currentStreamerChannel.servicePrevAlert = true;
 
                     if(status.Contains("[" + channel + "]"))
@@ -143,7 +148,7 @@ namespace VinewatchX
             }
             else
             {
-                Debug.WriteLine("VinewatchLogic.cs\tEZTWAPI returned a string that contains IS OFFLINE");
+                xDebug.WriteLine("EZTWAPI: " + _channel + " on " + _service + " IS OFFLINE");
 
                 StreamerChannel sc = StreamerChannel.getOrAddChannel(_channel, _service);
                 currentStreamerChannel = sc;
@@ -155,7 +160,8 @@ namespace VinewatchX
                 if(status.Contains("[" + channel + "]"))
                 {
                     updateFormIcon(false);
-                    updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + channel + " is currently Offline.");
+                    updateFormProperties(DateTime.Now.ToString("HH:mm:ss tt") + ": " + channel + " on " + _service + " is currently Offline.");
+                    xDebug.WriteLine(DateTime.Now.ToString("HH:mm:ss tt") + ": " + channel + " on " + _service + " is currently Offline.");
                 }
 
             }

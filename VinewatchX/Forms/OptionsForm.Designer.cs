@@ -73,6 +73,8 @@
             this.notifyTestButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.showDebugButton = new System.Windows.Forms.Button();
+            this.forceUpdateButton = new System.Windows.Forms.Button();
             this.resetToDefaultConfigButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -516,11 +518,11 @@
             // notifyTestButton
             // 
             this.notifyTestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notifyTestButton.Location = new System.Drawing.Point(9, 19);
+            this.notifyTestButton.Location = new System.Drawing.Point(8, 19);
             this.notifyTestButton.Name = "notifyTestButton";
-            this.notifyTestButton.Size = new System.Drawing.Size(176, 23);
+            this.notifyTestButton.Size = new System.Drawing.Size(86, 23);
             this.notifyTestButton.TabIndex = 5;
-            this.notifyTestButton.Text = "Test Notifications";
+            this.notifyTestButton.Text = "Test Notifier";
             this.notifyTestButton.UseVisualStyleBackColor = true;
             this.notifyTestButton.Click += new System.EventHandler(this.notifyTestButton_Click);
             // 
@@ -537,6 +539,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.showDebugButton);
+            this.groupBox2.Controls.Add(this.forceUpdateButton);
             this.groupBox2.Controls.Add(this.resetToDefaultConfigButton);
             this.groupBox2.Controls.Add(this.notifyTestButton);
             this.groupBox2.Controls.Add(this.supressionRadioButton);
@@ -547,13 +551,34 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Debug Tools";
             // 
+            // showDebugButton
+            // 
+            this.showDebugButton.Location = new System.Drawing.Point(135, 70);
+            this.showDebugButton.Name = "showDebugButton";
+            this.showDebugButton.Size = new System.Drawing.Size(50, 23);
+            this.showDebugButton.TabIndex = 16;
+            this.showDebugButton.Text = "Debug";
+            this.showDebugButton.UseVisualStyleBackColor = true;
+            this.showDebugButton.Click += new System.EventHandler(this.showDebugButton_Click);
+            // 
+            // forceUpdateButton
+            // 
+            this.forceUpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forceUpdateButton.Location = new System.Drawing.Point(100, 19);
+            this.forceUpdateButton.Name = "forceUpdateButton";
+            this.forceUpdateButton.Size = new System.Drawing.Size(84, 23);
+            this.forceUpdateButton.TabIndex = 16;
+            this.forceUpdateButton.Text = "Force Update";
+            this.forceUpdateButton.UseVisualStyleBackColor = true;
+            this.forceUpdateButton.Click += new System.EventHandler(this.forceUpdateButton_Click);
+            // 
             // resetToDefaultConfigButton
             // 
-            this.resetToDefaultConfigButton.Location = new System.Drawing.Point(11, 70);
+            this.resetToDefaultConfigButton.Location = new System.Drawing.Point(8, 70);
             this.resetToDefaultConfigButton.Name = "resetToDefaultConfigButton";
-            this.resetToDefaultConfigButton.Size = new System.Drawing.Size(174, 23);
+            this.resetToDefaultConfigButton.Size = new System.Drawing.Size(123, 23);
             this.resetToDefaultConfigButton.TabIndex = 9;
-            this.resetToDefaultConfigButton.Text = "Reset to Default Config";
+            this.resetToDefaultConfigButton.Text = "Reset Default Config";
             this.resetToDefaultConfigButton.UseVisualStyleBackColor = true;
             this.resetToDefaultConfigButton.Click += new System.EventHandler(this.resetToDefaultConfigButton_Click);
             // 
@@ -640,6 +665,8 @@
         private System.Windows.Forms.Button saveStreamerParametersButton;
         private System.Windows.Forms.ComboBox altChannelServiceCombobox;
         public System.Windows.Forms.Button resetToDefaultConfigButton;
+        private System.Windows.Forms.Button forceUpdateButton;
+        private System.Windows.Forms.Button showDebugButton;
 
     }
 }
