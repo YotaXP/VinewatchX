@@ -150,7 +150,7 @@ namespace VinewatchX.Forms
         #endregion
 
         #region Notification methods
-        internal void notify(string streamTitle)
+        internal void notify(string streamTitle,bool fullnotify)
         {
             playNotifySound(streamTitle);
 

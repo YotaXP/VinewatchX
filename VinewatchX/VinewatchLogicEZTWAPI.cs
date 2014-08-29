@@ -40,7 +40,7 @@ namespace VinewatchX
             {
                 using (WebClient htmlGet = new WebClient())
                 {
-                    xDebug.WriteLine(">htmlGet");
+                    xDebug.WriteLine("> htmlGet(s)");
                     try
                     {
                         String status = htmlGet.DownloadString(eztwapiURL + "?channel=" + channel.ToLower() + "&showname=true" + "&service=" + service);
@@ -72,7 +72,7 @@ namespace VinewatchX
 
                         if (!parentForm.opt.supressionRadioButton.Checked)
                         {
-                            parentForm.notify("Service: No connection Retrying in 30...");
+                            parentForm.notify("Service: No connection Retrying in 30...", true);
                         }
 
                         currentStreamerChannel.servicePrevAlert = false;
@@ -87,7 +87,7 @@ namespace VinewatchX
                         xDebug.WriteLine("!!! >>> General Exception");
                         if (!parentForm.opt.supressionRadioButton.Checked)
                         {
-                            parentForm.notify("Service: No connection Retrying in 30...");
+                            parentForm.notify("Service: No connection Retrying in 30...", true);
                         }
                         currentStreamerChannel.servicePrevAlert = false;
                         currentStreamerChannel.serviceState = false;
@@ -117,13 +117,13 @@ namespace VinewatchX
         {
             if (!status.Contains("is Offline"))
             {
+
                 xDebug.WriteLine(_channel + " on " + _service + " reported online");
                 xDebug.WriteLine("with status: " + status);
 
                 StreamerChannel sc = StreamerChannel.getOrAddChannel(_channel, _service);
-                currentStreamerChannel = sc;
-
-                currentStreamerChannel.serviceState = true;
+                currentStreamerChannel = sc; // global var do not change
+                sc.serviceState = true;
 
                 sc.setLastLastReport(sc.getLastReport());
                 sc.setLastReport(status);
@@ -133,29 +133,33 @@ namespace VinewatchX
 
                 if (currentStreamerChannel.servicePrevAlert == false || sc.getLastLastReport() != sc.getLastReport())
                 {
+                    // will display balloon if the ticker string has changed or 
+                    //if the service has been online back up after 5 or more offline ticks. (default: 2.5 min)
+                    bool showBalloon = (sc.getLastLastReport() != sc.getLastReport() || sc.offlineTicks >= 5);
 
-                    xDebug.WriteLine("> Notification will now occur.");
+                    xDebug.WriteLine("> ###### Notification will now occur" + (showBalloon? " with a notification balloon. ######" : " silently. ######"));
                     currentStreamerChannel.servicePrevAlert = true;
 
                     if(status.Contains("[" + channel + "]"))
                         updateFormIcon(true);
 
-                    parentForm.notify(sc.getLastReport());
 
-                    //updateFormProperties(getLastReport());
-                    //updateFormIcon(true);
+                        parentForm.notify(sc.getLastReport(), showBalloon);
+
                 }
+
+                sc.offlineTicks = 0; //reset the offline ticks counter if seen online
             }
             else
             {
                 xDebug.WriteLine("EZTWAPI: " + _channel + " on " + _service + " IS OFFLINE");
 
                 StreamerChannel sc = StreamerChannel.getOrAddChannel(_channel, _service);
-                currentStreamerChannel = sc;
+                currentStreamerChannel = sc; //global var do not change
 
-                currentStreamerChannel.servicePrevAlert = false;
-                currentStreamerChannel.serviceState = false;
-
+                sc.servicePrevAlert = false;
+                sc.serviceState = false;
+                sc.offlineTicks++;
 
                 if(status.Contains("[" + channel + "]"))
                 {
@@ -208,8 +212,11 @@ namespace VinewatchX
         public bool serviceState;              //Live status of stream
         public bool servicePrevAlert;          //Alert Suppression
 
+        public int offlineTicks = 0;
+
         private string lastReport = "init";
         private string lastLastReport;
+
 
         public static List<StreamerChannel> MonitoredChannels = new List<StreamerChannel>();
 
@@ -243,14 +250,14 @@ namespace VinewatchX
             return this.lastReport;
         }
 
-        public string getLastLastReport()
-        {
-            return this.lastLastReport;
-        }
-
         public void setLastReport(string s)
         {
             this.lastReport = s;
+        }
+
+        public string getLastLastReport()
+        {
+            return this.lastLastReport;
         }
 
         public void setLastLastReport(string s)
