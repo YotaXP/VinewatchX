@@ -16,9 +16,9 @@ namespace VinewatchX.Forms
 {
     public partial class MainForm : Form
     {
-        internal const string gVer = "1.9";
+        internal const string gVer = "2.0";
         internal string DownloadFolder = "http://perso.maskatel.net/lib/VINEWATCHX/UPDATE/";
-        internal const string gVersion = "VinewatchX v" + gVer + " beta";
+        internal const string gVersion = "VinewatchX v" + gVer;
         internal string IconDescriptor = "InternalResource";
         internal Icon notificationIconIcon = Properties.Resources.vs;
         internal VinewatchLogicEZTWAPI thread0;    // Checking live statuses is handled by VinewatchLogic objects
@@ -150,7 +150,7 @@ namespace VinewatchX.Forms
         #endregion
 
         #region Notification methods
-        internal void notify(string streamTitle,bool fullnotify)
+        internal void notify(string streamTitle,bool showBalloon)
         {
             playNotifySound(streamTitle);
 
@@ -164,7 +164,8 @@ namespace VinewatchX.Forms
                    channelstatus = (channelstatus.Length > 63 ? channelstatus.Substring(0, 63) : channelstatus); 
             setNotificationIconBalloonText(channelstatus, channelname);
 
-            showBalloonTip(balloonTipTimeout);
+            if(showBalloon)
+                showBalloonTip(balloonTipTimeout);
         }
 
         internal void notifyTest(string streamTitle)

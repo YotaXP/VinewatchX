@@ -198,7 +198,10 @@ namespace VinewatchX
             }
         }
 
-
+        private bool isFormIconLive()
+        {
+            return (parentForm.notificationIcon.Icon == Properties.Resources.live);
+        }
     }
 
     public class StreamerChannel{
