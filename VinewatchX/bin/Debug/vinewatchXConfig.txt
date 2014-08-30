@@ -1,0 +1,24 @@
+@ Streamers
+S Bobito	InternalResource	Bobo;Presidente			False
+S Darren	InternalResource	Spud;Potato	Twitch	Iwantapotato	False
+S Direboar	InternalResource	Dire;Boar;Durrbore;Durbur	Twitch	Direboar	False
+S Fred	InternalResource	Froob	Twitch	Fredsauce	False
+S Gingers	InternalResource	Fear	Twitch	Feargingers	False
+S Guest	InternalResource				False
+S Hooty	InternalResource	Owl;Hoots;Hootet	Twitch	Hootey	False
+S Imakuni	InternalResource	Ima;Pelicuni	Twitch	Pelikuni	False
+S Jen	InternalResource	Jenna;Harley Quinn	Twitch	Mentaljen	False
+S Joel	InternalResource	Jobel;Jorbel;Jogel;Skeletor;Joestar;Jojo	Twitch	Vargskelethor	False
+S KY	InternalResource	Kwheezy	Livebyfoma	Twitch	False
+S Limes	InternalResource	Limey;Seal;Aisha;Aishy	Twitch	Limealicious	False
+S Rev	InternalResource	Collin;Muffin	Twitch	Revscarecrow	False
+S Study	InternalResource	Study			False
+S Vinny	InternalResource	Vine;Vince;Vingle;Pizzapasta			False
+@ Icons
+I InternalResource
+@ Params
+P tts=false
+P startminimized=False
+P runatstart=False
+P balloontimeout=3
+P pollrate=30
