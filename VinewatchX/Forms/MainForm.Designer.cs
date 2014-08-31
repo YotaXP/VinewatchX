@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.notificationIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notificationIconContextStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.settingsFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -330,6 +331,7 @@
             this.Controls.Add(this.minToTrayButton);
             this.Controls.Add(this.lastReportLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
