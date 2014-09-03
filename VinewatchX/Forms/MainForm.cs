@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace VinewatchX.Forms
 {
@@ -30,6 +31,7 @@ namespace VinewatchX.Forms
         protected static StreamerUtils con = new StreamerUtils();
         protected Icon currentIcon = Properties.Resources.vs;
         protected string mainchannel;
+        protected bool startMinimized;
 
         internal System.Windows.Forms.Timer formThreadWatcher = new System.Windows.Forms.Timer();
         internal string SoundToPlay = "";
@@ -40,15 +42,12 @@ namespace VinewatchX.Forms
 
         #region Mainform constructor and start-up methods
 
-        internal MainForm(bool tStartMinimized)
+        internal MainForm(string[] _args)
         {
-
+            startMinimized = _args.Any(a => Regex.IsMatch(a, @"--minimi[sz]ed", RegexOptions.IgnoreCase));
             InitializeComponent();
             MainForm.mf = this;
             MainFormPrep();
-
-            if (tStartMinimized || opt.startVinewatchMinimizedCheckbox.Checked) WindowState = FormWindowState.Minimized;
-
 
         }
 
@@ -104,6 +103,17 @@ namespace VinewatchX.Forms
                 }
             }
             catch { }
+
+            if (startMinimized || opt.startVinewatchMinimizedCheckbox.Checked)
+            {
+                WindowState = FormWindowState.Minimized;
+
+                // hide the taskbar icon, let only the systray be there
+                BeginInvoke(new MethodInvoker(delegate{
+                    Hide();
+                }));
+            }
+
         }
 
         protected void MainFormPrep()

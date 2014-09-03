@@ -18,12 +18,13 @@ namespace VinewatchX
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            bool startMinimized = args.Any(a => Regex.IsMatch(a, @"--minimi[sz]ed", RegexOptions.IgnoreCase));
+            if(!Singularity.Scan())
+            {
+                MainForm mf = new MainForm(args);
 
-            MainForm mf = new MainForm(startMinimized);
-
-            if (!MainForm.ForceClose)
-            Application.Run(mf);
+                if (!MainForm.ForceClose)
+                Application.Run(mf);
+            }
 
         }
     }

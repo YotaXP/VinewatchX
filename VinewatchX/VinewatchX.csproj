@@ -164,6 +164,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Singularity.cs" />
     <Compile Include="Streamer.cs" />
     <Compile Include="StreamerUtils.cs" />
     <Compile Include="UAC.cs" />

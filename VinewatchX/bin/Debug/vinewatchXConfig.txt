@@ -17,7 +17,7 @@ S Vinny	InternalResource	Vine;Vince;Vingle;Pizzapasta			False
 @ Icons
 I InternalResource
 @ Params
-P tts=false
+P tts=False
 P startminimized=False
 P runatstart=False
 P balloontimeout=3
