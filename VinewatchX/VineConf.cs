@@ -31,9 +31,9 @@ namespace VinewatchX
 
             if (path == "")
             {
-                if (MessageBox.Show("Save to " + Directory.GetCurrentDirectory() + "?", "No path selected.", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Save to " + MainForm.ExeDir + "?", "No path selected.", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    writeConfig(Directory.GetCurrentDirectory());
+                    writeConfig(MainForm.ExeDir);
                 }
             }
             else
@@ -44,11 +44,11 @@ namespace VinewatchX
 
         public void exportConfig2()
         {
-            if (MessageBox.Show("Save to current directory? (" + Directory.GetCurrentDirectory() + ")", "No path selected.", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show("Save to current directory? (" + MainForm.ExeDir + ")", "No path selected.", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
-                writeConfig(Directory.GetCurrentDirectory());
-                MessageBox.Show("Done. Saved to " + Directory.GetCurrentDirectory() + @"vinewatchXConfig.txt");
+                writeConfig(MainForm.ExeDir);
+                MessageBox.Show("Done. Saved to " + MainForm.ExeDir + @"vinewatchXConfig.txt");
             }
             else
             {
@@ -75,12 +75,12 @@ namespace VinewatchX
         {
             bool manualFolderSelect = true;
 
-            if (File.Exists(Directory.GetCurrentDirectory() + "\\vinewatchXConfig.txt"))
+            if (File.Exists(MainForm.ExeDir + @"\" + "vinewatchXConfig.txt"))
             {
-                if (MessageBox.Show("Configuration was detected in " + Directory.GetCurrentDirectory() + ".\n\nLoad that?", "Config detected in Operating Directory!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Configuration was detected in " + MainForm.ExeDir + ".\n\nLoad that?", "Config detected in Operating Directory!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     manualFolderSelect = false;
-                    readConfig(Directory.GetCurrentDirectory());
+                    readConfig(MainForm.ExeDir);
                 }
             }
 
@@ -91,7 +91,7 @@ namespace VinewatchX
 
                 if (path != "")
                 {
-                    if (File.Exists(path + "\\vinewatchXConfig.txt"))
+                    if (File.Exists(path + @"\" + "vinewatchXConfig.txt"))
                     {
                         readConfig(path);
                     }
@@ -167,7 +167,7 @@ namespace VinewatchX
         {
             try
             {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(Directory.GetCurrentDirectory() + "\\vinewatchXConfig.txt"))
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(MainForm.ExeDir + "\\vinewatchXConfig.txt"))
                 {
                     // Streamers
 
@@ -204,7 +204,7 @@ namespace VinewatchX
 
                 }
 
-                xDebug.WriteLine("Done.\n" + Directory.GetCurrentDirectory() + @"\vinewatchXConfig.txt");
+                xDebug.WriteLine("Done.\n" + MainForm.ExeDir + @"\vinewatchXConfig.txt");
                 return true;
             }
             catch
@@ -250,7 +250,7 @@ namespace VinewatchX
         private void readConfig(string targetFolder)
         {
             xDebug.WriteLine("Shit happens here.");
-            if (File.Exists(targetFolder + "\\vinewatchXConfig.txt"))
+            if (File.Exists(targetFolder + @"\" + "vinewatchXConfig.txt"))
             {
                 using (System.IO.StreamReader file = new System.IO.StreamReader(targetFolder + "\\vinewatchXConfig.txt"))
                 {

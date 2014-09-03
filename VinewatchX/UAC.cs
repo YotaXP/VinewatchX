@@ -499,7 +499,7 @@ namespace VinewatchX.Rights
                 if (Filename == null)
                     proc.FileName = Application.ExecutablePath;
                 else
-                    proc.FileName = Filename;
+                    proc.FileName = Forms.MainForm.ExeDir + @"\" + Filename;
 
                 proc.Verb = "runas";
 

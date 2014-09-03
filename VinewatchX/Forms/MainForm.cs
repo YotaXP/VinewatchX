@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Net;
+using System.Reflection;
 
 namespace VinewatchX.Forms
 {
@@ -34,7 +35,7 @@ namespace VinewatchX.Forms
         internal string SoundToPlay = "";
 
         public static MainForm mf = null;
-
+        public static string ExeDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static bool ForceClose = false;
 
         #region Mainform constructor and start-up methods
@@ -62,7 +63,7 @@ namespace VinewatchX.Forms
             startThreading();
             createTooltips();
 
-            if(!File.Exists("VinesaucePlayer.exe"))
+            if(!File.Exists(ExeDir + @"\" + "VinesaucePlayer.exe"))
             {
                 openPlayerButton.Enabled = false;
                 openVinesaucePlayerToolStripMenuItem.Enabled = false;
@@ -73,17 +74,17 @@ namespace VinewatchX.Forms
             // self-updater code
             try
             {
-                if (File.Exists("VWUPDATE_NEW.exe"))
+                if (File.Exists(ExeDir + @"\" + "VWUPDATE_NEW.exe"))
                 {
-                    if (File.Exists("VWUPDATE.exe"))
-                        File.Delete("VWUPDATE.exe");
+                    if (File.Exists(ExeDir + @"\" + "VWUPDATE.exe"))
+                        File.Delete(ExeDir + @"\" + "VWUPDATE.exe");
 
-                    File.Move("VWUPDATE_NEW.exe", "VWUPDATE.exe");
+                    File.Move(ExeDir + @"\" + "VWUPDATE_NEW.exe", ExeDir + @"\" + "VWUPDATE.exe");
                 }
 
 
 
-                if (File.Exists("VWUPDATE.exe"))
+                if (File.Exists(ExeDir + @"\" + "VWUPDATE.exe"))
                 {
                     string updateVer = gVer;
                     try
@@ -116,7 +117,7 @@ namespace VinewatchX.Forms
             try
             {
                 VineConf conf = new VineConf(this);
-                conf.bypassPromptsImportConfig(Directory.GetCurrentDirectory());
+                conf.bypassPromptsImportConfig(ExeDir);
             }
             catch
             {
@@ -358,7 +359,7 @@ namespace VinewatchX.Forms
             }
             else
             {
-                if (File.Exists(p))
+                if (File.Exists((p.Contains(@":\") || p.Contains(@"\\") ? ExeDir + @"\" : "") + p))
                 {
                     setIcons(new Icon(p));
                     applyIcons();
@@ -483,7 +484,7 @@ namespace VinewatchX.Forms
 
                 //fallback to vinesauce.com if Vinesauce Player can't be found
 
-                if (File.Exists("VinesaucePlayer.exe"))
+                if (File.Exists(ExeDir + @"\" + "VinesaucePlayer.exe"))
                 {
                     string title = ((NotifyIcon)sender).BalloonTipTitle;
                     string _channel = title.Substring(title.IndexOf('[') + 1, (title.IndexOf(']') - 1) - title.IndexOf('['));
@@ -636,7 +637,7 @@ namespace VinewatchX.Forms
         {
             try
             {
-                System.Diagnostics.Process.Start("VinesaucePlayer.exe", ( channel == null ? "" : "-channel:" + channel) + (live ? " -live" : ""));
+                System.Diagnostics.Process.Start(ExeDir + @"\" + "VinesaucePlayer.exe", ( channel == null ? "" : "-channel:" + channel) + (live ? " -live" : ""));
             }
             catch { }
         }

@@ -226,7 +226,7 @@ namespace VinewatchX.Forms
             if(!NoSave)
             { 
                 VineConf conf = new VineConf(parentForm);
-                conf.exportConfig(Directory.GetCurrentDirectory());
+                conf.exportConfig(MainForm.ExeDir);
             }
         }
 
