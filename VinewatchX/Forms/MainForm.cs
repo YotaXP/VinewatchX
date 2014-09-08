@@ -163,6 +163,7 @@ namespace VinewatchX.Forms
         #region Notification methods
         internal void notify(string streamTitle,bool showBalloon)
         {
+            if (showBalloon)
             playNotifySound(streamTitle);
 
             if(streamTitle.Contains("[" + VinewatchLogicEZTWAPI.channel + "]"))
