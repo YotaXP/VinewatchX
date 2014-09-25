@@ -1,0 +1,10 @@
+﻿# List of substitutions to correct pronunciation errors in TTS.
+# Syntax: word=replacement
+# word is case insensitive
+# replacement may contain SSML
+# VinewatchX will initially load the built-in version of this file,
+# and then attempt to download a more up-to-date version directly
+# from Github.  Therefore minor changes will not require rereleasing.
+
+imakuni = <phoneme alphabet="ipa" ph="im&#601;kuni">Imakuni</phoneme>
+hootey  = <phoneme alphabet="ipa" ph="huti">Hootey</phoneme>
