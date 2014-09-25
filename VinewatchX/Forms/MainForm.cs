@@ -32,6 +32,7 @@ namespace VinewatchX.Forms
         protected Icon currentIcon = Properties.Resources.vs;
         protected string mainchannel;
         protected bool startMinimized;
+        protected List<KeyValuePair<string, string>> ttsSubstitutions = new List<KeyValuePair<string, string>>();
 
         internal System.Windows.Forms.Timer formThreadWatcher = new System.Windows.Forms.Timer();
         internal string SoundToPlay = "";
@@ -118,6 +119,8 @@ namespace VinewatchX.Forms
 
         protected void MainFormPrep()
         {
+            LoadTTSSubstitutions();
+
             thread0 = new VinewatchLogicEZTWAPI(this);
 
 
@@ -138,6 +141,36 @@ namespace VinewatchX.Forms
                 if (opt.resetToDefaultConfigButton_Click(new object(), new EventArgs(), false))
                     MainFormPrep();
 
+            }
+        }
+
+        private void LoadTTSSubstitutions() {
+            // Parse the list built into the assembly.
+            string subs;
+            using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("VinewatchX.Resources.ttsSubstitutions.txt")))
+                subs = sr.ReadToEnd();
+            if (subs != null)
+                ParseTTSSubstitutions(subs);
+
+            // Check Github for newer version.
+            var wc = new WebClient();
+            wc.DownloadStringCompleted += (s, e) => {
+                if (e.Error == null && e.Result != null && e.Result != subs) {
+                    ParseTTSSubstitutions(e.Result);
+                }
+            };
+            wc.DownloadStringAsync(new Uri(@"https://raw.githubusercontent.com/AliababwahVinesauceDev/VinewatchX/master/VinewatchX/Resources/ttsSubstitutions.txt"));
+        }
+
+        private void ParseTTSSubstitutions(string subs) {
+            ttsSubstitutions.Clear();
+            var sr = new StringReader(subs);
+            string line;
+            while ((line = sr.ReadLine()) != null) {
+                if (line.StartsWith("#")) continue;
+                var pair = line.Split(new[] { '=' }, 2);
+                if (pair.Length != 2) continue;
+                ttsSubstitutions.Add(new KeyValuePair<string, string>(pair[0].Trim(), pair[1].Trim()));
             }
         }
 
@@ -233,7 +266,8 @@ namespace VinewatchX.Forms
 
                 try
                 {
-
+                    foreach (var pair in ttsSubstitutions)
+                        phrase = phrase.Replace(pair.Key, pair.Value, StringComparison.InvariantCultureIgnoreCase);
 
                     xDebug.WriteLine("*\tMainForm.cs Phrase:\t" + phrase);
 

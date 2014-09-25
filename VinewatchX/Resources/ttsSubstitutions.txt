@@ -1,7 +1,8 @@
 ﻿# List of substitutions to correct pronunciation errors in TTS.
-# Syntax: word=replacement
-# word is case insensitive
-# replacement may contain SSML
+# Syntax: [word]=[replacement]
+# [word] is case insensitive
+# [replacement] may contain SSML
+# Whitespace is trimmed from either end of both.
 # VinewatchX will initially load the built-in version of this file,
 # and then attempt to download a more up-to-date version directly
 # from Github.  Therefore minor changes will not require rereleasing.

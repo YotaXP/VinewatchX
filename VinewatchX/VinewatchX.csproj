@@ -219,6 +219,7 @@
     <None Include="Resources\vinemushroom.ico" />
     <None Include="Changelog.txt" />
     <None Include="Resources\background.png" />
+    <EmbeddedResource Include="Resources\ttsSubstitutions.txt" />
     <Content Include="vinewatchXConfig.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
